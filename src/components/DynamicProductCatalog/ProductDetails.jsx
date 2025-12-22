@@ -653,7 +653,7 @@ const ProductDetails = () => {
                   category: product.categoryName || "General",
                 });
               }}
-              className="block w-full bg-gradient-to-r from-blue-600 to-blue-700 hover:from-blue-700 hover:to-blue-800 text-white px-6 py-3 rounded-lg transition-all shadow-md hover:shadow-lg mb-3 flex items-center justify-center gap-2"
+              className="block w-full border border-cyan-700  hover:bg-teal-600 hover:text-white  text-cyan-600 px-6 py-2 rounded-sm transition-all shadow-md hover:shadow-lg mb-3 flex items-center justify-center gap-2 "
             >
               <ShoppingCart className="w-5 h-5" />
               Add to Cart
@@ -661,7 +661,7 @@ const ProductDetails = () => {
 
             <button
               onClick={() => setShowContactModal(true)}
-              className="block w-full bg-teal-600 hover:bg-teal-700 text-white px-6 py-2 rounded-lg transition-colors"
+              className="block w-full bg-teal-600 hover:bg-teal-700 text-white px-6 py-2 rounded-sm transition-colors"
             >
               Contact Supplier
             </button>

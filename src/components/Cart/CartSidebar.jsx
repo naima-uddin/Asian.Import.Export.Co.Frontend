@@ -57,7 +57,7 @@ const CartSidebar = () => {
       >
         <div className="flex flex-col h-full">
           {/* Header */}
-          <div className="flex items-center justify-between p-4 border-b bg-gradient-to-r from-blue-600 to-blue-700 text-white">
+          <div className="flex items-center justify-between p-4 border-b bg-gradient-to-r from-teal-600 to-teal-700 text-white">
             <div className="flex items-center gap-2">
               <ShoppingCart className="w-6 h-6" />
               <h2 className="text-xl font-bold">Shopping Cart</h2>
@@ -103,7 +103,7 @@ const CartSidebar = () => {
 
                     {/* Product Details */}
                     <div className="flex-1 min-w-0">
-                      <h3 className="font-semibold text-sm line-clamp-2 mb-1">
+                      <h3 className="font-semibold text-xs line-clamp-2 mb-1 text-gray-700">
                         {item.name}
                       </h3>
                       <p className="text-blue-600 font-bold text-sm mb-2">
@@ -114,7 +114,7 @@ const CartSidebar = () => {
                       <div className="flex items-center gap-2">
                         <button
                           onClick={() => updateQuantity(item.id, item.quantity - 1)}
-                          className="p-1 rounded-md bg-gray-100 hover:bg-gray-200 transition-colors"
+                          className="p-1 rounded-md bg-teal-600 hover:bg-teal-700 transition-colors"
                           aria-label="Decrease quantity"
                         >
                           <Minus className="w-4 h-4" />
@@ -131,7 +131,7 @@ const CartSidebar = () => {
                         />
                         <button
                           onClick={() => updateQuantity(item.id, item.quantity + 1)}
-                          className="p-1 rounded-md bg-gray-100 hover:bg-gray-200 transition-colors"
+                          className="p-1 rounded-md bg-teal-600 hover:bg-teal-700 transition-colors"
                           aria-label="Increase quantity"
                         >
                           <Plus className="w-4 h-4" />
@@ -158,7 +158,7 @@ const CartSidebar = () => {
             <div className="border-t p-4 bg-gray-50">
               <div className="flex justify-between items-center mb-4">
                 <span className="text-lg font-semibold">Subtotal:</span>
-                <span className="text-2xl font-bold text-blue-600">
+                <span className="text-2xl font-bold text-red-600">
                   ${getCartTotal().toFixed(2)}
                 </span>
               </div>
@@ -195,7 +195,7 @@ const CartSidebar = () => {
                 disabled={!validation.canProceed}
                 className={`w-full py-3 px-4 rounded-md font-semibold transition-all ${
                   validation.canProceed
-                    ? 'bg-gradient-to-r from-blue-600 to-blue-700 text-white hover:shadow-lg hover:scale-[1.02]'
+                    ? 'bg-gradient-to-r from-teal-500 to-teal-700 text-white hover:shadow-lg hover:scale-[1.02]'
                     : 'bg-gray-300 text-gray-500 cursor-not-allowed'
                 }`}
               >

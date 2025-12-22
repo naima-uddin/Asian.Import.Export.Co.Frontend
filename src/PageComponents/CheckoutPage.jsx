@@ -117,13 +117,13 @@ const CheckoutPage = () => {
   return (
     <div className="min-h-screen bg-gray-50 py-8 px-4">
       <div className="max-w-7xl mx-auto">
-        <h1 className="text-3xl font-bold text-gray-800 mb-8">Checkout</h1>
+        <h1 className="text-3xl font-bold text-yellow-600 mb-8">Checkout</h1>
 
         <div className="grid grid-cols-1 lg:grid-cols-3 gap-8">
           {/* Customer Information Form */}
           <div className="lg:col-span-2">
             <form onSubmit={handlePlaceOrder} className="bg-white rounded-lg shadow-md p-6">
-              <h2 className="text-xl font-semibold mb-6">Customer Information</h2>
+              <h2 className="text-xl font-semibold mb-6 text-teal-600">Customer Information</h2>
 
               <div className="space-y-4">
                 {/* Name */}
@@ -136,7 +136,7 @@ const CheckoutPage = () => {
                     name="name"
                     value={formData.name}
                     onChange={handleInputChange}
-                    className="w-full px-4 py-2 border border-gray-300 rounded-md focus:ring-2 focus:ring-blue-500 focus:border-transparent"
+                    className="w-full px-4 py-2 border border-gray-300 rounded-md focus:ring-2 focus:ring-teal-600 focus:border-transparent bg-white"
                     required
                   />
                 </div>
@@ -286,7 +286,7 @@ const CheckoutPage = () => {
           {/* Order Summary */}
           <div className="lg:col-span-1">
             <div className="bg-white rounded-lg shadow-md p-6 sticky top-4">
-              <h2 className="text-xl font-semibold mb-4">Order Summary</h2>
+              <h2 className="text-xl font-semibold mb-4 text-teal-600">Order Summary</h2>
 
               {/* Cart Items */}
               <div className="space-y-3 mb-6 max-h-96 overflow-y-auto">

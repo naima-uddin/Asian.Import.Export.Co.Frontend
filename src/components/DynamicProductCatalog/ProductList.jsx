@@ -128,17 +128,18 @@ const ProductList = ({ category, subcategory, selectedBrand }) => {
                           state: { product },
                         })
                       }
-                      className="flex-1 border border-teal-500  hover:bg-teal-600 text-teal-500 py-2 rounded-md text-sm font-medium transition-colors hover:text-white"
+                      className="flex-1 border bg-teal-500  hover:bg-teal-600 text-white py-2 rounded-md text-sm font-medium transition-colors hover:text-white"
                     >
                       See Details
                     </button>
                     
                     <button
                       onClick={() => handleAddToCart(product)}
-                      className="flex-1 bg-gradient-to-r from-blue-600 to-blue-700 hover:from-blue-700 hover:to-blue-800 text-white py-2 rounded-md text-sm font-medium transition-all shadow-sm hover:shadow-md flex items-center justify-center gap-1"
+                      className="flex-1 border border-cyan-700  hover:bg-teal-600 hover:text-white  text-cyan-600 py-2 rounded-md text-sm font-medium transition-all shadow-sm hover:shadow-md flex items-center justify-center gap-1"
                     >
                       <ShoppingCart className="w-4 h-4" />
                       Add to Cart
+                      
                     </button>
                   </div>
                 </div>

@@ -289,6 +289,7 @@ const Navbar = () => {
             <div className="text-teal-200 text-xs">Since 2017</div>
           </div>
         </div>
+        
 
         {/* Mobile Menu Button */}
         <div className="flex items-center lg:hidden">
