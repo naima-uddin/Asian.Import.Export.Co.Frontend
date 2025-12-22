@@ -42,7 +42,7 @@ const OrderSuccessPage = () => {
           
           <button
             onClick={() => router.push('/products')}
-            className="w-full bg-white border-2 border-blue-600 text-blue-600 py-3 px-6 rounded-md font-semibold hover:bg-blue-50 transition-colors"
+            className="w-full bg-white border-2 border-teal-600 text-teal-600 py-3 px-6 rounded-md font-semibold hover:bg-teal-50 transition-colors"
           >
             Continue Shopping
           </button>

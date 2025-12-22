@@ -105,7 +105,7 @@ const CheckoutPage = () => {
           <h2 className="text-2xl font-bold text-gray-700 mb-2">Your cart is empty</h2>
           <button
             onClick={() => router.push('/products')}
-            className="mt-4 bg-blue-600 text-white px-6 py-2 rounded-md hover:bg-blue-700 transition-colors"
+            className="mt-4 bg-teal-600 text-white px-6 py-2 rounded-sm hover:bg-teal-700 transition-colors"
           >
             Continue Shopping
           </button>

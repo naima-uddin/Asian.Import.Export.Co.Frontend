@@ -193,7 +193,7 @@ const CartSidebar = () => {
               <button
                 onClick={handleProceedToCheckout}
                 disabled={!validation.canProceed}
-                className={`w-full py-3 px-4 rounded-md font-semibold transition-all ${
+                className={`w-full py-3 px-4 rounded-sm font-semibold transition-all ${
                   validation.canProceed
                     ? 'bg-gradient-to-r from-teal-500 to-teal-700 text-white hover:shadow-lg hover:scale-[1.02]'
                     : 'bg-gray-300 text-gray-500 cursor-not-allowed'

@@ -560,7 +560,7 @@ const ProductDetails = () => {
           </div>
 
           {/* Right: Purchase Box */}
-          <div className="lg:w-1/4 bg-white text-gray-800 p-4 rounded-lg shadow-lg border border-gray-200">
+          <div className="lg:w-1/4 bg-white text-gray-800 p-4 rounded-lg shadow-lg border border-gray-200 h-[300px]">
             <div className="mb-4">
               {/* Updated Price Display */}
               {product.price && product.offerPrice ? (
@@ -635,7 +635,7 @@ const ProductDetails = () => {
                 </button>
               </div>
             </div>
-
+            
             {/* Add to Cart Button */}
             <button
               onClick={() => {
@@ -651,12 +651,13 @@ const ProductDetails = () => {
                   category: product.categoryName || "General",
                 });
               }}
-              className="block w-full border border-cyan-700  hover:bg-teal-600 hover:text-white  text-cyan-600 px-6 py-2 rounded-sm transition-all shadow-md hover:shadow-lg mb-3 flex items-center justify-center gap-2 "
+              className="block w-full border border-cyan-700  hover:bg-teal-600 hover:text-white  text-cyan-600 px-6 py-2 rounded-sm transition-all shadow-md hover:shadow-lg mb-3 flex items-center justify-center gap-2"
             >
               <ShoppingCart className="w-5 h-5" />
               Add to Cart
             </button>
           </div>
+          
         </div>
 
         {/* Additional Product Specifications */}
