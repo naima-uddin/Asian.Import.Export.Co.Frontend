@@ -12,7 +12,6 @@ import {
   FaStarHalfAlt,
 } from "react-icons/fa";
 import { ShoppingCart } from "lucide-react";
-import ContactModal from "../shared/Modal/ContactModal";
 import { useCart } from "@/context/CartContext";
 
 // Helper functions for recommended products
@@ -268,7 +267,6 @@ const ProductDetails = () => {
   const [selectedImage, setSelectedImage] = useState(null);
   const [zoomLevel, setZoomLevel] = useState(1);
   const [showZoomControls, setShowZoomControls] = useState(false);
-  const [showContactModal, setShowContactModal] = useState(false);
   const [recommendedProducts, setRecommendedProducts] = useState([]);
   const [allProducts, setAllProducts] = useState([]);
   const [isTyre, setIsTyre] = useState(false);
@@ -658,13 +656,6 @@ const ProductDetails = () => {
               <ShoppingCart className="w-5 h-5" />
               Add to Cart
             </button>
-
-            <button
-              onClick={() => setShowContactModal(true)}
-              className="block w-full bg-teal-600 hover:bg-teal-700 text-white px-6 py-2 rounded-sm transition-colors"
-            >
-              Contact Supplier
-            </button>
           </div>
         </div>
 
@@ -724,12 +715,6 @@ const ProductDetails = () => {
               </p>
             </div>
           </div>
-          <button
-            onClick={() => setShowContactModal(true)}
-            className="mt-6 bg-teal-600 hover:bg-teal-700 text-white px-6 py-3 rounded-lg font-medium"
-          >
-            Contact Supplier Directly
-          </button>
         </div>
 
         {/* Customization Options */}
@@ -782,16 +767,6 @@ const ProductDetails = () => {
           />
         )}
       </div>
-
-      {/* Contact Modal */}
-      {showContactModal && (
-        <ContactModal
-          isOpen={showContactModal}
-          onClose={() => setShowContactModal(false)}
-          tyreModel={product.name}
-          moq={product.keyAttributes?.MOQ}
-        />
-      )}
     </div>
   );
 };
