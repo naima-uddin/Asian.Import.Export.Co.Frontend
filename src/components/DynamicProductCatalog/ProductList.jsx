@@ -25,14 +25,14 @@ const ProductList = ({ category, subcategory, selectedBrand }) => {
   };
 
   return (
-    <div className="bg-white rounded-lg shadow-md p-6">
+    <div className="bg-white rounded-lg shadow-md  p-6">
       {displayedProducts && displayedProducts.length > 0 ? (
         <div>
           <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
             {displayedProducts.map((product) => (
               <div
                 key={product.id}
-                className="border border-gray-200 rounded-lg p-4 hover:shadow-md transition-shadow flex flex-col"
+                className=" border border-teal-100 rounded-lg p-4 hover:shadow-md transition-shadow flex flex-col"
               >
                 {/* Product Image */}
                 <div className="h-48 w-full bg-gray-100 rounded-md mb-4 flex items-center justify-center overflow-hidden">
