@@ -107,9 +107,15 @@ const ProductList = ({ category, subcategory, selectedBrand }) => {
                           state: { product },
                         })
                       }
-                      className="flex-1 bg-teal-500 hover:bg-teal-600 text-white py-2 rounded-md text-sm font-medium transition-colors"
+                      className="flex-1 border border-teal-500  hover:bg-teal-600 text-teal-500 py-2 rounded-md text-sm font-medium transition-colors hover:text-white"
                     >
                       See Details
+                    </button>
+                    
+                    <button
+                      className="flex-1 bg-teal-500 hover:bg-teal-600 text-white py-2 rounded-md text-sm font-medium transition-colors"
+                    >
+                      Add To Cart
                     </button>
                   </div>
                 </div>
