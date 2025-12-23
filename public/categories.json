@@ -9107,7 +9107,7 @@
               "Turning Radius": "\u22643.5 m",
               "Minimum Ground Clearance": "150-200mm",
               "Use": "Golf Cart, Buggy Car",
-              "MOQ": "2 units",
+              "MOQ": "10",
               "Net Weight": "Approx. 500kg",
               "Brand": "Custom"
             },
@@ -9143,6 +9143,7 @@
               "Maximum Speed": "\u226430 km/h",
               "Driving Mileage": "\u226590 km",
               "Charge Time": "5-7h",
+              "MOQ": "10",
               "Minimum Ground Clearance": "100-150mm",
               "Certification": "DOT, CE, GCC, EEC",
               "Brand": "Custom",
@@ -9189,6 +9190,7 @@
               "Slope Climbing Capacity": "30%",
               "Tire Size": "23*10.00-14",
               "Brand": "Custom",
+              "MOQ": "10",
               "Certification": "CE",
               "Net Weight": "424kg (Without Battery)"
             },
@@ -9233,6 +9235,7 @@
               "Carrying Capacity": "670 kg",
               "Ground Clearance": "180mm",
               "Range": "80-90km",
+              "MOQ": "10",
               "Roof": "Injection molded ABS, extended and reinforced",
               "Dashboard": "Battery meter, Bluetooth MP3, USB sockets",
               "View Mirror": "E-mark certified mirrors",
@@ -9305,7 +9308,7 @@
                 "Durable aluminum alloy construction",
                 "Supports various PCD and ET specifications"
               ],
-              "MOQ": "1000 pieces",
+              "MOQ": "250 pieces",
               "Packaging": "Cartons and pallet (air/sea freight) or as per buyer\u2019s requirement",
               "Origin": "Zhejiang, China",
               "Brand": "Custom",
@@ -9370,7 +9373,7 @@
               "Disc Thickness": "4mm",
               "Adapter": "500/600-12",
               "Certification": "ISO9001",
-              "MOQ": "4 pieces (500 pieces for customization)"
+              "MOQ": "250 pieces"
             },
             "packagingAndDelivery": {
               "sellingUnits": "Single item",
@@ -9437,7 +9440,8 @@
               "Certification": "CE",
               "Age Group": "Adults, Teens",
               "Charger": "54.6V\u20132A",
-              "Watt-Hour": "500W"
+              "Watt-Hour": "500W",
+              "MOQ": "10"
             },
             "packagingAndDelivery": {
               "sellingUnits": "Single item",
@@ -9478,6 +9482,7 @@
               "Gears": "7 Speed Shimano (Trigger Shifter)",
               "Display": "Color LCD Display",
               "Smart Features": "Bluetooth, Odometer, Digital Display, PAS Sensor",
+              "MOQ": "10",
               "Special Features": [
                 "Lightweight",
                 "LED Headlight",
