@@ -5,7 +5,7 @@ import { useNavigate } from "@/lib/navigation";
 import { useCart } from "@/context/CartContext";
 import { ArrowUp, ShoppingCart } from "lucide-react";
 
-const ProductList = ({ category, subcategory, selectedBrand }) => {
+const ProductList = ({ category, subcategory, selectedBrand, isHomePage = false }) => {
   const [showAllProducts, setShowAllProducts] = useState(false);
   const navigate = useNavigate();
   const { addToCart } = useCart();
@@ -36,13 +36,25 @@ const ProductList = ({ category, subcategory, selectedBrand }) => {
   };
 
   // Determine how many products to show initially
-  const initialProductsCount = 3;
+  const initialProductsCount = isHomePage ? 3 : 12; // Show 3 on home, 12 on products page
   const displayedProducts = showAllProducts
     ? filteredProducts
     : filteredProducts.slice(0, initialProductsCount);
 
+  // Helper function to convert name to URL slug
+  const nameToSlug = (name) => {
+    return name.replace(/\s+/g, '-');
+  };
+
   const handleSeeAllClick = () => {
-    setShowAllProducts(true);
+    if (isHomePage) {
+      // Navigate to products page with the category selected
+      const slug = nameToSlug(categoryName);
+      navigate(`/products/c/${slug}`);
+    } else {
+      // Just expand the list on the products page
+      setShowAllProducts(true);
+    }
   };
   const handleShowLessClick = () => {
     setShowAllProducts(false);
@@ -154,7 +166,9 @@ const ProductList = ({ category, subcategory, selectedBrand }) => {
                   onClick={handleSeeAllClick}
                   className="px-6 py-2 bg-teal-600 text-white rounded-lg hover:bg-teal-700 transition-colors font-medium"
                 >
-                  See All {filteredProducts.length} Products
+                  {isHomePage 
+                    ? `View All ${filteredProducts.length} Products →` 
+                    : `See All ${filteredProducts.length} Products`}
                 </button>
               </div>
             )}

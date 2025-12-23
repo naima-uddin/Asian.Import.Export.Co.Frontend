@@ -7,7 +7,7 @@ import ProductSubcategory from "./ProductSubcategory";
 import ProductList from "./ProductList";
 import SearchSuggestion from "../Search/SearchSuggestion.jsx";
 
-const ProductCatalog = () => {
+const ProductCatalog = ({ isHomePage = false }) => {
   const [selectedCategory, setSelectedCategory] = useState(null);
   const [selectedSubcategory, setSelectedSubcategory] = useState(null);
   const [selectedBrand, setSelectedBrand] = useState(null);
@@ -468,6 +468,7 @@ const ProductCatalog = () => {
                     category={selectedCategory}
                     subcategory={selectedSubcategory}
                     selectedBrand={selectedBrand}
+                    isHomePage={isHomePage}
                   />
                 </div>
               ) : (

@@ -48,7 +48,7 @@ export default function Home() {
   return (
     <>
       <Banner />
-      <ProductCatalog />
+      <ProductCatalog isHomePage={true} />
       <ServicesSection />
       <WhyChooseUs />
     </>
