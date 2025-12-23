@@ -44,6 +44,9 @@ const ProductList = ({ category, subcategory, selectedBrand }) => {
   const handleSeeAllClick = () => {
     setShowAllProducts(true);
   };
+  const handleShowLessClick = () => {
+    setShowAllProducts(false);
+  };
 
   return (
     <div className="bg-white rounded-lg shadow-md  p-6">
@@ -159,6 +162,16 @@ const ProductList = ({ category, subcategory, selectedBrand }) => {
                 </button>
               </div>
             )}
+            {/* show less button  */}
+            {
+              showAllProducts && filteredProducts.length > initialProductsCount && (
+                <div className="mt-8 text-center">
+                  <button onClick={handleShowLessClick} className="px-6 py-2 bg-teal-600 text-white rounded-lg hover:bg-teal-700 transition-colors font-medium">
+                    Show Less
+                  </button>
+                </div>
+              )
+            }
         </div>
       ) : (
         <div className="bg-gray-50 rounded-lg p-8 text-center">
