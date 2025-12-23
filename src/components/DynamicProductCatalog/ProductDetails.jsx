@@ -199,8 +199,7 @@ const RecommendedProducts = ({ recs = [], ratings, isTyre = false }) => {
                 alt={product.name || "Product Image"}
                 className="h-28 w-full object-contain mb-4"
                 onClick={() => {
-                  navigate(`/product/${product.id}`, { state: { product } });
-                  window.scrollTo({ top: 0, behavior: "smooth" });
+                  navigate(`/product/${product.id}`);
                 }}
               />
               <div className="text-teal-800 font-bold text-sm truncate">
@@ -240,8 +239,7 @@ const RecommendedProducts = ({ recs = [], ratings, isTyre = false }) => {
 
               <button
                 onClick={() => {
-                  navigate(`/product/${product.id}`, { state: { product } });
-                  window.scrollTo({ top: 0, behavior: "smooth" });
+                  navigate(`/product/${product.id}`);
                 }}
                 className="w-full border border-teal-600 hover:bg-teal-600 text-teal-600 hover:text-white text-sm font-medium py-1 px-1 rounded transition-all duration-300 text-center mt-2"
               >
@@ -260,10 +258,9 @@ const ProductDetails = () => {
   const { id } = useParams();
   const location = useLocation();
   const navigate = useNavigate();
-  const productFromState = location.state?.product;
   const { addToCart } = useCart();
 
-  const [product, setProduct] = useState(productFromState || null);
+  const [product, setProduct] = useState(null);
   const [selectedImage, setSelectedImage] = useState(null);
   const [zoomLevel, setZoomLevel] = useState(1);
   const [showZoomControls, setShowZoomControls] = useState(false);
@@ -271,71 +268,64 @@ const ProductDetails = () => {
   const [allProducts, setAllProducts] = useState([]);
   const [isTyre, setIsTyre] = useState(false);
   const [quantity, setQuantity] = useState(1);
+  const [loading, setLoading] = useState(true);
 
   useEffect(() => {
-    // Load product data
-    if (!productFromState) {
-      fetch("/categories.json")
-        .then((res) => res.json())
-        .then((data) => {
-          // Flatten products while preserving category information
-          const allProducts = data.flatMap(
-            (cat) =>
-              cat.subcategories?.flatMap((sub) => 
-                (sub.products || []).map(product => ({
-                  ...product,
-                  categoryName: cat.name
-                }))
-              ) || []
-          );
-          const foundProduct = allProducts.find(
-            (p) => String(p.id) === String(id)
-          );
-          setProduct(foundProduct || null);
-          setSelectedImage(foundProduct?.image || null);
+    // Reset states when ID changes
+    console.log('ProductDetails: ID changed to:', id);
+    setLoading(true);
+    setProduct(null);
+    setSelectedImage(null);
+    setZoomLevel(1);
+    setQuantity(1);
+    setRecommendedProducts([]);
+    
+    // Scroll to top when product changes
+    window.scrollTo({ top: 0, behavior: 'smooth' });
+    
+    // Always load fresh product data based on the current ID
+    fetch("/categories.json")
+      .then((res) => res.json())
+      .then((data) => {
+        // Flatten products while preserving category information
+        const allProducts = data.flatMap(
+          (cat) =>
+            cat.subcategories?.flatMap((sub) => 
+              (sub.products || []).map(product => ({
+                ...product,
+                categoryName: cat.name
+              }))
+            ) || []
+        );
+        
+        // Find the product based on the current ID
+        const foundProduct = allProducts.find(
+          (p) => String(p.id) === String(id)
+        );
+        
+        console.log('ProductDetails: Found product:', foundProduct?.name, 'for ID:', id);
+        
+        // Update product state
+        setProduct(foundProduct || null);
+        setSelectedImage(foundProduct?.image || null);
 
-          // Check if product is a tyre
-          const tyreCheck =
-            foundProduct?.keyAttributes?.["Tire Type"] !== undefined ||
-            foundProduct?.keyAttributes?.["Pattern"] !== undefined ||
-            foundProduct?.name?.toLowerCase().includes("tire") ||
-            foundProduct?.name?.toLowerCase().includes("tyre");
-          setIsTyre(tyreCheck);
+        // Check if product is a tyre
+        const tyreCheck =
+          foundProduct?.keyAttributes?.["Tire Type"] !== undefined ||
+          foundProduct?.keyAttributes?.["Pattern"] !== undefined ||
+          foundProduct?.name?.toLowerCase().includes("tire") ||
+          foundProduct?.name?.toLowerCase().includes("tyre");
+        setIsTyre(tyreCheck);
 
-          // Store all products for recommendations
-          setAllProducts(allProducts);
-        })
-        .catch((err) => console.error("Error loading categories.json:", err));
-    } else {
-      setSelectedImage(productFromState.image || null);
-
-      // Check if product is a tyre
-      const tyreCheck =
-        productFromState?.keyAttributes?.["Tire Type"] !== undefined ||
-        productFromState?.keyAttributes?.["Pattern"] !== undefined ||
-        productFromState?.name?.toLowerCase().includes("tire") ||
-        productFromState?.name?.toLowerCase().includes("tyre");
-      setIsTyre(tyreCheck);
-
-      // If we have the product from state, we still need to load all products for recommendations
-      fetch("/categories.json")
-        .then((res) => res.json())
-        .then((data) => {
-          // Flatten products while preserving category information
-          const allProducts = data.flatMap(
-            (cat) =>
-              cat.subcategories?.flatMap((sub) => 
-                (sub.products || []).map(product => ({
-                  ...product,
-                  categoryName: cat.name
-                }))
-              ) || []
-          );
-          setAllProducts(allProducts);
-        })
-        .catch((err) => console.error("Error loading categories.json:", err));
-    }
-  }, [id, productFromState]);
+        // Store all products for recommendations
+        setAllProducts(allProducts);
+        setLoading(false);
+      })
+      .catch((err) => {
+        console.error("Error loading categories.json:", err);
+        setLoading(false);
+      });
+  }, [id]); // Only depend on id
 
   // Generate recommendations when product data is available
   useEffect(() => {
@@ -370,10 +360,13 @@ const ProductDetails = () => {
     return stars;
   };
 
-  if (!product) {
+  if (loading || !product) {
     return (
-      <div className="p-6 text-center text-gray-800">
-        <p className="text-lg">Loading product details...</p>
+      <div className="flex justify-center items-center min-h-screen">
+        <div className="text-center">
+          <div className="loading loading-spinner loading-lg text-teal-600"></div>
+          <p className="text-lg mt-4 text-gray-800">Loading product details...</p>
+        </div>
       </div>
     );
   }

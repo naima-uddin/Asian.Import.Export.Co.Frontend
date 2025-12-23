@@ -126,11 +126,7 @@ const ProductList = ({ category, subcategory, selectedBrand }) => {
                   <div className="flex gap-2">
                     {/* See Details Button */}
                     <button
-                      onClick={() =>
-                        navigate(`/product/${product.id}`, {
-                          state: { product },
-                        })
-                      }
+                      onClick={() => navigate(`/product/${product.id}`)}
                       className="flex-1 border bg-teal-500  hover:bg-teal-600 text-white py-2 rounded-md text-sm font-medium transition-colors hover:text-white"
                     >
                       See Details
