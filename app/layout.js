@@ -7,6 +7,7 @@ import FloatingCartButton from "@/components/Cart/FloatingCartButton";
 import CartSidebar from "@/components/Cart/CartSidebar";
 import { CartProvider } from "@/context/CartContext";
 import "./globals.css";
+import ScrollToTop from "@/components/shared/ScrollToTop";
 
 export const metadata = {
   title: {
@@ -86,6 +87,7 @@ export default function RootLayout({ children }) {
     <html lang="en">
       <body>
         <CartProvider>
+          <ScrollToTop />
           <Toaster position="top-center" reverseOrder={false} />
           <Navbar />
           <Suspense fallback={<div className="flex justify-center items-center min-h-screen"><div className="loading loading-spinner loading-lg"></div></div>}>
