@@ -3,7 +3,7 @@
 import React, { useState } from "react";
 import { useNavigate } from "@/lib/navigation";
 import { useCart } from "@/context/CartContext";
-import { ShoppingCart } from "lucide-react";
+import { ArrowUp, ShoppingCart } from "lucide-react";
 
 const ProductList = ({ category, subcategory, selectedBrand }) => {
   const [showAllProducts, setShowAllProducts] = useState(false);
@@ -166,8 +166,8 @@ const ProductList = ({ category, subcategory, selectedBrand }) => {
             {
               showAllProducts && filteredProducts.length > initialProductsCount && (
                 <div className="mt-8 text-center">
-                  <button onClick={handleShowLessClick} className="px-6 py-2 bg-teal-600 text-white rounded-lg hover:bg-teal-700 transition-colors font-medium">
-                    Show Less
+                  <button onClick={handleShowLessClick} className="px-6 py-2 bg-teal-600 text-white rounded-lg hover:bg-teal-700 transition-colors font-medium flex items-center justify-center gap-1 mx-auto">
+                    Show Less <ArrowUp/>
                   </button>
                 </div>
               )
