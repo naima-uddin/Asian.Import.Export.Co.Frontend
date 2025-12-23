@@ -20,6 +20,7 @@ const Footer = () => {
     { label: "About Us", to: "/aboutUs" },
     { label: "Shipping & Delivery", to: "/shipping" },
     { label: "Privacy Policy", to: "/privacy" },
+    { label: "Affiliate Disclosure", to: "/affiliate-disclosure" },
   ];
 
   const productCategories = [
