@@ -263,8 +263,6 @@ const ProductDetails = () => {
 
   const [product, setProduct] = useState(null);
   const [selectedImage, setSelectedImage] = useState(null);
-  const [zoomLevel, setZoomLevel] = useState(1);
-  const [showZoomControls, setShowZoomControls] = useState(false);
   const [recommendedProducts, setRecommendedProducts] = useState([]);
   const [allProducts, setAllProducts] = useState([]);
   const [isTyre, setIsTyre] = useState(false);
@@ -277,7 +275,6 @@ const ProductDetails = () => {
     setLoading(true);
     setProduct(null);
     setSelectedImage(null);
-    setZoomLevel(1);
     setQuantity(1);
     setRecommendedProducts([]);
     
@@ -396,41 +393,10 @@ const ProductDetails = () => {
                 src={selectedImage || product.image}
                 alt={product.name}
                 className="w-full h-auto max-h-80 object-contain mb-4 transition-transform duration-300 border border-gray-200 rounded-lg"
-                style={{
-                  transform: `scale(${zoomLevel})`,
-                  transformOrigin: "center center",
-                  cursor: "zoom-in",
-                }}
-                onMouseEnter={() => setShowZoomControls(true)}
-                onMouseLeave={() => setShowZoomControls(false)}
               />
               <div className="absolute top-2 right-2 opacity-0 group-hover:opacity-100 transition-opacity duration-300">
-                <button
-                  onClick={() => setShowZoomControls(!showZoomControls)}
-                  className="bg-teal-700 text-white p-2 rounded-full hover:bg-teal-800"
-                >
-                  <FaPlus />
-                </button>
               </div>
-              {showZoomControls && (
-                <div className="absolute bottom-4 left-0 right-0 flex justify-center gap-2 bg-teal-700/90 p-2 rounded">
-                  <button
-                    onClick={() => setZoomLevel(Math.max(1, zoomLevel - 0.5))}
-                    className="text-white p-1 hover:bg-teal-600 rounded"
-                    disabled={zoomLevel <= 1}
-                  >
-                    <FaMinus />
-                  </button>
-                  <span className="text-white px-2">{zoomLevel}x</span>
-                  <button
-                    onClick={() => setZoomLevel(Math.min(5, zoomLevel + 0.5))}
-                    className="text-white p-1 hover:bg-teal-600 rounded"
-                    disabled={zoomLevel >= 5}
-                  >
-                    <FaPlus />
-                  </button>
-                </div>
-              )}
+              
             </div>
             <div className="flex gap-2">
               {[product.image, ...(product.additionalImages || [])].map(
@@ -441,7 +407,6 @@ const ProductDetails = () => {
                     alt={`Thumbnail ${idx + 1}`}
                     onClick={() => {
                       setSelectedImage(img);
-                      setZoomLevel(1);
                     }}
                     className={`h-12 border-2 rounded ${
                       selectedImage === img
@@ -457,8 +422,8 @@ const ProductDetails = () => {
           {/* Center: Product Details */}
           <div className="lg:w-1/2 space-y-2">
             <h1 className="text-2xl font-bold text-teal-800">{product.name}</h1>
-            <p className="text-sm text-gray-600 mb-2">
-              {product.keyAttributes?.Size || "N/A"}
+            <p className="text-xl text-yellow-600 mb-2 font-semibold">
+              Price: {product?.price|| "N/A"}
             </p>
 
             <div className="grid grid-cols-2 gap-3 text-sm text-gray-700 mt-4">

@@ -45,7 +45,7 @@ export default function AboutUs() {
             bg-teal-900 border border-teal-700 shadow-lg shadow-black/30 mb-4">
               <div className="w-3 h-3 bg-gradient-to-r from-teal-400 to-amber-400 rounded-full animate-pulse"></div>
               <span className="text-sm font-semibold text-teal-200">
-                ESTABLISHED 2013
+                ESTABLISHED 2017
               </span>
             </div>
 

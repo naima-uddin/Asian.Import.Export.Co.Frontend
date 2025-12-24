@@ -12,7 +12,7 @@ import ScrollToTop from "@/components/shared/ScrollToTop";
 export const metadata = {
   title: {
     default: "Asian Import Export Co LTD LTD - Global Trade Solutions",
-    template: "%s | Asian Import Export Co LTD LTD",
+    template: "%s |Asian Import Export Co LTD LTD",
   },
   description:
     "Leading import-export company specializing in agriculture, seafood, metals, trucks, vehicles, and wood products. Your trusted partner for international trade.",
