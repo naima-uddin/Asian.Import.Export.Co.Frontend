@@ -351,6 +351,20 @@ const Navbar = () => {
               )}
             </div>
 
+            <button
+              onClick={toggleCart}
+              className="relative text-white hover:text-amber-300 transition-colors py-2 border-b-2 border-transparent hover:border-amber-300 ml-3">
+              <div className="flex items-center gap-1">
+                <ShoppingBag className="w-5 h-5" />
+                <span className="font-medium">Cart</span>
+                {getCartItemCount() > 0 && (
+                  <span className="ml-1 bg-red-500 text-white text-xs font-bold rounded-full px-2 py-0.5 min-w-[20px] text-center">
+                    {getCartItemCount()}
+                  </span>
+                )}
+              </div>
+           </button>
+
             <Link
               to="/aboutUs"
               className={getMobileLinkClasses("/aboutUs")}
