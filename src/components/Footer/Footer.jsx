@@ -66,11 +66,18 @@ const Footer = () => {
       <div className="max-w-7xl mx-auto grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-8">
         {/* Company Info */}
         <div className="lg:col-span-2">
+          <div className="flex items-center mb-6">
+
           <img
-            src="/assets/website_big_logo.png"
+            src="logo.png"
             alt="Asian Import and Export"
-            className="h-12 mb-4"
+            className="h-14 mb-0"
           />
+          <div className="ml-1 text-white">
+              <p className="font-semibold text-lg">ASIAN IMPORT & EXPORT Co. LTD</p>
+              <p className="text-sm text-yellow-500 ">Manufacturer & Wholesaler</p>
+            </div>
+          </div>
 
           <div className="space-y-3">
             {contactInfo.map((item, index) => (
