@@ -3,7 +3,7 @@ import ContactPageContent from "@/PageComponents/ContactPage";
 export const metadata = {
   title: "Contact Us - Get in Touch",
   description:
-    "Contact Asian Import Export Co for your international trade inquiries. Trusted Alibaba supplier offering quality products and reliable service worldwide.",
+    "Contact Asian Import Export Co LTD for your international trade inquiries. Trusted Alibaba supplier offering quality products and reliable service worldwide.",
   keywords: [
     "contact asian import export",
     "import export inquiry",
@@ -12,7 +12,7 @@ export const metadata = {
     "business inquiry",
   ],
   openGraph: {
-    title: "Contact Asian Import Export Co",
+    title: "Contact Asian Import Export Co LTD",
     description:
       "Get in touch for your international trade needs. Trusted supplier with worldwide shipping.",
     url: "https://asianimportexport.com/contact",

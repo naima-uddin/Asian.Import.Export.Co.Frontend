@@ -5,9 +5,9 @@ import ServicesSection from "@/components/Home/ServicesSection";
 import WhyChooseUs from "@/components/Home/WhyChooseUs";
 
 export const metadata = {
-  title: "Asian Import Export Co - Global Trade Partner",
+  title: "Asian Import Export Co LTD - Global Trade Partner",
   description:
-    "Asian Import Export Co offers comprehensive international trade services including agriculture, seafood, metals, trucks, vehicles, and wood products. Specializing in vehicle parts, truck tires, copper, aluminum, rice, sugar, nuts, and more.",
+    "Asian Import Export Co LTD offers comprehensive international trade services including agriculture, seafood, metals, trucks, vehicles, and wood products. Specializing in vehicle parts, truck tires, copper, aluminum, rice, sugar, nuts, and more.",
   keywords: [
     "import export company",
     "international trade",
@@ -24,7 +24,7 @@ export const metadata = {
     "global trade solutions"
   ],
   openGraph: {
-    title: "Asian Import Export Co - Your Global Trade Partner",
+    title: "Asian Import Export Co LTD - Your Global Trade Partner",
     description:
       "Comprehensive international trade services for agriculture, seafood, metals, trucks, vehicles, and wood products.",
     url: "https://asianimportexport.com",
@@ -34,13 +34,13 @@ export const metadata = {
         url: "/og-image.jpg",
         width: 1200,
         height: 630,
-        alt: "Asian Import Export Co"
+        alt: "Asian Import Export Co LTD"
       }
     ]
   },
   twitter: {
     card: "summary_large_image",
-    title: "Asian Import Export Co - Global Trade Partner",
+    title: "Asian Import Export Co LTD - Global Trade Partner",
     description: "Comprehensive international trade services for all your business needs"
   }
 };

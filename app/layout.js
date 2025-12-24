@@ -11,8 +11,8 @@ import ScrollToTop from "@/components/shared/ScrollToTop";
 
 export const metadata = {
   title: {
-    default: "Asian Import Export Co - Global Trade Solutions",
-    template: "%s | Asian Import Export Co",
+    default: "Asian Import Export Co LTD LTD - Global Trade Solutions",
+    template: "%s | Asian Import Export Co LTD LTD",
   },
   description:
     "Leading import-export company specializing in agriculture, seafood, metals, trucks, vehicles, and wood products. Your trusted partner for international trade.",
@@ -28,9 +28,9 @@ export const metadata = {
     "global trade",
     "Asian Import Export",
   ],
-  authors: [{ name: "Asian Import Export Co" }],
-  creator: "Asian Import Export Co",
-  publisher: "Asian Import Export Co",
+  authors: [{ name: "Asian Import Export Co LTD LTD" }],
+  creator: "Asian Import Export Co LTD LTD",
+  publisher: "Asian Import Export Co LTD LTD",
   formatDetection: {
     email: false,
     address: false,
@@ -41,17 +41,17 @@ export const metadata = {
     canonical: "/",
   },
   openGraph: {
-    title: "Asian Import Export Co - Global Trade Solutions",
+    title: "Asian Import Export Co LTD LTD - Global Trade Solutions",
     description:
       "Leading import-export company specializing in agriculture, seafood, metals, trucks, vehicles, and wood products.",
     url: "https://asianimportexport.com",
-    siteName: "Asian Import Export Co",
+    siteName: "Asian Import Export Co LTD LTD",
     images: [
       {
         url: "/og-image.jpg", // Add your OG image
         width: 1200,
         height: 630,
-        alt: "Asian Import Export Co",
+        alt: "Asian Import Export Co LTD LTD",
       },
     ],
     locale: "en_US",
@@ -59,7 +59,7 @@ export const metadata = {
   },
   twitter: {
     card: "summary_large_image",
-    title: "Asian Import Export Co - Global Trade Solutions",
+    title: "Asian Import Export Co LTD LTD - Global Trade Solutions",
     description:
       "Leading import-export company specializing in agriculture, seafood, metals, trucks, vehicles, and wood products.",
     images: ["/og-image.jpg"],

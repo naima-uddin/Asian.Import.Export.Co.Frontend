@@ -116,14 +116,18 @@ const Navbar = () => {
       <div className="flex items-center justify-between">
         {/* Logo */}
         <div className="flex items-center">
-          <Link to="/">
+          <Link to="/" className="flex items-center">
             <Image
-              src="/assets/website_big_logo.png"
+              src="/logo.png"
               alt="Asian Import and Export"
               width={150}
               height={64}
               className="h-16 w-auto"
             />
+            <div className="ml-1 text-white">
+              <p className="font-semibold text-lg">ASIAN IMPORT & EXPORT Co. LTD</p>
+              <p className="text-sm text-yellow-500 ">Manufacturer & Wholesaler</p>
+            </div>
           </Link>
         </div>
         {/* Desktop Navigation */}

@@ -545,7 +545,7 @@ const ProductDetails = () => {
                 <div className="mt-4 p-3 bg-blue-50 border border-blue-200 rounded-lg mb-2">
                   <p className="text-sm text-blue-800 font-medium">
                     {isTyre
-                      ? "🚚 DDP (Thailand). U.S. FET & import taxes included"
+                      ? "🚚 DDP from Thailand — No hidden costs. U.S. FET & import taxes included"
                       : "📦 Shipping cost will be calculated based on your area"}
                   </p>
                 </div>
@@ -557,7 +557,7 @@ const ProductDetails = () => {
             {product.categoryName === "Vehicle Parts and Accessories" && (
               <ContainerLoadingCapacity />
             )}          
-</div>
+         </div>
 
           {/* Right: Purchase Box */}
           <div className="lg:w-1/4 bg-white text-gray-800 p-4 rounded-lg shadow-lg border border-gray-200 h-[300px]">

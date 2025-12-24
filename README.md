@@ -1,4 +1,4 @@
-# Asian Import Export Co - Next.js Website
+# Asian Import Export Co LTD - Next.js Website
 
 [![Next.js](https://img.shields.io/badge/Next.js-15-black)](https://nextjs.org/)
 [![React](https://img.shields.io/badge/React-19-blue)](https://reactjs.org/)
@@ -164,11 +164,11 @@ Contributions are welcome! Please feel free to submit a Pull Request.
 
 ## 📄 License
 
-This project is private and proprietary to Asian Import Export Co.
+This project is private and proprietary to Asian Import Export Co LTD.
 
 ## 📞 Contact
 
-**Asian Import Export Co., LTD**
+**Asian Import Export Co LTD., LTD**
 - Phone: +1 (437) 900-3996
 - Website: [Your Domain]
 - Alibaba: Trusted Supplier

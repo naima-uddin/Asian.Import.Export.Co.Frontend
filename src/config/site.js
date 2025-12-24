@@ -27,7 +27,7 @@ export const config = {
 
   // Site Information
   site: {
-    name: 'Asian Import Export Co',
+    name: 'Asian Import Export Co LTD',
     tagline: 'Global Trade Solutions',
     url: 'https://asianimportexport.com',
   },
