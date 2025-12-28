@@ -731,7 +731,7 @@ const ProductDetails = () => {
                 <div>
                   <p className="text-gray-600">Delivery Time:</p>
                   <p className="text-teal-800 font-medium">
-                    {product.packagingAndDelivery.deliveryTime}
+                    {product.packagingAndDelivery.deliveryTime || "Will vary based on order quantity and region"}
                   </p>
                 </div>
               </div>
