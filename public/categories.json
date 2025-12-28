@@ -10908,7 +10908,7 @@
             ],
             "shipping": "Refrigerated container shipping. Contact supplier for details.",
             "description": "Premium quality frozen eel fish, ideal for restaurants and distributors.",
-            "image": "/assets/seafood/eel_premium.jpg",
+            "image": "/assets/fish/eel/eel1.png",
             "keyAttributes": {
               "Species": "Eel",
               "Type": "Frozen",
@@ -10949,7 +10949,7 @@
             ],
             "shipping": "Live seafood transport. Special arrangements required.",
             "description": "Wholesale fresh live eel fish (Conger Pike) for high-end markets.",
-            "image": "/assets/seafood/eel_live.jpg",
+            "image": "/assets/fish/eel/eel2.png",
             "keyAttributes": {
               "Species": "Conger Pike",
               "Type": "Live/Fresh",
@@ -10990,7 +10990,7 @@
             ],
             "shipping": "Refrigerated container shipping. Contact supplier for details.",
             "description": "Wholesale frozen freshwater eel including Unagi and Conger Pike varieties.",
-            "image": "/assets/seafood/eel_freshwater.jpg",
+            "image": "/assets/fish/eel/eel3.png",
             "keyAttributes": {
               "Species": "Freshwater Eel (Unagi/Conger Pike)",
               "Type": "Frozen",
@@ -11037,7 +11037,7 @@
             ],
             "shipping": "Refrigerated container shipping. Contact supplier for details.",
             "description": "Premium quality frozen mud crabs for wholesale distribution.",
-            "image": "/assets/seafood/mud_crab_frozen.jpg",
+            "image": "/assets/fish/crab/crab.png",
             "keyAttributes": {
               "Species": "Mud Crab",
               "Type": "Frozen",
@@ -11078,7 +11078,7 @@
             ],
             "shipping": "Refrigerated container shipping. Contact supplier for details.",
             "description": "Premium quality frozen sea and mud crab mix for wholesale markets.",
-            "image": "/assets/seafood/crab_mix.jpg",
+            "image": "/assets/fish/crab/crab2.png",
             "keyAttributes": {
               "Species": "Mixed (Sea Crab & Mud Crab)",
               "Type": "Frozen",
@@ -11119,7 +11119,7 @@
             ],
             "shipping": "Live seafood transport. Special arrangements required.",
             "description": "Premium quality live mud crabs for high-end restaurants and markets.",
-            "image": "/assets/seafood/mud_crab_live.jpg",
+            "image": "/assets/fish/crab/crab3.png",
             "keyAttributes": {
               "Species": "Mud Crab",
               "Type": "Live",
@@ -11181,7 +11181,7 @@
             ],
             "shipping": "Refrigerated container shipping. Contact supplier for details.",
             "description": "Premium quality frozen shrimp in various sizes for export markets.",
-            "image": "/assets/seafood/shrimp_premium.jpg",
+            "image": "/assets/fish/shrimp/shrimp.png",
             "keyAttributes": {
               "Species": "Shrimp/Prawn",
               "Type": "Frozen",
@@ -11240,7 +11240,7 @@
             ],
             "shipping": "Refrigerated container shipping. Contact supplier for details.",
             "description": "Medium size frozen shrimp for various culinary applications.",
-            "image": "/assets/seafood/shrimp_medium.jpg",
+            "image": "/assets/fish/shrimp/shrimp2.png",
             "keyAttributes": {
               "Species": "Shrimp",
               "Type": "Frozen",
@@ -11282,7 +11282,7 @@
             ],
             "shipping": "Refrigerated container shipping. Contact supplier for details.",
             "description": "Whole tilapia fish, fresh frozen for wholesale distribution.",
-            "image": "/assets/seafood/tilapia_whole.jpg",
+            "image": "/assets/fish/tilapia/tilapia.png",
             "keyAttributes": {
               "Species": "Tilapia",
               "Type": "Frozen",
@@ -11318,7 +11318,7 @@
             ],
             "shipping": "Refrigerated container shipping. Contact supplier for details.",
             "description": "Frozen tilapia for various culinary applications.",
-            "image": "/assets/seafood/tilapia_frozen.jpg",
+            "image": "/assets/fish/tilapia/tilapia2.png",
             "keyAttributes": {
               "Species": "Tilapia",
               "Type": "Frozen",
@@ -11354,7 +11354,7 @@
             ],
             "shipping": "Refrigerated container shipping. Contact supplier for details.",
             "description": "High quality frozen tilapia, gutted and scaled for convenience.",
-            "image": "/assets/seafood/tilapia_gutted.jpg",
+            "image": "/assets/fish/tilapia/tilapia3.png",
             "keyAttributes": {
               "Species": "Tilapia",
               "Type": "Frozen",
@@ -11387,6 +11387,43 @@
         "products": [
           {
             "id": 501,
+            "name": "Standard Wood Pellets",
+            "price": "$220.00",
+            "offerPrice": "$180.00",
+            "pricingTiers": [
+              {
+                "minQuantity": 1,
+                "maxQuantity": null,
+                "pricePerTon": "$180.00"
+              }
+            ],
+            "customizationOptions": [
+              "Custom packaging sizes",
+              "Brand labeling (Min. order: 10 tons)"
+            ],
+            "shipping": "Bulk container or bagged shipping. Contact supplier for details.",
+            "description": "High-quality wood pellets for heating and industrial use.",
+            "image": "/assets/wood/standard.png",
+            "keyAttributes": {
+              "Material": "Wood",
+              "Type": "Pellets",
+              "Diameter": "6-8 mm",
+              "Length": "10-30 mm",
+              "Moisture Content": "<10%",
+              "Ash Content": "<1%",
+              "Calorific Value": "≥4.7 kWh/kg",
+              "MOQ": "1 ton",
+              "Packaging": "15kg bags or bulk",
+              "Origin": "Sustainable forestry"
+            },
+            "packagingAndDelivery": {
+              "sellingUnits": "Per ton",
+              "deliveryTime": "14-30 days"
+            },
+            "priceSource": "International biomass market reference"
+          },
+          {
+            "id": 501,
             "name": "Premium Wood Pellets",
             "price": "$220.00",
             "offerPrice": "$180.00",
@@ -11403,7 +11440,7 @@
             ],
             "shipping": "Bulk container or bagged shipping. Contact supplier for details.",
             "description": "High-quality wood pellets for heating and industrial use.",
-            "image": "/assets/wood/wood_pellets.jpg",
+            "image": "/assets/wood/premium.png",
             "keyAttributes": {
               "Material": "Wood",
               "Type": "Pellets",
