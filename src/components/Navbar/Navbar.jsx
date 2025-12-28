@@ -35,8 +35,8 @@ const Navbar = () => {
       ],
     },
     {
-      name: "Frozen Seafood",
-      categorySlug: "Frozen-Seafood",
+      name: "Frozen Fish",
+      categorySlug: "Frozen-Fish",
       items: ["Eel", "Crab", "Shrimp", "Tilapia"],
     },
     {
