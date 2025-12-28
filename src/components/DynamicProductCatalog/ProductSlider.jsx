@@ -11,38 +11,18 @@ const ProductSlider = () => {
   const slides = [
     {
       image: "/1.png",
-      title: "Design",
-      subtitle: "Cuffingtaste",
-      description: "Sell 1993",
-      bgColor: "from-teal-900/90 to-teal-700/90"
     },
     {
       image: "/2.png",
-      title: "Quality",
-      subtitle: "Premium Materials",
-      description: "Since 1990",
-      bgColor: "from-blue-900/90 to-blue-700/90"
     },
     {
       image: "/3.png",
-      title: "Innovation",
-      subtitle: "Modern Solutions",
-      description: "Established 1985",
-      bgColor: "from-emerald-900/90 to-emerald-700/90"
     },
     {
       image: "/4.png",
-      title: "Reliability",
-      subtitle: "Trusted Brand",
-      description: "Over 30 Years",
-      bgColor: "from-cyan-900/90 to-cyan-700/90"
     },
     {
       image: "/5.png",
-      title: "Excellence",
-      subtitle: "Award Winning",
-      description: "Since 1995",
-      bgColor: "from-indigo-900/90 to-indigo-700/90"
     }
   ];
 
@@ -147,6 +127,24 @@ const ProductSlider = () => {
           </AnimatePresence>
         </div>
 
+      </div>
+
+      {/* Auto-Play Indicator */}
+      <div className="absolute bottom-0 left-0 right-0 h-1 bg-white/20 overflow-hidden">
+        <motion.div
+          key={currentSlide}
+          initial={{ width: 0 }}
+          animate={{ 
+            width: "100%",
+            transition: { 
+              duration: 5, 
+              ease: "linear" 
+            }
+          }}
+          className="h-full bg-teal-400"
+        />
+      </div>
+      
         {/* Bottom Section - Navigation */}
         <div className="pt-4">
           {/* Navigation Dots */}
@@ -165,51 +163,7 @@ const ProductSlider = () => {
             ))}
           </div>
 
-          {/* Navigation Arrows */}
-          <div className="flex justify-between items-center">
-            <button
-              onClick={goToPrev}
-              className="p-2 rounded-full bg-white/20 hover:bg-white/30 transition-colors"
-              aria-label="Previous slide"
-            >
-              <svg className="w-5 h-5 text-white" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M15 19l-7-7 7-7" />
-              </svg>
-            </button>
-            
-            {/* Slide Counter */}
-            <span className="text-sm text-white/80 font-medium">
-              {currentSlide + 1} / {slides.length}
-            </span>
-            
-            <button
-              onClick={goToNext}
-              className="p-2 rounded-full bg-white/20 hover:bg-white/30 transition-colors"
-              aria-label="Next slide"
-            >
-              <svg className="w-5 h-5 text-white" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M9 5l7 7-7 7" />
-              </svg>
-            </button>
-          </div>
         </div>
-      </div>
-
-      {/* Auto-Play Indicator */}
-      <div className="absolute bottom-0 left-0 right-0 h-1 bg-white/20 overflow-hidden">
-        <motion.div
-          key={currentSlide}
-          initial={{ width: 0 }}
-          animate={{ 
-            width: "100%",
-            transition: { 
-              duration: 5, 
-              ease: "linear" 
-            }
-          }}
-          className="h-full bg-teal-400"
-        />
-      </div>
     </div>
   );
 };
