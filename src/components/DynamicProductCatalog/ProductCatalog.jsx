@@ -6,6 +6,7 @@ import ProductSubcategory from "./ProductSubcategory";
 import ProductList from "./ProductList";
 import SearchSuggestion from "../Search/SearchSuggestion.jsx";
 import Image from "next/image";
+import ProductSlider from "./ProductSlider";
 
 const ProductCatalog = ({ isHomePage = false }) => {
   const [categories, setCategories] = useState([]);
@@ -86,23 +87,22 @@ const ProductCatalog = ({ isHomePage = false }) => {
 
         <div className="flex flex-col lg:flex-row gap-8">
           {/* Left Sidebar - Company Info */}
-          <div className="lg:w-1/4">
-            <div className="bg-white rounded-lg shadow-md p-6 sticky top-4">
-              <h2 className="text-xl font-bold text-teal-800 mb-4">
-                Our Products
-              </h2>
-              <div className="mb-4">
-                <img 
-                  src="/1.png" 
-                  alt="Company" 
-                  className="w-full rounded-lg"
-                />
-              </div>
-              <p className="text-gray-600 text-sm">
-                Browse through our wide range of quality products across multiple categories.
-              </p>
-            </div>
-          </div>
+<div className="lg:w-1/4">
+  <div className="bg-white rounded-lg shadow-md p-6 sticky top-4">
+    <h2 className="text-xl font-bold text-teal-800 mb-4">
+      Our Products
+    </h2>
+    
+    {/* Replace the static image with the slider */}
+    <div className="mb-4">
+      <ProductSlider />
+    </div>
+    
+    <p className="text-gray-600 text-sm mt-4">
+      Browse through our wide range of quality products across multiple categories.
+    </p>
+  </div>
+</div>
 
           {/* Right Side - Categories Grid */}
           <div className="lg:w-3/4">
