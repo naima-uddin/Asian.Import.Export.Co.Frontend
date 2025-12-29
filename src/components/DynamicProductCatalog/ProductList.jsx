@@ -105,7 +105,7 @@ const ProductList = ({ category, subcategory, selectedBrand, isHomePage = false 
                   {product.name || "Unnamed Product"}
                 </h3>
 
-                {/* Only show brand and size for cart view */}
+                {/* Product Details */}
                 <div className="mb-3 space-y-1">
                   {product.keyAttributes?.["MOQ"] && (
                     <p className="text-sm text-gray-600">
@@ -113,12 +113,46 @@ const ProductList = ({ category, subcategory, selectedBrand, isHomePage = false 
                       {product.keyAttributes["MOQ"]}
                     </p>
                   )}
-                  {product.keyAttributes?.Size && (
-                    <p className="text-sm text-gray-600">
-                      <span className="font-medium">Size:</span>{" "}
-                      {product.keyAttributes.Size}
-                    </p>
-                  )}
+                  
+                  {/* Show size from pricingTiers or keyAttributes */}
+                  {(() => {
+                    // Check if pricingTiers has size information
+                    if (product.pricingTiers && product.pricingTiers.length > 0) {
+                      const firstTier = product.pricingTiers[0];
+                      
+                      // Check for minWeight/maxWeight
+                      if (firstTier.minWeight && firstTier.maxWeight) {
+                        return (
+                          <p className="text-sm text-gray-600">
+                            <span className="font-medium">Size:</span>{" "}
+                            {firstTier.minWeight}-{firstTier.maxWeight}gm
+                          </p>
+                        );
+                      }
+                      
+                      // Check for size property
+                      if (firstTier.size) {
+                        return (
+                          <p className="text-sm text-gray-600">
+                            <span className="font-medium">Size:</span>{" "}
+                            {firstTier.size}
+                          </p>
+                        );
+                      }
+                    }
+                    
+                    // Fallback to keyAttributes Size
+                    if (product.keyAttributes?.Size) {
+                      return (
+                        <p className="text-sm text-gray-600">
+                          <span className="font-medium">Size:</span>{" "}
+                          {product.keyAttributes.Size}
+                        </p>
+                      );
+                    }
+                    
+                    return null;
+                  })()}
                 </div>
 
                 {/* Pricing Information */}
