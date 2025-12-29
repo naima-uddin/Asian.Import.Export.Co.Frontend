@@ -42,11 +42,13 @@ const ProductList = ({ category, subcategory, selectedBrand, isHomePage = false 
       id: product.id,
       name: product.name,
       price: priceNum,
+      offerPrice: product.offerPrice,
       quantity: 1,
       image: product.image,
       category: categoryName,
       moq: moqValue,
       moqUnit: moqUnit,
+      pricingTiers: product.pricingTiers || [],
     });
   };
 
