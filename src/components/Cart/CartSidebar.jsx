@@ -197,19 +197,15 @@ const CartSidebar = () => {
                         const priceInfo = getPriceDisplay(item);
                         
                         if (priceInfo.type === 'weight-range') {
-                          // Frozen Fish - Show price ranges as info + calculated price
+                          // Frozen Fish - Show all price ranges as info + calculated price
                           return (
                             <div className="mb-2">
                               <p className="text-xs font-semibold text-teal-700 mb-1">Price varies by weight:</p>
-                              {priceInfo.ranges.slice(0, 2).map((range, idx) => (
+                              {priceInfo.ranges.map((range, idx) => (
                                 <p key={idx} className="text-xs text-gray-600">
                                   {range.minWeight}-{range.maxWeight}g: {range.pricePerKg}
                                 </p>
                               ))}
-                              {priceInfo.ranges.length > 2 && (
-                                <p className="text-xs text-gray-500">+{priceInfo.ranges.length - 2} more ranges</p>
-                              )}
-                              
                               <p className="text-blue-600 font-bold text-sm mb-1">
                                 Total = ${priceInfo.calculatedPrice?.toFixed(2)}
                               </p>
