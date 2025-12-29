@@ -15,7 +15,92 @@ const CartSidebar = () => {
     removeFromCart,
     getCartTotal,
     canProceedToCheckout,
+    calculateItemPrice,
   } = useCart();
+
+  // Helper function to get price display for an item
+  const getPriceDisplay = (item) => {
+    const quantity = item.quantity || 1;
+    const itemPrice = calculateItemPrice(item);
+    
+    // For frozen fish with weight-based pricing - show ranges as info only
+    if (item.pricingTiers && item.pricingTiers.length > 0 && item.pricingTiers[0].minWeight !== undefined) {
+      return {
+        type: 'weight-range',
+        ranges: item.pricingTiers,
+        calculatedPrice: itemPrice, // This uses regular price
+      };
+    }
+    
+    // For products with pricing tiers (truck tires, metals)
+    if (item.pricingTiers && item.pricingTiers.length > 0) {
+      if (item.pricingTiers[0].pricePerTire !== undefined) {
+        // Truck tires
+        if (quantity < item.pricingTiers[0].minQuantity) {
+          // Using offer price for quantities below first tier
+          const basePrice = item.offerPrice || item.price;
+          const unitPrice = typeof basePrice === 'string' 
+            ? parseFloat(basePrice.replace(/[^0-9.]/g, ''))
+            : basePrice;
+          return {
+            type: 'offer-price',
+            unitPrice: unitPrice,
+            total: itemPrice,
+          };
+        }
+        
+        // Find applicable tier
+        for (const tier of item.pricingTiers) {
+          if (quantity >= tier.minQuantity && (tier.maxQuantity === null || quantity <= tier.maxQuantity)) {
+            return {
+              type: 'tiered',
+              tierInfo: `${tier.minQuantity}${tier.maxQuantity ? `-${tier.maxQuantity}` : '+'} tires`,
+              unitPrice: tier.pricePerTire,
+              total: itemPrice,
+            };
+          }
+        }
+      } else if (item.pricingTiers[0].pricePerTon !== undefined) {
+        // Metals
+        if (quantity < item.pricingTiers[0].minQuantity) {
+          // Using offer price for quantities below first tier
+          const basePrice = item.offerPrice || item.price;
+          const unitPrice = typeof basePrice === 'string' 
+            ? parseFloat(basePrice.replace(/[^0-9.]/g, ''))
+            : basePrice;
+          return {
+            type: 'offer-price',
+            unitPrice: unitPrice,
+            total: itemPrice,
+          };
+        }
+        
+        // Find applicable tier
+        for (const tier of item.pricingTiers) {
+          if (quantity >= tier.minQuantity && (tier.maxQuantity === null || quantity <= tier.maxQuantity)) {
+            return {
+              type: 'tiered',
+              tierInfo: `${tier.minQuantity}${tier.maxQuantity ? `-${tier.maxQuantity}` : '+'} tons`,
+              unitPrice: tier.pricePerTon,
+              total: itemPrice,
+            };
+          }
+        }
+      }
+    }
+    
+    // Default pricing (standard products or those without tiers)
+    const basePrice = item.offerPrice || item.price;
+    const unitPrice = typeof basePrice === 'string' 
+      ? parseFloat(basePrice.replace(/[^0-9.]/g, ''))
+      : basePrice;
+    
+    return {
+      type: 'standard',
+      unitPrice: unitPrice,
+      total: itemPrice,
+    };
+  };
 
   const handleProceedToCheckout = () => {
     const validation = canProceedToCheckout();
@@ -106,9 +191,65 @@ const CartSidebar = () => {
                       <h3 className="font-semibold text-xs line-clamp-2 mb-1 text-gray-700">
                         {item.name}
                       </h3>
-                      <p className="text-blue-600 font-bold text-sm mb-2">
-                        ${parseFloat(item.price || 0).toFixed(2)}
-                      </p>
+                      
+                      {/* Dynamic Price Display */}
+                      {(() => {
+                        const priceInfo = getPriceDisplay(item);
+                        
+                        if (priceInfo.type === 'weight-range') {
+                          // Frozen Fish - Show price ranges as info + calculated price
+                          return (
+                            <div className="mb-2">
+                              <p className="text-blue-600 font-bold text-sm mb-1">
+                                ${priceInfo.calculatedPrice?.toFixed(2)}
+                              </p>
+                              <p className="text-xs font-semibold text-teal-700 mb-1">Price varies by weight:</p>
+                              {priceInfo.ranges.slice(0, 2).map((range, idx) => (
+                                <p key={idx} className="text-xs text-gray-600">
+                                  {range.minWeight}-{range.maxWeight}g: {range.pricePerKg}
+                                </p>
+                              ))}
+                              {priceInfo.ranges.length > 2 && (
+                                <p className="text-xs text-gray-500">+{priceInfo.ranges.length - 2} more ranges</p>
+                              )}
+                            </div>
+                          );
+                        } else if (priceInfo.type === 'tiered') {
+                          // Truck Tires or Metals with tiered pricing
+                          return (
+                            <div className="mb-2">
+                              <p className="text-xs text-teal-600 mb-1">
+                                Tier: {priceInfo.tierInfo}
+                              </p>
+                              <p className="text-xs text-gray-600">
+                                Unit: {priceInfo.unitPrice}
+                              </p>
+                              <p className="text-blue-600 font-bold text-sm">
+                                Total: ${priceInfo.total?.toFixed(2)}
+                              </p>
+                            </div>
+                          );
+                        } else if (priceInfo.type === 'offer-price') {
+                          // Below minimum tier quantity, using offer price
+                          return (
+                            <div className="mb-2">
+                              <p className="text-xs text-amber-600 mb-1">
+                                Offer Price (Below tier minimum)
+                              </p>
+                              <p className="text-blue-600 font-bold text-sm">
+                                ${priceInfo.unitPrice?.toFixed(2)} × {item.quantity} = ${priceInfo.total?.toFixed(2)}
+                              </p>
+                            </div>
+                          );
+                        } else {
+                          // Standard pricing
+                          return (
+                            <p className="text-blue-600 font-bold text-sm mb-2">
+                              ${priceInfo.unitPrice?.toFixed(2)} × {item.quantity} = ${priceInfo.total?.toFixed(2)}
+                            </p>
+                          );
+                        }
+                      })()}
 
                       {/* Quantity Controls */}
                       <div className="flex items-center gap-2">
@@ -156,12 +297,33 @@ const CartSidebar = () => {
           {/* Footer with Subtotal and Checkout */}
           {cart.length > 0 && (
             <div className="border-t p-4 bg-gray-50">
-              <div className="flex justify-between items-center mb-4">
-                <span className="text-lg font-semibold">Subtotal:</span>
-                <span className="text-2xl font-bold text-red-600">
-                  ${getCartTotal().toFixed(2)}
-                </span>
-              </div>
+              {/* Check if cart has frozen fish items */}
+              {(() => {
+                const hasFrozenFish = cart.some(item => 
+                  item.pricingTiers && item.pricingTiers.length > 0 && 
+                  item.pricingTiers[0].minWeight !== undefined
+                );
+                const cartTotal = getCartTotal();
+                
+                return (
+                  <>
+                    <div className="flex justify-between items-center mb-4">
+                      <span className="text-lg font-semibold">Subtotal:</span>
+                      <span className="text-2xl font-bold text-red-600">
+                        ${cartTotal.toFixed(2)}
+                      </span>
+                    </div>
+                    
+                    {hasFrozenFish && (
+                      <div className="mb-3 p-3 bg-blue-50 border border-blue-200 rounded-md">
+                        <p className="text-sm text-blue-800">
+                          📦 Your cart contains frozen fish. Final price may vary based on actual weight/size selected.
+                        </p>
+                      </div>
+                    )}
+                  </>
+                );
+              })()}
 
               {/* Validation Message */}
               {!validation.canProceed && (

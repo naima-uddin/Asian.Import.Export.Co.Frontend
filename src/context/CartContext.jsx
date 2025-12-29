@@ -38,6 +38,71 @@ export const CartProvider = ({ children }) => {
     }
   }, [cart]);
 
+  // Calculate price based on quantity and pricing tiers
+  const calculateItemPrice = (item) => {
+    const quantity = item.quantity || 1;
+    
+    // If product has pricing tiers
+    if (item.pricingTiers && item.pricingTiers.length > 0) {
+      // For frozen fish (weight-based), use regular price calculation
+      if (item.pricingTiers[0].minWeight !== undefined) {
+        // Use offerPrice or price for frozen fish
+        const basePrice = item.offerPrice || item.price;
+        if (typeof basePrice === 'string') {
+          return parseFloat(basePrice.replace(/[^0-9.]/g, '')) * quantity;
+        }
+        return basePrice * quantity;
+      }
+      
+      // For truck tires (uses pricePerTire)
+      if (item.pricingTiers[0].pricePerTire !== undefined) {
+        // If quantity is less than the first tier minimum, use offerPrice
+        if (quantity < item.pricingTiers[0].minQuantity) {
+          const basePrice = item.offerPrice || item.price;
+          if (typeof basePrice === 'string') {
+            return parseFloat(basePrice.replace(/[^0-9.]/g, '')) * quantity;
+          }
+          return basePrice * quantity;
+        }
+        
+        // Find the applicable tier
+        for (const tier of item.pricingTiers) {
+          if (quantity >= tier.minQuantity && (tier.maxQuantity === null || quantity <= tier.maxQuantity)) {
+            const priceNum = parseFloat(tier.pricePerTire.replace(/[^0-9.]/g, ''));
+            return priceNum * quantity;
+          }
+        }
+      }
+      
+      // For metals (ton-based with pricePerTon)
+      if (item.pricingTiers[0].pricePerTon !== undefined) {
+        // If quantity is less than the first tier minimum, use offerPrice
+        if (quantity < item.pricingTiers[0].minQuantity) {
+          const basePrice = item.offerPrice || item.price;
+          if (typeof basePrice === 'string') {
+            return parseFloat(basePrice.replace(/[^0-9.]/g, '')) * quantity;
+          }
+          return basePrice * quantity;
+        }
+        
+        // Find the applicable tier
+        for (const tier of item.pricingTiers) {
+          if (quantity >= tier.minQuantity && (tier.maxQuantity === null || quantity <= tier.maxQuantity)) {
+            const priceNum = parseFloat(tier.pricePerTon.replace(/[^0-9.]/g, ''));
+            return priceNum * quantity;
+          }
+        }
+      }
+    }
+    
+    // Default: use offerPrice or price
+    const basePrice = item.offerPrice || item.price;
+    if (typeof basePrice === 'string') {
+      return parseFloat(basePrice.replace(/[^0-9.]/g, '')) * quantity;
+    }
+    return basePrice * quantity;
+  };
+
   const addToCart = (product) => {
     setCart((prevCart) => {
       const existingItem = prevCart.find((item) => item.id === product.id);
@@ -82,8 +147,8 @@ export const CartProvider = ({ children }) => {
 
   const getCartTotal = () => {
     return cart.reduce((total, item) => {
-      const price = parseFloat(item.price) || 0;
-      return total + price * item.quantity;
+      const itemTotal = calculateItemPrice(item);
+      return total + itemTotal;
     }, 0);
   };
 
@@ -163,6 +228,7 @@ export const CartProvider = ({ children }) => {
         canProceedToCheckout,
         isCartOpen,
         toggleCart,
+        calculateItemPrice,
       }}
     >
       {children}

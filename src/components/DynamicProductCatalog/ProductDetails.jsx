@@ -427,6 +427,7 @@ const ProductDetails = () => {
             </p>
 
             <div className="grid grid-cols-2 gap-3 text-sm text-gray-700 mt-4">
+              {/* Conditionally render attributes based on product type */}
               {product.keyAttributes?.["Load Range"] && (
                 <p>
                   Load Range:{" "}
@@ -459,6 +460,22 @@ const ProductDetails = () => {
                   </span>
                 </p>
               )}
+              {product.keyAttributes?.["Size"] && (
+                <p>
+                  Size:{" "}
+                  <span className="text-teal-800 font-medium">
+                    {product.keyAttributes["Size"]}
+                  </span>
+                </p>
+              )}
+              {product.keyAttributes?.["Brand"] && (
+                <p>
+                  Brand:{" "}
+                  <span className="text-teal-800 font-medium">
+                    {product.keyAttributes["Brand"]}
+                  </span>
+                </p>
+              )}
               {product.keyAttributes?.["Fuel Efficiency"] && (
                 <p>
                   Fuel Efficiency:{" "}
@@ -480,6 +497,56 @@ const ProductDetails = () => {
                   Noise Level:{" "}
                   <span className="text-teal-800 font-medium">
                     {product.keyAttributes["Noise Level"]}
+                  </span>
+                </p>
+              )}
+              {/* For food products */}
+              {product.keyAttributes?.["Species"] && (
+                <p>
+                  Species:{" "}
+                  <span className="text-teal-800 font-medium">
+                    {product.keyAttributes["Species"]}
+                  </span>
+                </p>
+              )}
+              {product.keyAttributes?.["Type"] && (
+                <p>
+                  Type:{" "}
+                  <span className="text-teal-800 font-medium">
+                    {product.keyAttributes["Type"]}
+                  </span>
+                </p>
+              )}
+              {product.keyAttributes?.["Quality"] && (
+                <p>
+                  Quality:{" "}
+                  <span className="text-teal-800 font-medium">
+                    {product.keyAttributes["Quality"]}
+                  </span>
+                </p>
+              )}
+              {product.keyAttributes?.["Storage"] && (
+                <p>
+                  Storage:{" "}
+                  <span className="text-teal-800 font-medium">
+                    {product.keyAttributes["Storage"]}
+                  </span>
+                </p>
+              )}
+              {/* For metals */}
+              {product.keyAttributes?.["Purity"] && (
+                <p>
+                  Purity:{" "}
+                  <span className="text-teal-800 font-medium">
+                    {product.keyAttributes["Purity"]}
+                  </span>
+                </p>
+              )}
+              {product.keyAttributes?.["Grade"] && (
+                <p>
+                  Grade:{" "}
+                  <span className="text-teal-800 font-medium">
+                    {product.keyAttributes["Grade"]}
                   </span>
                 </p>
               )}
@@ -555,17 +622,41 @@ const ProductDetails = () => {
               )}
             </div>
 
+            {/* Pricing Tiers Display */}
             {product.pricingTiers && product.pricingTiers.length > 0 && (
-              <div className="mb-4">
-                <p className="text-gray-600 text-sm mb-2">Volume Pricing:</p>
+              <div className="mb-4 max-h-32 overflow-y-auto">
+                <p className="text-gray-600 text-sm mb-2 font-semibold">
+                  {product.pricingTiers[0].minWeight !== undefined 
+                    ? 'Price by Weight:' 
+                    : 'Volume Pricing:'}
+                </p>
                 {product.pricingTiers.map((tier, index) => (
-                  <p key={index} className="text-gray-700 text-xs">
-                    {tier.minQuantity}
-                    {tier.maxQuantity
-                      ? `-${tier.maxQuantity}`
-                      : "+"} tires: {tier.pricePerTire}
+                  <p key={index} className="text-gray-700 text-xs mb-1">
+                    {tier.minWeight !== undefined ? (
+                      // Frozen fish weight-based pricing
+                      <>
+                        {tier.minWeight}-{tier.maxWeight}g: <span className="font-semibold text-teal-700">{tier.pricePerKg}</span>
+                      </>
+                    ) : tier.pricePerTire !== undefined ? (
+                      // Truck tire pricing
+                      <>
+                        {tier.minQuantity}
+                        {tier.maxQuantity ? `-${tier.maxQuantity}` : "+"} tires: <span className="font-semibold text-teal-700">{tier.pricePerTire}</span>
+                      </>
+                    ) : tier.pricePerTon !== undefined ? (
+                      // Metal ton-based pricing
+                      <>
+                        {tier.minQuantity}
+                        {tier.maxQuantity ? `-${tier.maxQuantity}` : "+"} tons: <span className="font-semibold text-teal-700">{tier.pricePerTon}</span>
+                      </>
+                    ) : null}
                   </p>
                 ))}
+                {product.pricingTiers[0].minWeight !== undefined && (
+                  <p className="text-xs text-amber-600 mt-2 font-medium">
+                    *Final price varies by actual weight
+                  </p>
+                )}
               </div>
             )}
 
@@ -624,14 +715,16 @@ const ProductDetails = () => {
                   id: product.id,
                   name: product.name,
                   price: priceNum,
+                  offerPrice: product.offerPrice,
                   quantity: quantity,
                   image: product.image,
                   category: product.categoryName || "General",
                   moq: moqValue,
                   moqUnit: moqUnit,
+                  pricingTiers: product.pricingTiers || [],
                 });
               }}
-              className="block w-full border border-cyan-700  hover:bg-teal-600 hover:text-white  text-cyan-600 px-6 py-2 rounded-sm transition-all shadow-md hover:shadow-lg mb-3 flex items-center justify-center gap-2"
+              className="w-full border border-cyan-700 hover:bg-teal-600 hover:text-white text-cyan-600 px-6 py-2 rounded-sm transition-all shadow-md hover:shadow-lg mb-3 flex items-center justify-center gap-2"
             >
               <ShoppingCart className="w-5 h-5" />
               Add to Cart
@@ -671,30 +764,78 @@ const ProductDetails = () => {
             Supplier Information
           </h3>
           <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
-            <div>
-              <p className="text-gray-600">Brand Name:</p>
-              <p className="text-teal-800 font-medium">
-                {product.keyAttributes?.["Brand"] || "N/A"}
-              </p>
-            </div>
-            <div>
-              <p className="text-gray-600">Manufacturer:</p>
-              <p className="text-teal-800 font-medium">
-                {product.keyAttributes?.Manufacturer || "N/A"}
-              </p>
-            </div>
-            <div>
-              <p className="text-gray-600">Origin:</p>
-              <p className="text-teal-800 font-medium">
-                {product.keyAttributes?.Origin || "N/A"}
-              </p>
-            </div>
-            <div>
-              <p className="text-gray-600">Packaging:</p>
-              <p className="text-teal-800 font-medium">
-                {product.keyAttributes?.Packaging || "N/A"}
-              </p>
-            </div>
+            {product.keyAttributes?.["Brand"] && (
+              <div>
+                <p className="text-gray-600">Brand Name:</p>
+                <p className="text-teal-800 font-medium">
+                  {product.keyAttributes["Brand"]}
+                </p>
+              </div>
+            )}
+            {product.keyAttributes?.Manufacturer && (
+              <div>
+                <p className="text-gray-600">Manufacturer:</p>
+                <p className="text-teal-800 font-medium">
+                  {product.keyAttributes.Manufacturer}
+                </p>
+              </div>
+            )}
+            {product.keyAttributes?.Origin && (
+              <div>
+                <p className="text-gray-600">Origin:</p>
+                <p className="text-teal-800 font-medium">
+                  {product.keyAttributes.Origin}
+                </p>
+              </div>
+            )}
+            {product.keyAttributes?.["Place of Origin"] && (
+              <div>
+                <p className="text-gray-600">Place of Origin:</p>
+                <p className="text-teal-800 font-medium">
+                  {product.keyAttributes["Place of Origin"]}
+                </p>
+              </div>
+            )}
+            {product.keyAttributes?.Packaging && (
+              <div>
+                <p className="text-gray-600">Packaging:</p>
+                <p className="text-teal-800 font-medium">
+                  {product.keyAttributes.Packaging}
+                </p>
+              </div>
+            )}
+            {product.keyAttributes?.Package && (
+              <div>
+                <p className="text-gray-600">Package:</p>
+                <p className="text-teal-800 font-medium">
+                  {product.keyAttributes.Package}
+                </p>
+              </div>
+            )}
+            {product.keyAttributes?.["Supply Ability"] && (
+              <div>
+                <p className="text-gray-600">Supply Ability:</p>
+                <p className="text-teal-800 font-medium">
+                  {product.keyAttributes["Supply Ability"]}
+                </p>
+              </div>
+            )}
+            {product.keyAttributes?.["Shelf Life"] && (
+              <div>
+                <p className="text-gray-600">Shelf Life:</p>
+                <p className="text-teal-800 font-medium">
+                  {product.keyAttributes["Shelf Life"]}
+                </p>
+              </div>
+            )}
+            {product.keyAttributes?.Processing && (
+              <div>
+                <p className="text-gray-600">Processing:</p>
+                <p className="text-teal-800 font-medium">
+                  {product.keyAttributes.Processing}
+                </p>
+              </div>
+            )}
           </div>
         </div>
 
