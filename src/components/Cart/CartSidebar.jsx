@@ -31,7 +31,16 @@ const CartSidebar = () => {
         calculatedPrice: itemPrice, // This uses regular price
       };
     }
-    
+
+    // For shrimp and similar - show size-based pricing
+    if (item.pricingTiers && item.pricingTiers.length > 0 && item.pricingTiers[0].size && item.pricingTiers[0].pricePerTon) {
+      return {
+        type: 'size-range',
+        ranges: item.pricingTiers,
+        calculatedPrice: itemPrice,
+      };
+    }
+
     // For products with pricing tiers (truck tires, metals)
     if (item.pricingTiers && item.pricingTiers.length > 0) {
       if (item.pricingTiers[0].pricePerTire !== undefined) {
@@ -204,6 +213,21 @@ const CartSidebar = () => {
                               {priceInfo.ranges.map((range, idx) => (
                                 <p key={idx} className="text-xs text-gray-600">
                                   {range.minWeight}-{range.maxWeight}g: {range.pricePerKg}
+                                </p>
+                              ))}
+                              <p className="text-blue-600 font-bold text-sm mb-1">
+                                Total = ${priceInfo.calculatedPrice?.toFixed(2)}
+                              </p>
+                            </div>
+                          );
+                        } else if (priceInfo.type === 'size-range') {
+                          // Shrimp and similar - Show all size-based price tiers
+                          return (
+                            <div className="mb-2">
+                              <p className="text-xs font-semibold text-teal-700 mb-1">Price varies by size:</p>
+                              {priceInfo.ranges.map((tier, idx) => (
+                                <p key={idx} className="text-xs text-gray-600">
+                                  Size({tier.size}) - price({tier.pricePerTon})
                                 </p>
                               ))}
                               <p className="text-blue-600 font-bold text-sm mb-1">
