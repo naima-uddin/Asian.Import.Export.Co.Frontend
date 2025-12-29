@@ -200,9 +200,6 @@ const CartSidebar = () => {
                           // Frozen Fish - Show price ranges as info + calculated price
                           return (
                             <div className="mb-2">
-                              <p className="text-blue-600 font-bold text-sm mb-1">
-                                ${priceInfo.calculatedPrice?.toFixed(2)}
-                              </p>
                               <p className="text-xs font-semibold text-teal-700 mb-1">Price varies by weight:</p>
                               {priceInfo.ranges.slice(0, 2).map((range, idx) => (
                                 <p key={idx} className="text-xs text-gray-600">
@@ -212,6 +209,10 @@ const CartSidebar = () => {
                               {priceInfo.ranges.length > 2 && (
                                 <p className="text-xs text-gray-500">+{priceInfo.ranges.length - 2} more ranges</p>
                               )}
+                              
+                              <p className="text-blue-600 font-bold text-sm mb-1">
+                                Total: {priceInfo.calculatedPrice}× {item.quantity} = ${priceInfo.calculatedPrice?.toFixed(2)}
+                              </p>
                             </div>
                           );
                         } else if (priceInfo.type === 'tiered') {
@@ -225,7 +226,7 @@ const CartSidebar = () => {
                                 Unit: {priceInfo.unitPrice}
                               </p>
                               <p className="text-blue-600 font-bold text-sm">
-                                Total: ${priceInfo.total?.toFixed(2)}
+                                Total: {priceInfo.unitPrice} × {item.quantity} = ${priceInfo.total?.toFixed(2)}
                               </p>
                             </div>
                           );
@@ -237,7 +238,7 @@ const CartSidebar = () => {
                                 Offer Price (Below tier minimum)
                               </p>
                               <p className="text-blue-600 font-bold text-sm">
-                                ${priceInfo.unitPrice?.toFixed(2)} × {item.quantity} = ${priceInfo.total?.toFixed(2)}
+                                Total: ${priceInfo.unitPrice?.toFixed(2)} × {item.quantity} = ${priceInfo.total?.toFixed(2)}
                               </p>
                             </div>
                           );
@@ -245,7 +246,7 @@ const CartSidebar = () => {
                           // Standard pricing
                           return (
                             <p className="text-blue-600 font-bold text-sm mb-2">
-                              ${priceInfo.unitPrice?.toFixed(2)} × {item.quantity} = ${priceInfo.total?.toFixed(2)}
+                              Total: ${priceInfo.unitPrice?.toFixed(2)} × {item.quantity} = ${priceInfo.total?.toFixed(2)}
                             </p>
                           );
                         }

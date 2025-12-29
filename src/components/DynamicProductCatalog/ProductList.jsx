@@ -185,6 +185,8 @@ const ProductList = ({ category, subcategory, selectedBrand, isHomePage = false 
                     </p>
                   ) : null}
 
+
+
                   {/* Action Buttons */}
                   <div className="flex gap-2">
                     {/* See Details Button */}
