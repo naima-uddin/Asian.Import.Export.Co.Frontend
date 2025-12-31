@@ -5,7 +5,12 @@ import { useNavigate } from "@/lib/navigation";
 import { useCart } from "@/context/CartContext";
 import { ArrowUp, ShoppingCart } from "lucide-react";
 
-const ProductList = ({ category, subcategory, selectedBrand, isHomePage = false }) => {
+const ProductList = ({
+  category,
+  subcategory,
+  selectedBrand,
+  isHomePage = false,
+}) => {
   const [showAllProducts, setShowAllProducts] = useState(false);
   const navigate = useNavigate();
   const { addToCart } = useCart();
@@ -24,7 +29,7 @@ const ProductList = ({ category, subcategory, selectedBrand, isHomePage = false 
   const handleAddToCart = (product) => {
     const priceStr = product.offerPrice || product.price || "0";
     const priceNum = parseFloat(priceStr.replace(/[^0-9.]/g, ""));
-    
+
     // Extract MOQ from product attributes with unit
     let moqValue = 50;
     let moqUnit = "units";
@@ -37,7 +42,7 @@ const ProductList = ({ category, subcategory, selectedBrand, isHomePage = false 
         moqUnit = moqMatch[2]; // e.g., "Tons", "tires", etc.
       }
     }
-    
+
     addToCart({
       id: product.id,
       name: product.name,
@@ -60,7 +65,7 @@ const ProductList = ({ category, subcategory, selectedBrand, isHomePage = false 
 
   // Helper function to convert name to URL slug
   const nameToSlug = (name) => {
-    return name.replace(/\s+/g, '-');
+    return name.replace(/\s+/g, "-");
   };
 
   const handleSeeAllClick = () => {
@@ -115,13 +120,16 @@ const ProductList = ({ category, subcategory, selectedBrand, isHomePage = false 
                       {product.keyAttributes["MOQ"]}
                     </p>
                   )}
-                  
+
                   {/* Show size from pricingTiers or keyAttributes */}
                   {(() => {
                     // Check if pricingTiers has size information
-                    if (product.pricingTiers && product.pricingTiers.length > 0) {
+                    if (
+                      product.pricingTiers &&
+                      product.pricingTiers.length > 0
+                    ) {
                       const firstTier = product.pricingTiers[0];
-                      
+
                       // Check for minWeight/maxWeight
                       if (firstTier.minWeight && firstTier.maxWeight) {
                         return (
@@ -131,7 +139,7 @@ const ProductList = ({ category, subcategory, selectedBrand, isHomePage = false 
                           </p>
                         );
                       }
-                      
+
                       // Check for size property
                       if (firstTier.size) {
                         return (
@@ -142,7 +150,7 @@ const ProductList = ({ category, subcategory, selectedBrand, isHomePage = false 
                         );
                       }
                     }
-                    
+
                     // Fallback to keyAttributes Size
                     if (product.keyAttributes?.Size) {
                       return (
@@ -152,7 +160,7 @@ const ProductList = ({ category, subcategory, selectedBrand, isHomePage = false 
                         </p>
                       );
                     }
-                    
+
                     return null;
                   })()}
                 </div>
@@ -185,8 +193,6 @@ const ProductList = ({ category, subcategory, selectedBrand, isHomePage = false 
                     </p>
                   ) : null}
 
-
-
                   {/* Action Buttons */}
                   <div className="flex gap-2">
                     {/* See Details Button */}
@@ -196,14 +202,13 @@ const ProductList = ({ category, subcategory, selectedBrand, isHomePage = false 
                     >
                       See Details
                     </button>
-                    
+
                     <button
                       onClick={() => handleAddToCart(product)}
                       className="flex-1 border border-cyan-700  hover:bg-teal-600 hover:text-white  text-cyan-600 py-2 rounded-md text-sm font-medium transition-all shadow-sm hover:shadow-md flex items-center justify-center gap-1"
                     >
                       <ShoppingCart className="w-4 h-4" />
                       Add to Cart
-                      
                     </button>
                   </div>
                 </div>
@@ -219,22 +224,22 @@ const ProductList = ({ category, subcategory, selectedBrand, isHomePage = false 
                   onClick={handleSeeAllClick}
                   className="px-6 py-2 bg-teal-600 text-white rounded-lg hover:bg-teal-700 transition-colors font-medium"
                 >
-                  {isHomePage 
-                    ? `View All ${filteredProducts.length} Products →` 
-                    : `See All ${filteredProducts.length} Products`}
+                  {isHomePage ? `View All  Products →` : `See All  Products`}
                 </button>
               </div>
             )}
-            {/* show less button  */}
-            {
-              showAllProducts && filteredProducts.length > initialProductsCount && (
-                <div className="mt-8 text-center">
-                  <button onClick={handleShowLessClick} className="px-6 py-2 bg-teal-600 text-white rounded-lg hover:bg-teal-700 transition-colors font-medium flex items-center justify-center gap-1 mx-auto">
-                    Show Less <ArrowUp/>
-                  </button>
-                </div>
-              )
-            }
+          {/* show less button  */}
+          {showAllProducts &&
+            filteredProducts.length > initialProductsCount && (
+              <div className="mt-8 text-center">
+                <button
+                  onClick={handleShowLessClick}
+                  className="px-6 py-2 bg-teal-600 text-white rounded-lg hover:bg-teal-700 transition-colors font-medium flex items-center justify-center gap-1 mx-auto"
+                >
+                  Show Less <ArrowUp />
+                </button>
+              </div>
+            )}
         </div>
       ) : (
         <div className="bg-gray-50 rounded-lg p-8 text-center">

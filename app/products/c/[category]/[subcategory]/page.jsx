@@ -9,7 +9,7 @@ import SearchSuggestion from "@/components/Search/SearchSuggestion.jsx";
 const SubcategoryPage = () => {
   const params = useParams();
   const navigate = useNavigate();
-  
+
   const [category, setCategory] = useState(null);
   const [subcategory, setSubcategory] = useState(null);
   const [selectedBrand, setSelectedBrand] = useState(null);
@@ -34,8 +34,14 @@ const SubcategoryPage = () => {
         const data = await response.json();
 
         // Convert URL slugs back to names
-        const categoryName = decodeURIComponent(params.category).replace(/-/g, ' ');
-        const subcategoryName = decodeURIComponent(params.subcategory).replace(/-/g, ' ');
+        const categoryName = decodeURIComponent(params.category).replace(
+          /-/g,
+          " "
+        );
+        const subcategoryName = decodeURIComponent(params.subcategory).replace(
+          /-/g,
+          " "
+        );
 
         // Find the matching category and subcategory
         const foundCategory = data.find(
@@ -58,13 +64,13 @@ const SubcategoryPage = () => {
         setSubcategory(foundSubcategory);
 
         // Set all products for search
-        const products = foundSubcategory.products?.map((product) => ({
-          ...product,
-          category: foundCategory.name,
-          subcategory: foundSubcategory.name,
-        })) || [];
+        const products =
+          foundSubcategory.products?.map((product) => ({
+            ...product,
+            category: foundCategory.name,
+            subcategory: foundSubcategory.name,
+          })) || [];
         setAllProducts(products);
-
       } catch (err) {
         console.error("Error fetching data:", err);
         setError("Failed to load products. Please try again later.");
@@ -191,7 +197,9 @@ const SubcategoryPage = () => {
             <span className="mx-2">/</span>
             <span className="text-teal-600 font-medium">{category?.name}</span>
             <span className="mx-2">/</span>
-            <span className="text-teal-600 font-medium">{subcategory?.name}</span>
+            <span className="text-teal-600 font-medium">
+              {subcategory?.name}
+            </span>
           </nav>
         </div>
 
@@ -253,10 +261,6 @@ const SubcategoryPage = () => {
               <span className="mr-3 text-3xl">{category?.icon}</span>
               {subcategory?.name}
             </h1>
-            <p className="text-gray-600 mt-2">
-              {subcategory?.products?.length || 0} products available
-              {selectedBrand && ` in ${selectedBrand}`}
-            </p>
           </div>
 
           {uniqueBrands.length > 0 && (
