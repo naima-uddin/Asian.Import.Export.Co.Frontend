@@ -5,9 +5,7 @@ import { useNavigate, useLocation } from "@/lib/navigation";
 import ProductSubcategory from "./ProductSubcategory";
 import ProductList from "./ProductList";
 import SearchSuggestion from "../Search/SearchSuggestion.jsx";
-import Image from "next/image";
 import ProductSlider from "./ProductSlider";
-import SearchPage from "../../../app/search/page";
 
 const ProductCatalog = ({ isHomePage = false }) => {
   const [categories, setCategories] = useState([]);
@@ -18,7 +16,6 @@ const ProductCatalog = ({ isHomePage = false }) => {
   const [showSuggestions, setShowSuggestions] = useState(false);
 
   const navigate = useNavigate();
-  const location = useLocation();
 
   useEffect(() => {
     const fetchCategories = async () => {
@@ -45,7 +42,7 @@ const ProductCatalog = ({ isHomePage = false }) => {
 
   // Helper function to convert name to URL slug
   const nameToSlug = (name) => {
-    return name.replace(/\s+/g, '-');
+    return name.replace(/\s+/g, "-");
   };
 
   const handleSubcategoryClick = (category, subcategory) => {
@@ -108,7 +105,6 @@ const ProductCatalog = ({ isHomePage = false }) => {
     }
   };
 
-
   if (loading) {
     return (
       <div className="min-h-screen bg-gray-50 py-8 flex items-center justify-center">
@@ -145,14 +141,19 @@ const ProductCatalog = ({ isHomePage = false }) => {
             <h2 className="text-2xl font-bold text-teal-800 mb-4 text-center">
               What are you looking for?
             </h2>
-            <form onSubmit={handleSearchSubmit} className="max-w-2xl mx-auto relative">
+            <form
+              onSubmit={handleSearchSubmit}
+              className="max-w-2xl mx-auto relative"
+            >
               <div className="relative">
                 <input
                   type="text"
                   value={searchQuery}
                   onChange={handleSearchChange}
                   onFocus={() => searchQuery && setShowSuggestions(true)}
-                  onBlur={() => setTimeout(() => setShowSuggestions(false), 200)}
+                  onBlur={() =>
+                    setTimeout(() => setShowSuggestions(false), 200)
+                  }
                   placeholder="Search products, brands, categories..."
                   className="w-full px-6 py-4 pr-12 border border-gray-300 bg-white rounded-full focus:outline-none focus:ring-2 focus:ring-teal-500 focus:border-transparent shadow-sm text-teal-800"
                 />
@@ -174,7 +175,7 @@ const ProductCatalog = ({ isHomePage = false }) => {
                     />
                   </svg>
                 </button>
-                
+
                 {/* Search Suggestions */}
                 <SearchSuggestion
                   suggestions={searchSuggestions}
@@ -221,9 +222,10 @@ const ProductCatalog = ({ isHomePage = false }) => {
               <div className="h-full">
                 <ProductSlider />
               </div>
-              
+
               <p className="text-gray-600 text-sm p-3 bg-white border-t border-gray-200">
-                Browse through our wide range of quality products across multiple categories.
+                Browse through our wide range of quality products across
+                multiple categories.
               </p>
             </div>
           </div>
@@ -245,12 +247,16 @@ const ProductCatalog = ({ isHomePage = false }) => {
                   <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-4">
                     {category.subcategories?.map((subcategory) => {
                       // Get the first product image as subcategory representative
-                      const representativeImage = subcategory.products?.[0]?.image || '/assets/placeholder.png';
-                      
+                      const representativeImage =
+                        subcategory.products?.[0]?.image ||
+                        "/assets/placeholder.png";
+
                       return (
                         <div
                           key={subcategory.id}
-                          onClick={() => handleSubcategoryClick(category, subcategory)}
+                          onClick={() =>
+                            handleSubcategoryClick(category, subcategory)
+                          }
                           className="group cursor-pointer bg-gray-50 rounded-lg p-4 hover:shadow-lg transition-all duration-300 hover:-translate-y-1 border border-gray-200 hover:border-teal-400"
                         >
                           <div className="aspect-square relative mb-3 overflow-hidden rounded-lg bg-white">

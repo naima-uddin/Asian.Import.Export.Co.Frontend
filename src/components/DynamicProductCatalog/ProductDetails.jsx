@@ -1,7 +1,7 @@
 "use client";
 
 import React, { useEffect, useState, useRef } from "react";
-import { useLocation, useNavigate } from "@/lib/navigation";
+import { useNavigate } from "@/lib/navigation";
 import { useParams } from "next/navigation";
 import {
   FaArrowLeft,
@@ -14,6 +14,10 @@ import {
 import { ShoppingCart } from "lucide-react";
 import { useCart } from "@/context/CartContext";
 import ContainerLoadingCapacity from "./ContainerLoadingCapacity";
+import {
+  generateProductSchema,
+  generateBreadcrumbSchema,
+} from "@/lib/structuredData";
 
 // Helper functions for recommended products
 const parsePrice = (priceStr) => {
@@ -257,7 +261,6 @@ const RecommendedProducts = ({ recs = [], ratings, isTyre = false }) => {
 // Main ProductDetails Component
 const ProductDetails = () => {
   const { id } = useParams();
-  const location = useLocation();
   const navigate = useNavigate();
   const { addToCart } = useCart();
 
@@ -271,16 +274,15 @@ const ProductDetails = () => {
 
   useEffect(() => {
     // Reset states when ID changes
-    console.log('ProductDetails: ID changed to:', id);
     setLoading(true);
     setProduct(null);
     setSelectedImage(null);
     setQuantity(1);
     setRecommendedProducts([]);
-    
+
     // Scroll to top when product changes
-    window.scrollTo({ top: 0, behavior: 'smooth' });
-    
+    window.scrollTo({ top: 0, behavior: "smooth" });
+
     // Always load fresh product data based on the current ID
     fetch("/categories.json")
       .then((res) => res.json())
@@ -288,21 +290,19 @@ const ProductDetails = () => {
         // Flatten products while preserving category information
         const allProducts = data.flatMap(
           (cat) =>
-            cat.subcategories?.flatMap((sub) => 
-              (sub.products || []).map(product => ({
+            cat.subcategories?.flatMap((sub) =>
+              (sub.products || []).map((product) => ({
                 ...product,
-                categoryName: cat.name
+                categoryName: cat.name,
               }))
             ) || []
         );
-        
+
         // Find the product based on the current ID
         const foundProduct = allProducts.find(
           (p) => String(p.id) === String(id)
         );
-        
-        console.log('ProductDetails: Found product:', foundProduct?.name, 'for ID:', id);
-        
+
         // Update product state
         setProduct(foundProduct || null);
         setSelectedImage(foundProduct?.image || null);
@@ -363,523 +363,578 @@ const ProductDetails = () => {
       <div className="flex justify-center items-center min-h-screen">
         <div className="text-center">
           <div className="loading loading-spinner loading-lg text-teal-600"></div>
-          <p className="text-lg mt-4 text-gray-800">Loading product details...</p>
+          <p className="text-lg mt-4 text-gray-800">
+            Loading product details...
+          </p>
         </div>
       </div>
     );
   }
 
+  // Generate structured data for SEO
+  const productSchema = generateProductSchema(
+    product,
+    product.categoryName,
+    ""
+  );
+  const breadcrumbSchema = generateBreadcrumbSchema([
+    { name: "Home", url: "/" },
+    { name: "Products", url: "/products" },
+    { name: product.categoryName || "Category", url: "/products" },
+    { name: product.name, url: `/product/${product.id}` },
+  ]);
+
   return (
-    <div className="w-full bg-gray-50 px-4 lg:px-0">
-      <div className="max-w-7xl mx-auto p-6 text-gray-800 rounded-lg">
-        {/* Back Button */}
-        <button
-          onClick={handleGoBack}
-          className="flex items-center text-teal-700 hover:text-teal-800 mb-6 transition-colors duration-200"
-        >
-          <FaArrowLeft className="mr-2" />
-          Back
-        </button>
+    <>
+      {/* JSON-LD Structured Data for SEO */}
+      <script
+        type="application/ld+json"
+        dangerouslySetInnerHTML={{ __html: JSON.stringify(productSchema) }}
+      />
+      <script
+        type="application/ld+json"
+        dangerouslySetInnerHTML={{ __html: JSON.stringify(breadcrumbSchema) }}
+      />
 
-        <h2 className="text-3xl font-bold mb-12 text-center text-teal-800 hover:text-teal-900 transition-colors duration-300 border-b-2 border-amber-400 pb-2">
-          {product.keyAttributes?.["Brand"] || "Product Details"}
-        </h2>
+      <div className="w-full bg-gray-50 px-4 lg:px-0">
+        <div className="max-w-7xl mx-auto p-6 text-gray-800 rounded-lg">
+          {/* Back Button */}
+          <button
+            onClick={handleGoBack}
+            className="flex items-center text-teal-700 hover:text-teal-800 mb-6 transition-colors duration-200"
+          >
+            <FaArrowLeft className="mr-2" />
+            Back
+          </button>
 
-        <div className="flex flex-col lg:flex-row gap-8">
-          {/* Left: Image Gallery */}
-          <div className="flex flex-col items-center lg:w-2/5 relative">
-            <div className="relative overflow-hidden group w-full max-w-lg">
-              <img
-                src={selectedImage || product.image}
-                alt={product.name}
-                className="w-full h-auto max-h-80 object-contain mb-4 transition-transform duration-300 border border-gray-200 rounded-lg"
-              />
-              <div className="absolute top-2 right-2 opacity-0 group-hover:opacity-100 transition-opacity duration-300">
+          <h2 className="text-3xl font-bold mb-12 text-center text-teal-800 hover:text-teal-900 transition-colors duration-300 border-b-2 border-amber-400 pb-2">
+            {product.keyAttributes?.["Brand"] || "Product Details"}
+          </h2>
+
+          <div className="flex flex-col lg:flex-row gap-8">
+            {/* Left: Image Gallery */}
+            <div className="flex flex-col items-center lg:w-2/5 relative">
+              <div className="relative overflow-hidden group w-full max-w-lg">
+                <img
+                  src={selectedImage || product.image}
+                  alt={product.name}
+                  className="w-full h-auto max-h-80 object-contain mb-4 transition-transform duration-300 border border-gray-200 rounded-lg"
+                />
               </div>
-              
-            </div>
-            <div className="flex gap-2">
-              {[product.image, ...(product.additionalImages || [])].map(
-                (img, idx) => (
-                  <img
-                    key={idx}
-                    src={img}
-                    alt={`Thumbnail ${idx + 1}`}
-                    onClick={() => {
-                      setSelectedImage(img);
-                    }}
-                    className={`h-12 border-2 rounded ${
-                      selectedImage === img
-                        ? "border-amber-400"
-                        : "border-gray-300 opacity-50"
-                    } cursor-pointer`}
-                  />
-                )
-              )}
-            </div>
-          </div>
-
-          {/* Center: Product Details */}
-          <div className="lg:w-1/2 space-y-2">
-            <h1 className="text-2xl font-bold text-teal-800">{product.name}</h1>
-            <p className="text-xl text-yellow-600 mb-2 font-semibold">
-              Price: {product?.price|| "N/A"}
-            </p>
-
-            <div className="grid grid-cols-2 gap-3 text-sm text-gray-700 mt-4">
-              {/* Conditionally render attributes based on product type */}
-              {product.keyAttributes?.["Load Range"] && (
-                <p>
-                  Load Range:{" "}
-                  <span className="text-teal-800 font-medium">
-                    {product.keyAttributes["Load Range"]}
-                  </span>
-                </p>
-              )}
-              {product.keyAttributes?.["Speed Symbol"] && (
-                <p>
-                  Speed Symbol:{" "}
-                  <span className="text-teal-800 font-medium">
-                    {product.keyAttributes["Speed Symbol"]}
-                  </span>
-                </p>
-              )}
-              {product.keyAttributes?.["Tread Depth"] && (
-                <p>
-                  Tread Depth:{" "}
-                  <span className="text-teal-800 font-medium">
-                    {product.keyAttributes["Tread Depth"]}
-                  </span>
-                </p>
-              )}
-              {product.keyAttributes?.["Tire Type"] && (
-                <p>
-                  Tire Type:{" "}
-                  <span className="text-teal-800 font-medium">
-                    {product.keyAttributes["Tire Type"]}
-                  </span>
-                </p>
-              )}
-              {product.keyAttributes?.["Size"] && (
-                <p>
-                  Size:{" "}
-                  <span className="text-teal-800 font-medium">
-                    {product.keyAttributes["Size"]}
-                  </span>
-                </p>
-              )}
-              {product.keyAttributes?.["Brand"] && (
-                <p>
-                  Brand:{" "}
-                  <span className="text-teal-800 font-medium">
-                    {product.keyAttributes["Brand"]}
-                  </span>
-                </p>
-              )}
-              {product.keyAttributes?.["Fuel Efficiency"] && (
-                <p>
-                  Fuel Efficiency:{" "}
-                  <span className="text-teal-800 font-medium">
-                    {product.keyAttributes["Fuel Efficiency"]}
-                  </span>
-                </p>
-              )}
-              {product.keyAttributes?.["Wet Grip"] && (
-                <p>
-                  Wet Grip:{" "}
-                  <span className="text-teal-800 font-medium">
-                    {product.keyAttributes["Wet Grip"]}
-                  </span>
-                </p>
-              )}
-              {product.keyAttributes?.["Noise Level"] && (
-                <p>
-                  Noise Level:{" "}
-                  <span className="text-teal-800 font-medium">
-                    {product.keyAttributes["Noise Level"]}
-                  </span>
-                </p>
-              )}
-              {/* For food products */}
-              {product.keyAttributes?.["Species"] && (
-                <p>
-                  Species:{" "}
-                  <span className="text-teal-800 font-medium">
-                    {product.keyAttributes["Species"]}
-                  </span>
-                </p>
-              )}
-              {product.keyAttributes?.["Type"] && (
-                <p>
-                  Type:{" "}
-                  <span className="text-teal-800 font-medium">
-                    {product.keyAttributes["Type"]}
-                  </span>
-                </p>
-              )}
-              {product.keyAttributes?.["Quality"] && (
-                <p>
-                  Quality:{" "}
-                  <span className="text-teal-800 font-medium">
-                    {product.keyAttributes["Quality"]}
-                  </span>
-                </p>
-              )}
-              {product.keyAttributes?.["Storage"] && (
-                <p>
-                  Storage:{" "}
-                  <span className="text-teal-800 font-medium">
-                    {product.keyAttributes["Storage"]}
-                  </span>
-                </p>
-              )}
-              {/* For metals */}
-              {product.keyAttributes?.["Purity"] && (
-                <p>
-                  Purity:{" "}
-                  <span className="text-teal-800 font-medium">
-                    {product.keyAttributes["Purity"]}
-                  </span>
-                </p>
-              )}
-              {product.keyAttributes?.["Grade"] && (
-                <p>
-                  Grade:{" "}
-                  <span className="text-teal-800 font-medium">
-                    {product.keyAttributes["Grade"]}
-                  </span>
-                </p>
-              )}
-            </div>
-
-            {/* Customer Reviews (if available) */}
-            {product.rating && (
-              <div className="text-sm mt-2 flex items-center gap-2">
-                <span>Customer Reviews:</span>
-                <span className="flex items-center">
-                  {renderStars(product.rating)}
-                </span>
-                <span className="text-gray-600">
-                  ({product.reviewCount || 0} reviews)
-                </span>
+              <div className="flex gap-2">
+                {[product.image, ...(product.additionalImages || [])].map(
+                  (img, idx) => (
+                    <img
+                      key={idx}
+                      src={img}
+                      alt={`Thumbnail ${idx + 1}`}
+                      onClick={() => {
+                        setSelectedImage(img);
+                      }}
+                      className={`h-12 border-2 rounded ${
+                        selectedImage === img
+                          ? "border-amber-400"
+                          : "border-gray-300 opacity-50"
+                      } cursor-pointer`}
+                    />
+                  )
+                )}
               </div>
-            )}
-
-            {/* Product Description */}
-            {product.description && (
-              <div className="mt-4">
-                <h3 className="text-lg font-semibold mb-2 text-teal-800">
-                  Description
-                </h3>
-                <p className="text-gray-700 text-sm">{product.description}</p>
-
-                {/* Conditional Shipping Text */}
-                <div className="mt-4 p-3 bg-blue-50 border border-blue-200 rounded-lg mb-2">
-                  <p className="text-sm text-blue-800 font-medium">
-                    {isTyre
-                      ? "🚚 DDP from Thailand — No hidden costs. U.S. FET & import taxes included"
-                      : "📦 Shipping cost will be calculated based on your area"}
-                  </p>
-                </div>
-
-              </div>
-            )}
-            
-            {/* Container Loading Capacity - Only for Vehicle Parts and Accessories */}
-            {product.categoryName === "Vehicle Parts and Accessories" && (
-              <ContainerLoadingCapacity />
-            )}          
-         </div>
-
-          {/* Right: Purchase Box */}
-          <div className="lg:w-1/4 bg-white text-gray-800 p-4 rounded-lg shadow-lg border border-gray-200 h-[300px]">
-            <div className="mb-4">
-              {/* Updated Price Display */}
-              {product.price && product.offerPrice ? (
-                <>
-                  <p className="text-gray-900 text-lg">Price : </p>
-                  <div className="flex items-center gap-2">
-                    <p className="font-bold text-2xl text-amber-600">
-                      {product.offerPrice}
-                    </p>
-
-                    <span className="text-gray-7700">-</span>
-
-                    <p className="font-bold text-2xl line-through text-gray-500">
-                      {product.price}
-                    </p>
-                  </div>
-                </>
-              ) : product.price ? (
-                <>
-                  <p className="text-gray-600 text-sm">Price:</p>
-                  <p className="font-bold text-2xl text-teal-800">
-                    {product.price}
-                  </p>
-                </>
-              ) : (
-                <p className="text-gray-500">Price: N/A</p>
-              )}
             </div>
 
-            {/* Pricing Tiers Display */}
-            {product.pricingTiers && product.pricingTiers.length > 0 && (
-              <div className="mb-4 max-h-32 overflow-y-auto">
-                <p className="text-gray-600 text-sm mb-2 font-semibold">
-                  {product.pricingTiers[0].minWeight !== undefined
-                    ? 'Price by Weight:'
-                    : product.pricingTiers[0].size && product.pricingTiers[0].pricePerTon
-                      ? 'Volume Pricing:'
-                      : 'Volume Pricing:'}
-                </p>
-                {product.pricingTiers[0].minWeight !== undefined && product.pricingTiers.map((tier, index) => (
-                  <p key={index} className="text-gray-700 text-xs mb-1">
-                    {tier.minWeight}-{tier.maxWeight}g: <span className="font-semibold text-teal-700">{tier.pricePerKg}</span>
+            {/* Center: Product Details */}
+            <div className="lg:w-1/2 space-y-2">
+              <h1 className="text-2xl font-bold text-teal-800">
+                {product.name}
+              </h1>
+              <p className="text-xl text-yellow-600 mb-2 font-semibold">
+                Price: {product?.price || "N/A"}
+              </p>
+
+              <div className="grid grid-cols-2 gap-3 text-sm text-gray-700 mt-4">
+                {/* Conditionally render attributes based on product type */}
+                {product.keyAttributes?.["Load Range"] && (
+                  <p>
+                    Load Range:{" "}
+                    <span className="text-teal-800 font-medium">
+                      {product.keyAttributes["Load Range"]}
+                    </span>
                   </p>
-                ))}
-                {product.pricingTiers[0].size && product.pricingTiers[0].pricePerTon && product.pricingTiers.map((tier, index) => (
-                  <p key={index} className="text-gray-700 text-xs mb-1">
-                    Size({tier.size}) - price(<span className="font-semibold text-teal-700">{tier.pricePerTon}</span>)
+                )}
+                {product.keyAttributes?.["Speed Symbol"] && (
+                  <p>
+                    Speed Symbol:{" "}
+                    <span className="text-teal-800 font-medium">
+                      {product.keyAttributes["Speed Symbol"]}
+                    </span>
                   </p>
-                ))}
-                {product.pricingTiers[0].minWeight !== undefined && (
-                  <p className="text-xs text-amber-600 mt-2 font-medium">
-                    *Final price varies by actual weight
+                )}
+                {product.keyAttributes?.["Tread Depth"] && (
+                  <p>
+                    Tread Depth:{" "}
+                    <span className="text-teal-800 font-medium">
+                      {product.keyAttributes["Tread Depth"]}
+                    </span>
+                  </p>
+                )}
+                {product.keyAttributes?.["Tire Type"] && (
+                  <p>
+                    Tire Type:{" "}
+                    <span className="text-teal-800 font-medium">
+                      {product.keyAttributes["Tire Type"]}
+                    </span>
+                  </p>
+                )}
+                {product.keyAttributes?.["Size"] && (
+                  <p>
+                    Size:{" "}
+                    <span className="text-teal-800 font-medium">
+                      {product.keyAttributes["Size"]}
+                    </span>
+                  </p>
+                )}
+                {product.keyAttributes?.["Brand"] && (
+                  <p>
+                    Brand:{" "}
+                    <span className="text-teal-800 font-medium">
+                      {product.keyAttributes["Brand"]}
+                    </span>
+                  </p>
+                )}
+                {product.keyAttributes?.["Fuel Efficiency"] && (
+                  <p>
+                    Fuel Efficiency:{" "}
+                    <span className="text-teal-800 font-medium">
+                      {product.keyAttributes["Fuel Efficiency"]}
+                    </span>
+                  </p>
+                )}
+                {product.keyAttributes?.["Wet Grip"] && (
+                  <p>
+                    Wet Grip:{" "}
+                    <span className="text-teal-800 font-medium">
+                      {product.keyAttributes["Wet Grip"]}
+                    </span>
+                  </p>
+                )}
+                {product.keyAttributes?.["Noise Level"] && (
+                  <p>
+                    Noise Level:{" "}
+                    <span className="text-teal-800 font-medium">
+                      {product.keyAttributes["Noise Level"]}
+                    </span>
+                  </p>
+                )}
+                {/* For food products */}
+                {product.keyAttributes?.["Species"] && (
+                  <p>
+                    Species:{" "}
+                    <span className="text-teal-800 font-medium">
+                      {product.keyAttributes["Species"]}
+                    </span>
+                  </p>
+                )}
+                {product.keyAttributes?.["Type"] && (
+                  <p>
+                    Type:{" "}
+                    <span className="text-teal-800 font-medium">
+                      {product.keyAttributes["Type"]}
+                    </span>
+                  </p>
+                )}
+                {product.keyAttributes?.["Quality"] && (
+                  <p>
+                    Quality:{" "}
+                    <span className="text-teal-800 font-medium">
+                      {product.keyAttributes["Quality"]}
+                    </span>
+                  </p>
+                )}
+                {product.keyAttributes?.["Storage"] && (
+                  <p>
+                    Storage:{" "}
+                    <span className="text-teal-800 font-medium">
+                      {product.keyAttributes["Storage"]}
+                    </span>
+                  </p>
+                )}
+                {/* For metals */}
+                {product.keyAttributes?.["Purity"] && (
+                  <p>
+                    Purity:{" "}
+                    <span className="text-teal-800 font-medium">
+                      {product.keyAttributes["Purity"]}
+                    </span>
+                  </p>
+                )}
+                {product.keyAttributes?.["Grade"] && (
+                  <p>
+                    Grade:{" "}
+                    <span className="text-teal-800 font-medium">
+                      {product.keyAttributes["Grade"]}
+                    </span>
                   </p>
                 )}
               </div>
-            )}
 
-            {product.keyAttributes?.MOQ && (
-              <p className="text-gray-600 font-bold text-sm mb-4">
-                MOQ: {product.keyAttributes.MOQ}
-              </p>
-            )}
+              {/* Customer Reviews (if available) */}
+              {product.rating && (
+                <div className="text-sm mt-2 flex items-center gap-2">
+                  <span>Customer Reviews:</span>
+                  <span className="flex items-center">
+                    {renderStars(product.rating)}
+                  </span>
+                  <span className="text-gray-600">
+                    ({product.reviewCount || 0} reviews)
+                  </span>
+                </div>
+              )}
 
-            {/* Quantity Selector */}
-            <div className="mb-4">
-              <label className="text-gray-600 text-sm mb-2 block">Quantity:</label>
-              <div className="flex items-center gap-3">
-                <button
-                  onClick={() => setQuantity(Math.max(1, quantity - 1))}
-                  className="p-2 bg-gray-200 hover:bg-gray-300 rounded-md transition-colors"
-                >
-                  <FaMinus className="w-4 h-4" />
-                </button>
-                <input
-                  type="number"
-                  value={quantity}
-                  onChange={(e) => setQuantity(Math.max(1, parseInt(e.target.value) || 1))}
-                  className="w-20 text-center border border-teal-300 bg-white rounded-md px-3 py-2"
-                  min="1"
-                />
-                <button
-                  onClick={() => setQuantity(quantity + 1)}
-                  className="p-2 bg-gray-200 hover:bg-gray-300 rounded-md transition-colors"
-                >
-                  <FaPlus className="w-4 h-4" />
-                </button>
-              </div>
+              {/* Product Description */}
+              {product.description && (
+                <div className="mt-4">
+                  <h3 className="text-lg font-semibold mb-2 text-teal-800">
+                    Description
+                  </h3>
+                  <p className="text-gray-700 text-sm">{product.description}</p>
+
+                  {/* Conditional Shipping Text */}
+                  <div className="mt-4 p-3 bg-blue-50 border border-blue-200 rounded-lg mb-2">
+                    <p className="text-sm text-blue-800 font-medium">
+                      {isTyre
+                        ? "🚚 DDP from Thailand — No hidden costs. U.S. FET & import taxes included"
+                        : "📦 Shipping cost will be calculated based on your area"}
+                    </p>
+                  </div>
+                </div>
+              )}
+
+              {/* Container Loading Capacity - Only for Vehicle Parts and Accessories */}
+              {product.categoryName === "Vehicle Parts and Accessories" && (
+                <ContainerLoadingCapacity />
+              )}
             </div>
-            
-            {/* Add to Cart Button */}
-            <button
-              onClick={() => {
-                const priceStr = product.offerPrice || product.price || "0";
-                const priceNum = parseFloat(priceStr.replace(/[^0-9.]/g, ""));
-                
-                // Extract MOQ from product attributes with unit
-                let moqValue = 50;
-                let moqUnit = "units";
-                if (product.keyAttributes && product.keyAttributes.MOQ) {
-                  const moqStr = product.keyAttributes.MOQ;
-                  // Match number and unit (e.g., "100 Tons", "50 tires", "5 Tons")
-                  const moqMatch = moqStr.match(/(\d+)\s*([a-zA-Z]+)/);
-                  if (moqMatch) {
-                    moqValue = parseInt(moqMatch[1]);
-                    moqUnit = moqMatch[2]; // e.g., "Tons", "tires", etc.
-                  }
-                }
-                
-                addToCart({
-                  id: product.id,
-                  name: product.name,
-                  price: priceNum,
-                  offerPrice: product.offerPrice,
-                  quantity: quantity,
-                  image: product.image,
-                  category: product.categoryName || "General",
-                  moq: moqValue,
-                  moqUnit: moqUnit,
-                  pricingTiers: product.pricingTiers || [],
-                });
-              }}
-              className="w-full border border-cyan-700 hover:bg-teal-600 hover:text-white text-cyan-600 px-6 py-2 rounded-sm transition-all shadow-md hover:shadow-lg mb-3 flex items-center justify-center gap-2"
-            >
-              <ShoppingCart className="w-5 h-5" />
-              Add to Cart
-            </button>
-          </div>
-          
-        </div>
 
-        {/* Additional Product Specifications */}
-        {product.keyAttributes && (
-          <div className="mt-12">
-            <h3 className="text-2xl font-bold text-teal-800 mb-6 border-b-2 border-amber-400 pb-2">
-              Technical Specifications
-            </h3>
-            <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-4">
-              {Object.entries(product.keyAttributes).map(([key, value]) => {
-                if (typeof value === "string" || typeof value === "number") {
-                  return (
-                    <div
-                      key={key}
-                      className="bg-white p-4 rounded-lg border border-gray-200 shadow-sm"
-                    >
-                      <p className="text-gray-600 text-sm">{key}</p>
-                      <p className="text-teal-800 font-medium">{value}</p>
+            {/* Right: Purchase Box */}
+            <div className="lg:w-1/4 bg-white text-gray-800 p-4 rounded-lg shadow-lg border border-gray-200 h-fit">
+              <div className="mb-4">
+                {/* Updated Price Display */}
+                {product.price && product.offerPrice ? (
+                  <>
+                    <p className="text-gray-900 text-lg">Price : </p>
+                    <div className="flex items-center gap-2">
+                      <p className="font-bold text-2xl text-amber-600">
+                        {product.offerPrice}
+                      </p>
+
+                      <span className="text-gray-700">-</span>
+
+                      <p className="font-bold text-2xl line-through text-gray-500">
+                        {product.price}
+                      </p>
                     </div>
+                  </>
+                ) : product.price ? (
+                  <>
+                    <p className="text-gray-600 text-sm">Price:</p>
+                    <p className="font-bold text-2xl text-teal-800">
+                      {product.price}
+                    </p>
+                  </>
+                ) : (
+                  <p className="text-gray-500">Price: N/A</p>
+                )}
+              </div>
+
+              {/* Pricing Tiers Display */}
+              {product.pricingTiers && product.pricingTiers.length > 0 && (
+                <div className="mb-4 max-h-32 overflow-y-auto">
+                  <p className="text-gray-600 text-sm mb-2 font-semibold">
+                    {product.pricingTiers[0].minWeight !== undefined
+                      ? "Price by Weight:"
+                      : product.pricingTiers[0].size &&
+                        product.pricingTiers[0].pricePerTon
+                      ? "Volume Pricing:"
+                      : "Volume Pricing:"}
+                  </p>
+                  {product.pricingTiers[0].minWeight !== undefined &&
+                    product.pricingTiers.map((tier, index) => (
+                      <p key={index} className="text-gray-700 text-xs mb-1">
+                        {tier.minWeight}-{tier.maxWeight}g:{" "}
+                        <span className="font-semibold text-teal-700">
+                          {tier.pricePerKg}
+                        </span>
+                      </p>
+                    ))}
+                  {product.pricingTiers[0].size &&
+                    product.pricingTiers[0].pricePerTon &&
+                    product.pricingTiers.map((tier, index) => (
+                      <p key={index} className="text-gray-700 text-xs mb-1">
+                        Size({tier.size}) - price(
+                        <span className="font-semibold text-teal-700">
+                          {tier.pricePerTon}
+                        </span>
+                        )
+                      </p>
+                    ))}
+                  {product.pricingTiers[0].minWeight !== undefined && (
+                    <p className="text-xs text-amber-600 mt-2 font-medium">
+                      *Final price varies by actual weight
+                    </p>
+                  )}
+                </div>
+              )}
+
+              {product.keyAttributes?.MOQ && (
+                <p className="text-gray-600 font-bold text-sm mb-4">
+                  MOQ: {product.keyAttributes.MOQ}
+                </p>
+              )}
+
+              {/* Quantity Selector */}
+              <div className="mb-4">
+                <label className="text-gray-600 text-sm mb-2 block">
+                  Quantity:
+                </label>
+                <div className="flex items-center gap-3">
+                  <button
+                    onClick={() => setQuantity(Math.max(1, quantity - 1))}
+                    className="p-2 bg-gray-200 hover:bg-gray-300 rounded-md transition-colors"
+                  >
+                    <FaMinus className="w-4 h-4" />
+                  </button>
+                  <input
+                    type="number"
+                    value={quantity}
+                    onChange={(e) =>
+                      setQuantity(Math.max(1, parseInt(e.target.value) || 1))
+                    }
+                    className="w-20 text-center border border-teal-300 bg-white rounded-md px-3 py-2"
+                    min="1"
+                  />
+                  <button
+                    onClick={() => setQuantity(quantity + 1)}
+                    className="p-2 bg-gray-200 hover:bg-gray-300 rounded-md transition-colors"
+                  >
+                    <FaPlus className="w-4 h-4" />
+                  </button>
+                </div>
+              </div>
+
+              {/* Add to Cart Button */}
+              <button
+                onClick={() => {
+                  const priceNum = parsePrice(
+                    product.offerPrice || product.price || "0"
                   );
-                }
-                return null;
-              })}
+
+                  // Extract MOQ from product attributes with unit
+                  let moqValue = 50;
+                  let moqUnit = "units";
+                  if (product.keyAttributes && product.keyAttributes.MOQ) {
+                    const moqStr = product.keyAttributes.MOQ;
+                    // Match number and unit (e.g., "100 Tons", "50 tires", "5 Tons")
+                    const moqMatch = moqStr.match(/(\d+)\s*([a-zA-Z]+)/);
+                    if (moqMatch) {
+                      moqValue = parseInt(moqMatch[1]);
+                      moqUnit = moqMatch[2]; // e.g., "Tons", "tires", etc.
+                    }
+                  }
+
+                  addToCart({
+                    id: product.id,
+                    name: product.name,
+                    price: priceNum,
+                    offerPrice: product.offerPrice,
+                    quantity: quantity,
+                    image: product.image,
+                    category: product.categoryName || "General",
+                    moq: moqValue,
+                    moqUnit: moqUnit,
+                    pricingTiers: product.pricingTiers || [],
+                  });
+                }}
+                className="w-full border border-cyan-700 hover:bg-teal-600 hover:text-white text-cyan-600 px-6 py-2 rounded-sm transition-all shadow-md hover:shadow-lg mb-3 flex items-center justify-center gap-2"
+              >
+                <ShoppingCart className="w-5 h-5" />
+                Add to Cart
+              </button>
             </div>
           </div>
-        )}
 
-        {/* Supplier Information */}
-        <div className="mt-12 bg-white p-6 rounded-lg border border-gray-200 shadow-sm">
-          <h3 className="text-xl font-semibold mb-4 text-teal-800 border-b-2 border-amber-400 pb-2">
-            Supplier Information
-          </h3>
-          <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
-            {product.keyAttributes?.["Brand"] && (
-              <div>
-                <p className="text-gray-600">Brand Name:</p>
-                <p className="text-teal-800 font-medium">
-                  {product.keyAttributes["Brand"]}
-                </p>
-              </div>
-            )}
-            {product.keyAttributes?.Manufacturer && (
-              <div>
-                <p className="text-gray-600">Manufacturer:</p>
-                <p className="text-teal-800 font-medium">
-                  {product.keyAttributes.Manufacturer}
-                </p>
-              </div>
-            )}
-            {product.keyAttributes?.Origin && (
-              <div>
-                <p className="text-gray-600">Origin:</p>
-                <p className="text-teal-800 font-medium">
-                  {product.keyAttributes.Origin}
-                </p>
-              </div>
-            )}
-            {product.keyAttributes?.["Place of Origin"] && (
-              <div>
-                <p className="text-gray-600">Place of Origin:</p>
-                <p className="text-teal-800 font-medium">
-                  {product.keyAttributes["Place of Origin"]}
-                </p>
-              </div>
-            )}
-            {product.keyAttributes?.Packaging && (
-              <div>
-                <p className="text-gray-600">Packaging:</p>
-                <p className="text-teal-800 font-medium">
-                  {product.keyAttributes.Packaging}
-                </p>
-              </div>
-            )}
-            {product.keyAttributes?.Package && (
-              <div>
-                <p className="text-gray-600">Package:</p>
-                <p className="text-teal-800 font-medium">
-                  {product.keyAttributes.Package}
-                </p>
-              </div>
-            )}
-            {product.keyAttributes?.["Supply Ability"] && (
-              <div>
-                <p className="text-gray-600">Supply Ability:</p>
-                <p className="text-teal-800 font-medium">
-                  {product.keyAttributes["Supply Ability"]}
-                </p>
-              </div>
-            )}
-            {product.keyAttributes?.["Shelf Life"] && (
-              <div>
-                <p className="text-gray-600">Shelf Life:</p>
-                <p className="text-teal-800 font-medium">
-                  {product.keyAttributes["Shelf Life"]}
-                </p>
-              </div>
-            )}
-            {product.keyAttributes?.Processing && (
-              <div>
-                <p className="text-gray-600">Processing:</p>
-                <p className="text-teal-800 font-medium">
-                  {product.keyAttributes.Processing}
-                </p>
-              </div>
-            )}
-          </div>
-        </div>
-
-        {/* Customization Options */}
-        {product.customizationOptions &&
-          product.customizationOptions.length > 0 && (
-            <div className="mt-12 bg-white p-6 rounded-lg border border-gray-200 shadow-sm">
-              <h3 className="text-xl font-semibold mb-4 text-teal-800 border-b-2 border-amber-400 pb-2">
-                Customization Options
+          {/* Additional Product Specifications */}
+          {product.keyAttributes && (
+            <div className="mt-12">
+              <h3 className="text-2xl font-bold text-teal-800 mb-6 border-b-2 border-amber-400 pb-2">
+                Technical Specifications
               </h3>
-              <ul className="list-disc list-inside text-gray-700">
-                {product.customizationOptions.map((option, index) => (
-                  <li key={index}>{option}</li>
-                ))}
-              </ul>
+              <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-4">
+                {Object.entries(product.keyAttributes).map(([key, value]) => {
+                  // Skip supplier-specific fields that will be shown separately
+                  const supplierFields = [
+                    "Brand",
+                    "Manufacturer",
+                    "Origin",
+                    "Place of Origin",
+                    "Packaging",
+                    "Package",
+                    "Supply Ability",
+                    "Shelf Life",
+                    "Processing",
+                  ];
+                  if (supplierFields.includes(key)) return null;
+
+                  if (typeof value === "string" || typeof value === "number") {
+                    return (
+                      <div
+                        key={key}
+                        className="bg-white p-4 rounded-lg border border-gray-200 shadow-sm"
+                      >
+                        <p className="text-gray-600 text-sm">{key}</p>
+                        <p className="text-teal-800 font-medium">{value}</p>
+                      </div>
+                    );
+                  }
+                  return null;
+                })}
+              </div>
             </div>
           )}
 
-        {/* Shipping Information */}
-        {product.shipping && (
+          {/* Supplier Information */}
           <div className="mt-12 bg-white p-6 rounded-lg border border-gray-200 shadow-sm">
             <h3 className="text-xl font-semibold mb-4 text-teal-800 border-b-2 border-amber-400 pb-2">
-              Shipping & Delivery
+              Supplier Information
             </h3>
-            <p className="text-gray-700">{product.shipping}</p>
-            {product.packagingAndDelivery && (
-              <div className="mt-4 grid grid-cols-1 md:grid-cols-2 gap-4">
+            <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
+              {product.keyAttributes?.["Brand"] && (
                 <div>
-                  <p className="text-gray-600">Selling Units:</p>
+                  <p className="text-gray-600">Brand Name:</p>
                   <p className="text-teal-800 font-medium">
-                    {product.packagingAndDelivery.sellingUnits}
+                    {product.keyAttributes["Brand"]}
                   </p>
                 </div>
+              )}
+              {product.keyAttributes?.Manufacturer && (
                 <div>
-                  <p className="text-gray-600">Delivery Time:</p>
+                  <p className="text-gray-600">Manufacturer:</p>
                   <p className="text-teal-800 font-medium">
-                    {product.packagingAndDelivery.deliveryTime || "Will vary based on order quantity and region"}
+                    {product.keyAttributes.Manufacturer}
                   </p>
                 </div>
+              )}
+              {product.keyAttributes?.Origin && (
+                <div>
+                  <p className="text-gray-600">Origin:</p>
+                  <p className="text-teal-800 font-medium">
+                    {product.keyAttributes.Origin}
+                  </p>
+                </div>
+              )}
+              {product.keyAttributes?.["Place of Origin"] && (
+                <div>
+                  <p className="text-gray-600">Place of Origin:</p>
+                  <p className="text-teal-800 font-medium">
+                    {product.keyAttributes["Place of Origin"]}
+                  </p>
+                </div>
+              )}
+              {product.keyAttributes?.Packaging && (
+                <div>
+                  <p className="text-gray-600">Packaging:</p>
+                  <p className="text-teal-800 font-medium">
+                    {product.keyAttributes.Packaging}
+                  </p>
+                </div>
+              )}
+              {product.keyAttributes?.Package && (
+                <div>
+                  <p className="text-gray-600">Package:</p>
+                  <p className="text-teal-800 font-medium">
+                    {product.keyAttributes.Package}
+                  </p>
+                </div>
+              )}
+              {product.keyAttributes?.["Supply Ability"] && (
+                <div>
+                  <p className="text-gray-600">Supply Ability:</p>
+                  <p className="text-teal-800 font-medium">
+                    {product.keyAttributes["Supply Ability"]}
+                  </p>
+                </div>
+              )}
+              {product.keyAttributes?.["Shelf Life"] && (
+                <div>
+                  <p className="text-gray-600">Shelf Life:</p>
+                  <p className="text-teal-800 font-medium">
+                    {product.keyAttributes["Shelf Life"]}
+                  </p>
+                </div>
+              )}
+              {product.keyAttributes?.Processing && (
+                <div>
+                  <p className="text-gray-600">Processing:</p>
+                  <p className="text-teal-800 font-medium">
+                    {product.keyAttributes.Processing}
+                  </p>
+                </div>
+              )}
+            </div>
+          </div>
+
+          {/* Customization Options */}
+          {product.customizationOptions &&
+            product.customizationOptions.length > 0 && (
+              <div className="mt-12 bg-white p-6 rounded-lg border border-gray-200 shadow-sm">
+                <h3 className="text-xl font-semibold mb-4 text-teal-800 border-b-2 border-amber-400 pb-2">
+                  Customization Options
+                </h3>
+                <ul className="list-disc list-inside text-gray-700">
+                  {product.customizationOptions.map((option, index) => (
+                    <li key={index}>{option}</li>
+                  ))}
+                </ul>
               </div>
             )}
-          </div>
-        )}
 
-        {/* Recommended Products Section */}
-        {recommendedProducts.length > 0 && (
-          <RecommendedProducts
-            recs={recommendedProducts}
-            ratings={renderStars}
-            isTyre={isTyre}
-          />
-        )}
+          {/* Shipping Information */}
+          {product.shipping && (
+            <div className="mt-12 bg-white p-6 rounded-lg border border-gray-200 shadow-sm">
+              <h3 className="text-xl font-semibold mb-4 text-teal-800 border-b-2 border-amber-400 pb-2">
+                Shipping & Delivery
+              </h3>
+              <p className="text-gray-700">{product.shipping}</p>
+              {product.packagingAndDelivery && (
+                <div className="mt-4 grid grid-cols-1 md:grid-cols-2 gap-4">
+                  <div>
+                    <p className="text-gray-600">Selling Units:</p>
+                    <p className="text-teal-800 font-medium">
+                      {product.packagingAndDelivery.sellingUnits}
+                    </p>
+                  </div>
+                  <div>
+                    <p className="text-gray-600">Delivery Time:</p>
+                    <p className="text-teal-800 font-medium">
+                      {product.packagingAndDelivery.deliveryTime ||
+                        "Will vary based on order quantity and region"}
+                    </p>
+                  </div>
+                </div>
+              )}
+            </div>
+          )}
+
+          {/* Recommended Products Section */}
+          {recommendedProducts.length > 0 && (
+            <RecommendedProducts
+              recs={recommendedProducts}
+              ratings={renderStars}
+              isTyre={isTyre}
+            />
+          )}
+        </div>
       </div>
-    </div>
+    </>
   );
 };
 

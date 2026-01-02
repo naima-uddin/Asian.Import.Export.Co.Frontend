@@ -1,14 +1,14 @@
-'use client';
+"use client";
 
-import { createContext, useContext, useState, useEffect } from 'react';
-import toast from 'react-hot-toast';
+import { createContext, useContext, useState, useEffect } from "react";
+import toast from "react-hot-toast";
 
 const CartContext = createContext();
 
 export const useCart = () => {
   const context = useContext(CartContext);
   if (!context) {
-    throw new Error('useCart must be used within CartProvider');
+    throw new Error("useCart must be used within CartProvider");
   }
   return context;
 };
@@ -19,12 +19,12 @@ export const CartProvider = ({ children }) => {
 
   // Load cart from localStorage on mount
   useEffect(() => {
-    const savedCart = localStorage.getItem('asian-cart');
+    const savedCart = localStorage.getItem("asian-cart");
     if (savedCart) {
       try {
         setCart(JSON.parse(savedCart));
       } catch (error) {
-        console.error('Error loading cart:', error);
+        console.error("Error loading cart:", error);
       }
     }
   }, []);
@@ -32,73 +32,83 @@ export const CartProvider = ({ children }) => {
   // Save cart to localStorage whenever it changes
   useEffect(() => {
     if (cart.length > 0) {
-      localStorage.setItem('asian-cart', JSON.stringify(cart));
+      localStorage.setItem("asian-cart", JSON.stringify(cart));
     } else {
-      localStorage.removeItem('asian-cart');
+      localStorage.removeItem("asian-cart");
     }
   }, [cart]);
 
   // Calculate price based on quantity and pricing tiers
   const calculateItemPrice = (item) => {
     const quantity = item.quantity || 1;
-    
+
     // If product has pricing tiers
     if (item.pricingTiers && item.pricingTiers.length > 0) {
       // For frozen fish (weight-based), use regular price calculation
       if (item.pricingTiers[0].minWeight !== undefined) {
         // Use offerPrice or price for frozen fish
         const basePrice = item.offerPrice || item.price;
-        if (typeof basePrice === 'string') {
-          return parseFloat(basePrice.replace(/[^0-9.]/g, '')) * quantity;
+        if (typeof basePrice === "string") {
+          return parseFloat(basePrice.replace(/[^0-9.]/g, "")) * quantity;
         }
         return basePrice * quantity;
       }
-      
+
       // For truck tires (uses pricePerTire)
       if (item.pricingTiers[0].pricePerTire !== undefined) {
         // If quantity is less than the first tier minimum, use offerPrice
         if (quantity < item.pricingTiers[0].minQuantity) {
           const basePrice = item.offerPrice || item.price;
-          if (typeof basePrice === 'string') {
-            return parseFloat(basePrice.replace(/[^0-9.]/g, '')) * quantity;
+          if (typeof basePrice === "string") {
+            return parseFloat(basePrice.replace(/[^0-9.]/g, "")) * quantity;
           }
           return basePrice * quantity;
         }
-        
+
         // Find the applicable tier
         for (const tier of item.pricingTiers) {
-          if (quantity >= tier.minQuantity && (tier.maxQuantity === null || quantity <= tier.maxQuantity)) {
-            const priceNum = parseFloat(tier.pricePerTire.replace(/[^0-9.]/g, ''));
+          if (
+            quantity >= tier.minQuantity &&
+            (tier.maxQuantity === null || quantity <= tier.maxQuantity)
+          ) {
+            const priceNum = parseFloat(
+              tier.pricePerTire.replace(/[^0-9.]/g, "")
+            );
             return priceNum * quantity;
           }
         }
       }
-      
+
       // For metals (ton-based with pricePerTon)
       if (item.pricingTiers[0].pricePerTon !== undefined) {
         // If quantity is less than the first tier minimum, use offerPrice
         if (quantity < item.pricingTiers[0].minQuantity) {
           const basePrice = item.offerPrice || item.price;
-          if (typeof basePrice === 'string') {
-            return parseFloat(basePrice.replace(/[^0-9.]/g, '')) * quantity;
+          if (typeof basePrice === "string") {
+            return parseFloat(basePrice.replace(/[^0-9.]/g, "")) * quantity;
           }
           return basePrice * quantity;
         }
-        
+
         // Find the applicable tier
         for (const tier of item.pricingTiers) {
-          if (quantity >= tier.minQuantity && (tier.maxQuantity === null || quantity <= tier.maxQuantity)) {
-            const priceNum = parseFloat(tier.pricePerTon.replace(/[^0-9.]/g, ''));
+          if (
+            quantity >= tier.minQuantity &&
+            (tier.maxQuantity === null || quantity <= tier.maxQuantity)
+          ) {
+            const priceNum = parseFloat(
+              tier.pricePerTon.replace(/[^0-9.]/g, "")
+            );
             return priceNum * quantity;
           }
         }
       }
     }
-    
+
     // Default: use offerPrice or price
     const basePrice = item.offerPrice || item.price;
-    if (typeof basePrice === 'string') {
-      return parseFloat(basePrice.replace(/[^0-9.]/g, '')) * quantity;
+    if (typeof basePrice === "string") {
+      return parseFloat(basePrice.replace(/[^0-9.]/g, "")) * quantity;
     }
     return basePrice * quantity;
   };
@@ -106,24 +116,30 @@ export const CartProvider = ({ children }) => {
   const addToCart = (product) => {
     setCart((prevCart) => {
       const existingItem = prevCart.find((item) => item.id === product.id);
-      
+
       if (existingItem) {
-        toast.success('Quantity updated in cart');
         return prevCart.map((item) =>
           item.id === product.id
             ? { ...item, quantity: item.quantity + (product.quantity || 1) }
             : item
         );
       } else {
-        toast.success('Added to cart');
         return [...prevCart, { ...product, quantity: product.quantity || 1 }];
       }
     });
+
+    // Show toast after state update
+    const existingItem = cart.find((item) => item.id === product.id);
+    if (existingItem) {
+      toast.success("Quantity updated in cart");
+    } else {
+      toast.success("Added to cart");
+    }
   };
 
   const removeFromCart = (productId) => {
     setCart((prevCart) => prevCart.filter((item) => item.id !== productId));
-    toast.success('Removed from cart');
+    toast.success("Removed from cart");
   };
 
   const updateQuantity = (productId, quantity) => {
@@ -131,7 +147,7 @@ export const CartProvider = ({ children }) => {
       removeFromCart(productId);
       return;
     }
-    
+
     setCart((prevCart) =>
       prevCart.map((item) =>
         item.id === productId ? { ...item, quantity } : item
@@ -141,8 +157,8 @@ export const CartProvider = ({ children }) => {
 
   const clearCart = () => {
     setCart([]);
-    localStorage.removeItem('asian-cart');
-    toast.success('Cart cleared');
+    localStorage.removeItem("asian-cart");
+    toast.success("Cart cleared");
   };
 
   const getCartTotal = () => {
@@ -173,17 +189,17 @@ export const CartProvider = ({ children }) => {
   const canProceedToCheckout = () => {
     const categories = getCartCategories();
     const totalQuantity = getTotalQuantity();
-    
+
     // Check if cart is empty
     if (cart.length === 0) {
-      return { canProceed: false, message: 'Your cart is empty' };
+      return { canProceed: false, message: "Your cart is empty" };
     }
 
     // Check if multiple categories exist
     if (categories.length > 1) {
       return {
         canProceed: false,
-        message: 'Multiple categories detected.',
+        message: "Multiple categories detected.",
         showWhatsApp: true,
       };
     }
@@ -191,7 +207,7 @@ export const CartProvider = ({ children }) => {
     // Get the MOQ for the current category (from first item)
     const firstItem = cart[0];
     const categoryMOQ = firstItem?.moq || 50;
-    const moqUnit = firstItem?.moqUnit || 'units';
+    const moqUnit = firstItem?.moqUnit || "units";
 
     // Check minimum quantity based on category MOQ
     if (totalQuantity < categoryMOQ) {

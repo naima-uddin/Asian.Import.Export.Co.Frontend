@@ -1,9 +1,24 @@
 "use client";
 
 import React, { useState } from "react";
+import Link from "next/link";
 import { useNavigate } from "@/lib/navigation";
 import { useCart } from "@/context/CartContext";
 import { ArrowUp, ShoppingCart } from "lucide-react";
+
+// Helper function to parse price strings
+const parsePrice = (priceStr) => {
+  if (!priceStr) return 0;
+  return parseFloat(priceStr.replace(/[^0-9.]/g, "")) || 0;
+};
+
+// Helper function to calculate discount percentage
+const calculateDiscount = (originalPrice, offerPrice) => {
+  const original = parsePrice(originalPrice);
+  const offer = parsePrice(offerPrice);
+  if (original <= 0 || offer <= 0) return 0;
+  return Math.round(((original - offer) / original) * 100);
+};
 
 const ProductList = ({
   category,
@@ -28,7 +43,7 @@ const ProductList = ({
   // Handle add to cart
   const handleAddToCart = (product) => {
     const priceStr = product.offerPrice || product.price || "0";
-    const priceNum = parseFloat(priceStr.replace(/[^0-9.]/g, ""));
+    const priceNum = parsePrice(priceStr);
 
     // Extract MOQ from product attributes with unit
     let moqValue = 50;
@@ -176,15 +191,8 @@ const ProductList = ({
                         {product.price}
                       </span>
                       <span className="text-xs bg-red-100 text-red-800 px-2 py-1 rounded-full">
-                        {Math.round(
-                          ((parseFloat(product.price.replace(/[^0-9.]/g, "")) -
-                            parseFloat(
-                              product.offerPrice.replace(/[^0-9.]/g, "")
-                            )) /
-                            parseFloat(product.price.replace(/[^0-9.]/g, ""))) *
-                            100
-                        )}
-                        % OFF
+                        {calculateDiscount(product.price, product.offerPrice)}%
+                        OFF
                       </span>
                     </div>
                   ) : product.price ? (
@@ -196,16 +204,16 @@ const ProductList = ({
                   {/* Action Buttons */}
                   <div className="flex gap-2">
                     {/* See Details Button */}
-                    <button
-                      onClick={() => navigate(`/product/${product.id}`)}
-                      className="flex-1 border bg-teal-500  hover:bg-teal-600 text-white py-2 rounded-md text-sm font-medium transition-colors hover:text-white"
+                    <Link
+                      href={`/product/${product.id}`}
+                      className="flex-1 border bg-teal-500 hover:bg-teal-600 text-white py-2 rounded-md text-sm font-medium transition-colors text-center"
                     >
                       See Details
-                    </button>
+                    </Link>
 
                     <button
                       onClick={() => handleAddToCart(product)}
-                      className="flex-1 border border-cyan-700  hover:bg-teal-600 hover:text-white  text-cyan-600 py-2 rounded-md text-sm font-medium transition-all shadow-sm hover:shadow-md flex items-center justify-center gap-1"
+                      className="flex-1 border border-cyan-700 hover:bg-teal-600 hover:text-white text-cyan-600 py-2 rounded-md text-sm font-medium transition-all shadow-sm hover:shadow-md flex items-center justify-center gap-1"
                     >
                       <ShoppingCart className="w-4 h-4" />
                       Add to Cart
@@ -224,7 +232,7 @@ const ProductList = ({
                   onClick={handleSeeAllClick}
                   className="px-6 py-2 bg-teal-600 text-white rounded-lg hover:bg-teal-700 transition-colors font-medium"
                 >
-                  {isHomePage ? `View All  Products →` : `See All  Products`}
+                  {isHomePage ? `View All Products →` : `See All Products`}
                 </button>
               </div>
             )}

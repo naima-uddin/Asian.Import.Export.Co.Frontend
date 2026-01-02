@@ -6,7 +6,7 @@ import { motion, AnimatePresence } from "framer-motion";
 const ProductSlider = () => {
   const [currentSlide, setCurrentSlide] = useState(0);
   const [isPaused, setIsPaused] = useState(false);
-  
+
   // Slider data - images and text content
   const slides = [
     {
@@ -23,7 +23,7 @@ const ProductSlider = () => {
     },
     {
       image: "/5.png",
-    }
+    },
   ];
 
   // Auto-slide effect
@@ -42,13 +42,13 @@ const ProductSlider = () => {
   };
 
   return (
-    <div 
-      className="relative w-full h-full min-h-[500px] rounded-t-md overflow-hidden"
+    <div
+      className="relative w-full overflow-hidden rounded-t-md"
       onMouseEnter={() => setIsPaused(true)}
       onMouseLeave={() => setIsPaused(false)}
     >
       {/* Background Image Container */}
-      <div className="absolute inset-0">
+      <div className="relative w-full">
         <AnimatePresence mode="wait">
           <motion.div
             key={currentSlide}
@@ -56,18 +56,14 @@ const ProductSlider = () => {
             animate={{ opacity: 1, scale: 1 }}
             exit={{ opacity: 0, scale: 1 }}
             transition={{ duration: 0.8 }}
-            className="absolute inset-0"
+            className="relative w-full"
           >
             {/* Full Background Image */}
-            <div 
-              className="absolute inset-0 bg-cover bg-center"
-              style={{ 
-                backgroundImage: `url(${slides[currentSlide].image})`,
-              }}
+            <img
+              src={slides[currentSlide].image}
+              alt={`Slide ${currentSlide + 1}`}
+              className="w-full h-auto object-contain max-h-[600px]"
             />
-            
-            {/* Dark Overlay for better text readability */}
-            <div className="absolute inset-0 bg-black/20" />
           </motion.div>
         </AnimatePresence>
       </div>
@@ -79,10 +75,10 @@ const ProductSlider = () => {
             <button
               key={index}
               onClick={() => goToSlide(index)}
-              className={`w-3 h-3 rounded-full transition-all duration-300 ${
-                index === currentSlide 
-                  ? 'bg-white w-8' 
-                  : 'bg-white/50 hover:bg-white/80'
+              className={`w-3 h-1 rounded-full transition-all duration-300 ${
+                index === currentSlide
+                  ? "bg-white w-8"
+                  : "bg-white/50 hover:bg-white/80"
               }`}
               aria-label={`Go to slide ${index + 1}`}
             />
@@ -95,12 +91,12 @@ const ProductSlider = () => {
         <motion.div
           key={currentSlide}
           initial={{ width: 0 }}
-          animate={{ 
+          animate={{
             width: "100%",
-            transition: { 
-              duration: 5, 
-              ease: "linear" 
-            }
+            transition: {
+              duration: 5,
+              ease: "linear",
+            },
           }}
           className="h-full bg-teal-400"
         />

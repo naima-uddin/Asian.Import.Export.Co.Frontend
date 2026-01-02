@@ -8,11 +8,15 @@ import CartSidebar from "@/components/Cart/CartSidebar";
 import { CartProvider } from "@/context/CartContext";
 import "./globals.css";
 import ScrollToTop from "@/components/shared/ScrollToTop";
+import {
+  generateOrganizationSchema,
+  generateWebsiteSchema,
+} from "@/lib/structuredData";
 
 export const metadata = {
   title: {
-    default: "Asian Import Export Co LTD LTD - Global Trade Solutions",
-    template: "%s |Asian Import Export Co LTD LTD",
+    default: "Asian Import Export Co LTD - Global Trade Solutions",
+    template: "%s | Asian Import Export Co LTD",
   },
   description:
     "Leading import-export company specializing in agriculture, seafood, metals, trucks, vehicles, and wood products. Your trusted partner for international trade.",
@@ -27,10 +31,13 @@ export const metadata = {
     "wood products",
     "global trade",
     "Asian Import Export",
+    "B2B wholesale",
+    "bulk orders",
+    "wholesale supplier",
   ],
-  authors: [{ name: "Asian Import Export Co LTD LTD" }],
-  creator: "Asian Import Export Co LTD LTD",
-  publisher: "Asian Import Export Co LTD LTD",
+  authors: [{ name: "Asian Import Export Co LTD" }],
+  creator: "Asian Import Export Co LTD",
+  publisher: "Asian Import Export Co LTD",
   formatDetection: {
     email: false,
     address: false,
@@ -41,17 +48,17 @@ export const metadata = {
     canonical: "/",
   },
   openGraph: {
-    title: "Asian Import Export Co LTD LTD - Global Trade Solutions",
+    title: "Asian Import Export Co LTD - Global Trade Solutions",
     description:
       "Leading import-export company specializing in agriculture, seafood, metals, trucks, vehicles, and wood products.",
     url: "https://asianimportexport.com",
-    siteName: "Asian Import Export Co LTD LTD",
+    siteName: "Asian Import Export Co LTD",
     images: [
       {
         url: "/og-image.jpg", // Add your OG image
         width: 1200,
         height: 630,
-        alt: "Asian Import Export Co LTD LTD",
+        alt: "Asian Import Export Co LTD",
       },
     ],
     locale: "en_US",
@@ -59,7 +66,7 @@ export const metadata = {
   },
   twitter: {
     card: "summary_large_image",
-    title: "Asian Import Export Co LTD LTD - Global Trade Solutions",
+    title: "Asian Import Export Co LTD - Global Trade Solutions",
     description:
       "Leading import-export company specializing in agriculture, seafood, metals, trucks, vehicles, and wood products.",
     images: ["/og-image.jpg"],
@@ -83,14 +90,53 @@ export const metadata = {
 };
 
 export default function RootLayout({ children }) {
+  const organizationSchema = generateOrganizationSchema();
+  const websiteSchema = generateWebsiteSchema();
+
   return (
     <html lang="en">
+      <head>
+        {/* GitHub Pages SPA redirect script */}
+        <script
+          dangerouslySetInnerHTML={{
+            __html: `
+              (function(l) {
+                if (l.search[1] === '/' ) {
+                  var decoded = l.search.slice(1).split('&').map(function(s) { 
+                    return s.replace(/~and~/g, '&')
+                  }).join('?');
+                  window.history.replaceState(null, null,
+                      l.pathname.slice(0, -1) + decoded + l.hash
+                  );
+                }
+              }(window.location))
+            `,
+          }}
+        />
+        {/* Structured Data */}
+        <script
+          type="application/ld+json"
+          dangerouslySetInnerHTML={{
+            __html: JSON.stringify(organizationSchema),
+          }}
+        />
+        <script
+          type="application/ld+json"
+          dangerouslySetInnerHTML={{ __html: JSON.stringify(websiteSchema) }}
+        />
+      </head>
       <body>
         <CartProvider>
           <ScrollToTop />
           <Toaster position="top-center" reverseOrder={false} />
           <Navbar />
-          <Suspense fallback={<div className="flex justify-center items-center min-h-screen"><div className="loading loading-spinner loading-lg"></div></div>}>
+          <Suspense
+            fallback={
+              <div className="flex justify-center items-center min-h-screen">
+                <div className="loading loading-spinner loading-lg"></div>
+              </div>
+            }
+          >
             <main>{children}</main>
           </Suspense>
           <Footer />
