@@ -1,12 +1,18 @@
-'use client';
+"use client";
 
-import { useCart } from '@/context/CartContext';
-import { X, Plus, Minus, Trash2, ShoppingCart, MessageCircle } from 'lucide-react';
-import Image from 'next/image';
-import { useRouter } from 'next/navigation';
+import { useCart } from "@/context/CartContext";
+import {
+  X,
+  Plus,
+  Minus,
+  Trash2,
+  ShoppingCart,
+  MessageCircle,
+} from "lucide-react";
+import Image from "next/image";
+import Link from "next/link";
 
 const CartSidebar = () => {
-  const router = useRouter();
   const {
     cart,
     isCartOpen,
@@ -22,20 +28,29 @@ const CartSidebar = () => {
   const getPriceDisplay = (item) => {
     const quantity = item.quantity || 1;
     const itemPrice = calculateItemPrice(item);
-    
+
     // For frozen fish with weight-based pricing - show ranges as info only
-    if (item.pricingTiers && item.pricingTiers.length > 0 && item.pricingTiers[0].minWeight !== undefined) {
+    if (
+      item.pricingTiers &&
+      item.pricingTiers.length > 0 &&
+      item.pricingTiers[0].minWeight !== undefined
+    ) {
       return {
-        type: 'weight-range',
+        type: "weight-range",
         ranges: item.pricingTiers,
         calculatedPrice: itemPrice, // This uses regular price
       };
     }
 
     // For shrimp and similar - show size-based pricing
-    if (item.pricingTiers && item.pricingTiers.length > 0 && item.pricingTiers[0].size && item.pricingTiers[0].pricePerTon) {
+    if (
+      item.pricingTiers &&
+      item.pricingTiers.length > 0 &&
+      item.pricingTiers[0].size &&
+      item.pricingTiers[0].pricePerTon
+    ) {
       return {
-        type: 'size-range',
+        type: "size-range",
         ranges: item.pricingTiers,
         calculatedPrice: itemPrice,
       };
@@ -48,22 +63,28 @@ const CartSidebar = () => {
         if (quantity < item.pricingTiers[0].minQuantity) {
           // Using offer price for quantities below first tier
           const basePrice = item.offerPrice || item.price;
-          const unitPrice = typeof basePrice === 'string' 
-            ? parseFloat(basePrice.replace(/[^0-9.]/g, ''))
-            : basePrice;
+          const unitPrice =
+            typeof basePrice === "string"
+              ? parseFloat(basePrice.replace(/[^0-9.]/g, ""))
+              : basePrice;
           return {
-            type: 'offer-price',
+            type: "offer-price",
             unitPrice: unitPrice,
             total: itemPrice,
           };
         }
-        
+
         // Find applicable tier
         for (const tier of item.pricingTiers) {
-          if (quantity >= tier.minQuantity && (tier.maxQuantity === null || quantity <= tier.maxQuantity)) {
+          if (
+            quantity >= tier.minQuantity &&
+            (tier.maxQuantity === null || quantity <= tier.maxQuantity)
+          ) {
             return {
-              type: 'tiered',
-              tierInfo: `${tier.minQuantity}${tier.maxQuantity ? `-${tier.maxQuantity}` : '+'} tires`,
+              type: "tiered",
+              tierInfo: `${tier.minQuantity}${
+                tier.maxQuantity ? `-${tier.maxQuantity}` : "+"
+              } tires`,
               unitPrice: tier.pricePerTire,
               total: itemPrice,
             };
@@ -74,22 +95,28 @@ const CartSidebar = () => {
         if (quantity < item.pricingTiers[0].minQuantity) {
           // Using offer price for quantities below first tier
           const basePrice = item.offerPrice || item.price;
-          const unitPrice = typeof basePrice === 'string' 
-            ? parseFloat(basePrice.replace(/[^0-9.]/g, ''))
-            : basePrice;
+          const unitPrice =
+            typeof basePrice === "string"
+              ? parseFloat(basePrice.replace(/[^0-9.]/g, ""))
+              : basePrice;
           return {
-            type: 'offer-price',
+            type: "offer-price",
             unitPrice: unitPrice,
             total: itemPrice,
           };
         }
-        
+
         // Find applicable tier
         for (const tier of item.pricingTiers) {
-          if (quantity >= tier.minQuantity && (tier.maxQuantity === null || quantity <= tier.maxQuantity)) {
+          if (
+            quantity >= tier.minQuantity &&
+            (tier.maxQuantity === null || quantity <= tier.maxQuantity)
+          ) {
             return {
-              type: 'tiered',
-              tierInfo: `${tier.minQuantity}${tier.maxQuantity ? `-${tier.maxQuantity}` : '+'} tons`,
+              type: "tiered",
+              tierInfo: `${tier.minQuantity}${
+                tier.maxQuantity ? `-${tier.maxQuantity}` : "+"
+              } tons`,
               unitPrice: tier.pricePerTon,
               total: itemPrice,
             };
@@ -97,38 +124,19 @@ const CartSidebar = () => {
         }
       }
     }
-    
+
     // Default pricing (standard products or those without tiers)
     const basePrice = item.offerPrice || item.price;
-    const unitPrice = typeof basePrice === 'string' 
-      ? parseFloat(basePrice.replace(/[^0-9.]/g, ''))
-      : basePrice;
-    
+    const unitPrice =
+      typeof basePrice === "string"
+        ? parseFloat(basePrice.replace(/[^0-9.]/g, ""))
+        : basePrice;
+
     return {
-      type: 'standard',
+      type: "standard",
       unitPrice: unitPrice,
       total: itemPrice,
     };
-  };
-
-  const handleProceedToCheckout = () => {
-    const validation = canProceedToCheckout();
-    
-    if (!validation.canProceed) {
-      // Show error message
-      if (validation.showWhatsApp) {
-        // Show WhatsApp contact option
-        const whatsappNumber = '1234567890'; // Replace with your WhatsApp number
-        const message = encodeURIComponent(
-          'Hello, I would like to place a custom order with multiple categories.'
-        );
-        window.open(`https://wa.me/${whatsappNumber}?text=${message}`, '_blank');
-      }
-      return;
-    }
-
-    toggleCart();
-    router.push('/checkout');
   };
 
   const validation = canProceedToCheckout();
@@ -146,7 +154,7 @@ const CartSidebar = () => {
       {/* Sidebar */}
       <div
         className={`fixed right-0 top-0 h-full w-full md:w-96 bg-white shadow-2xl z-50 transform transition-transform duration-300 ease-in-out ${
-          isCartOpen ? 'translate-x-0' : 'translate-x-full'
+          isCartOpen ? "translate-x-0" : "translate-x-full"
         }`}
       >
         <div className="flex flex-col h-full">
@@ -184,7 +192,7 @@ const CartSidebar = () => {
                       {item.image ? (
                         <Image
                           src={item.image}
-                          alt={item.name || 'Product'}
+                          alt={item.name || "Product"}
                           fill
                           className="object-cover"
                         />
@@ -200,19 +208,22 @@ const CartSidebar = () => {
                       <h3 className="font-semibold text-xs line-clamp-2 mb-1 text-gray-700">
                         {item.name}
                       </h3>
-                      
+
                       {/* Dynamic Price Display */}
                       {(() => {
                         const priceInfo = getPriceDisplay(item);
-                        
-                        if (priceInfo.type === 'weight-range') {
+
+                        if (priceInfo.type === "weight-range") {
                           // Frozen Fish - Show all price ranges as info + calculated price
                           return (
                             <div className="mb-2">
-                              <p className="text-xs font-semibold text-teal-700 mb-1">Price varies by weight:</p>
+                              <p className="text-xs font-semibold text-teal-700 mb-1">
+                                Price varies by weight:
+                              </p>
                               {priceInfo.ranges.map((range, idx) => (
                                 <p key={idx} className="text-xs text-gray-600">
-                                  {range.minWeight}-{range.maxWeight}g: {range.pricePerKg}
+                                  {range.minWeight}-{range.maxWeight}g:{" "}
+                                  {range.pricePerKg}
                                 </p>
                               ))}
                               <p className="text-blue-600 font-bold text-sm mb-1">
@@ -220,11 +231,13 @@ const CartSidebar = () => {
                               </p>
                             </div>
                           );
-                        } else if (priceInfo.type === 'size-range') {
+                        } else if (priceInfo.type === "size-range") {
                           // Shrimp and similar - Show all size-based price tiers
                           return (
                             <div className="mb-2">
-                              <p className="text-xs font-semibold text-teal-700 mb-1">Price varies by size:</p>
+                              <p className="text-xs font-semibold text-teal-700 mb-1">
+                                Price varies by size:
+                              </p>
                               {priceInfo.ranges.map((tier, idx) => (
                                 <p key={idx} className="text-xs text-gray-600">
                                   Size({tier.size}) - price({tier.pricePerTon})
@@ -235,7 +248,7 @@ const CartSidebar = () => {
                               </p>
                             </div>
                           );
-                        } else if (priceInfo.type === 'tiered') {
+                        } else if (priceInfo.type === "tiered") {
                           // Truck Tires or Metals with tiered pricing
                           return (
                             <div className="mb-2">
@@ -246,11 +259,12 @@ const CartSidebar = () => {
                                 Unit: {priceInfo.unitPrice}
                               </p>
                               <p className="text-blue-600 font-bold text-sm">
-                                Total: {priceInfo.unitPrice} × {item.quantity} = ${priceInfo.total?.toFixed(2)}
+                                Total: {priceInfo.unitPrice} × {item.quantity} =
+                                ${priceInfo.total?.toFixed(2)}
                               </p>
                             </div>
                           );
-                        } else if (priceInfo.type === 'offer-price') {
+                        } else if (priceInfo.type === "offer-price") {
                           // Below minimum tier quantity, using offer price
                           return (
                             <div className="mb-2">
@@ -258,7 +272,8 @@ const CartSidebar = () => {
                                 Offer Price (Below tier minimum)
                               </p>
                               <p className="text-blue-600 font-bold text-sm">
-                                Total: ${priceInfo.unitPrice?.toFixed(2)} × {item.quantity} = ${priceInfo.total?.toFixed(2)}
+                                Total: ${priceInfo.unitPrice?.toFixed(2)} ×{" "}
+                                {item.quantity} = ${priceInfo.total?.toFixed(2)}
                               </p>
                             </div>
                           );
@@ -266,7 +281,8 @@ const CartSidebar = () => {
                           // Standard pricing
                           return (
                             <p className="text-blue-600 font-bold text-sm mb-2">
-                              Total: ${priceInfo.unitPrice?.toFixed(2)} × {item.quantity} = ${priceInfo.total?.toFixed(2)}
+                              Total: ${priceInfo.unitPrice?.toFixed(2)} ×{" "}
+                              {item.quantity} = ${priceInfo.total?.toFixed(2)}
                             </p>
                           );
                         }
@@ -275,7 +291,9 @@ const CartSidebar = () => {
                       {/* Quantity Controls */}
                       <div className="flex items-center gap-2">
                         <button
-                          onClick={() => updateQuantity(item.id, item.quantity - 1)}
+                          onClick={() =>
+                            updateQuantity(item.id, item.quantity - 1)
+                          }
                           className="p-1 rounded-md bg-teal-600 hover:bg-teal-700 transition-colors"
                           aria-label="Decrease quantity"
                         >
@@ -292,7 +310,9 @@ const CartSidebar = () => {
                           min="1"
                         />
                         <button
-                          onClick={() => updateQuantity(item.id, item.quantity + 1)}
+                          onClick={() =>
+                            updateQuantity(item.id, item.quantity + 1)
+                          }
                           className="p-1 rounded-md bg-teal-600 hover:bg-teal-700 transition-colors"
                           aria-label="Increase quantity"
                         >
@@ -320,12 +340,14 @@ const CartSidebar = () => {
             <div className="border-t p-4 bg-gray-50">
               {/* Check if cart has frozen fish items */}
               {(() => {
-                const hasFrozenFish = cart.some(item => 
-                  item.pricingTiers && item.pricingTiers.length > 0 && 
-                  item.pricingTiers[0].minWeight !== undefined
+                const hasFrozenFish = cart.some(
+                  (item) =>
+                    item.pricingTiers &&
+                    item.pricingTiers.length > 0 &&
+                    item.pricingTiers[0].minWeight !== undefined
                 );
                 const cartTotal = getCartTotal();
-                
+
                 return (
                   <>
                     <div className="flex justify-between items-center mb-4">
@@ -334,11 +356,12 @@ const CartSidebar = () => {
                         ${cartTotal.toFixed(2)}
                       </span>
                     </div>
-                    
+
                     {hasFrozenFish && (
                       <div className="mb-3 p-3 bg-blue-50 border border-blue-200 rounded-md">
                         <p className="text-sm text-blue-800">
-                          📦 Your cart contains frozen fish. Final price may vary based on actual weight/size selected.
+                          📦 Your cart contains frozen fish. Final price may
+                          vary based on actual weight/size selected.
                         </p>
                       </div>
                     )}
@@ -360,23 +383,29 @@ const CartSidebar = () => {
               {validation.showWhatsApp && (
                 <button
                   onClick={() => {
-                    const whatsappNumber = '14379003996';
-                    let message = '';
-                    
-                    if (validation.categoryMOQ && validation.currentQuantity < validation.categoryMOQ) {
+                    const whatsappNumber = "14379003996";
+                    let message = "";
+
+                    if (
+                      validation.categoryMOQ &&
+                      validation.currentQuantity < validation.categoryMOQ
+                    ) {
                       // User has less than MOQ for a single category
-                      const unit = validation.moqUnit || 'units';
+                      const unit = validation.moqUnit || "units";
                       message = encodeURIComponent(
                         `Hello, I would like to place a custom order. I have ${validation.currentQuantity} ${unit} in my cart but the minimum order quantity is ${validation.categoryMOQ} ${unit}.`
                       );
                     } else {
                       // User has multiple categories
                       message = encodeURIComponent(
-                        'Hello, I would like to place a custom order with multiple categories.'
+                        "Hello, I would like to place a custom order with multiple categories."
                       );
                     }
-                    
-                    window.open(`https://wa.me/${whatsappNumber}?text=${message}`, '_blank');
+
+                    window.open(
+                      `https://wa.me/${whatsappNumber}?text=${message}`,
+                      "_blank"
+                    );
                   }}
                   className="w-full mb-3 flex items-center justify-center gap-2 bg-green-500 text-white py-3 px-4 rounded-md hover:bg-green-600 transition-colors font-semibold shadow-md"
                 >
@@ -385,17 +414,22 @@ const CartSidebar = () => {
                 </button>
               )}
 
-              <button
-                onClick={handleProceedToCheckout}
-                disabled={!validation.canProceed}
-                className={`w-full py-3 px-4 rounded-sm font-semibold transition-all ${
-                  validation.canProceed
-                    ? 'bg-gradient-to-r from-teal-500 to-teal-700 text-white hover:shadow-lg hover:scale-[1.02]'
-                    : 'bg-gray-300 text-gray-500 cursor-not-allowed'
-                }`}
-              >
-                Proceed to Checkout
-              </button>
+              {validation.canProceed ? (
+                <Link
+                  href="/checkout"
+                  onClick={toggleCart}
+                  className="block w-full py-3 px-4 rounded-sm font-semibold text-center bg-gradient-to-r from-teal-500 to-teal-700 text-white hover:shadow-lg hover:scale-[1.02] transition-all"
+                >
+                  Proceed to Checkout
+                </Link>
+              ) : (
+                <button
+                  disabled
+                  className="w-full py-3 px-4 rounded-sm font-semibold bg-gray-300 text-gray-500 cursor-not-allowed"
+                >
+                  Proceed to Checkout
+                </button>
+              )}
             </div>
           )}
         </div>

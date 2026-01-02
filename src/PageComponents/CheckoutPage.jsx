@@ -1,26 +1,26 @@
-'use client';
+"use client";
 
-import { useState } from 'react';
-import { useCart } from '@/context/CartContext';
-import { useRouter } from 'next/navigation';
-import Image from 'next/image';
-import { ShoppingCart, CreditCard, Building2, Loader2 } from 'lucide-react';
-import toast from 'react-hot-toast';
+import { useState } from "react";
+import { useCart } from "@/context/CartContext";
+import { useRouter } from "next/navigation";
+import Image from "next/image";
+import { ShoppingCart, CreditCard, Building2, Loader2 } from "lucide-react";
+import toast from "react-hot-toast";
 
 const CheckoutPage = () => {
   const router = useRouter();
   const { cart, getCartTotal, clearCart } = useCart();
   const [loading, setLoading] = useState(false);
   const [formData, setFormData] = useState({
-    name: '',
-    phone: '',
-    email: '',
-    address: '',
-    city: '',
-    state: '',
-    zipCode: '',
-    notes: '',
-    paymentMethod: 'credit-card',
+    name: "",
+    phone: "",
+    email: "",
+    address: "",
+    city: "",
+    state: "",
+    zipCode: "",
+    notes: "",
+    paymentMethod: "credit-card",
   });
 
   const handleInputChange = (e) => {
@@ -29,11 +29,21 @@ const CheckoutPage = () => {
   };
 
   const validateForm = () => {
-    const required = ['name', 'phone', 'email', 'address', 'city', 'state', 'zipCode'];
-    
+    const required = [
+      "name",
+      "phone",
+      "email",
+      "address",
+      "city",
+      "state",
+      "zipCode",
+    ];
+
     for (const field of required) {
       if (!formData[field].trim()) {
-        toast.error(`Please fill in ${field.replace(/([A-Z])/g, ' $1').toLowerCase()}`);
+        toast.error(
+          `Please fill in ${field.replace(/([A-Z])/g, " $1").toLowerCase()}`
+        );
         return false;
       }
     }
@@ -41,7 +51,7 @@ const CheckoutPage = () => {
     // Email validation
     const emailRegex = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
     if (!emailRegex.test(formData.email)) {
-      toast.error('Please enter a valid email address');
+      toast.error("Please enter a valid email address");
       return false;
     }
 
@@ -54,7 +64,7 @@ const CheckoutPage = () => {
     if (!validateForm()) return;
 
     if (cart.length === 0) {
-      toast.error('Your cart is empty');
+      toast.error("Your cart is empty");
       return;
     }
 
@@ -72,26 +82,29 @@ const CheckoutPage = () => {
       };
 
       // Send to backend
-      const response = await fetch('http://localhost:5000/api/send-invoice', {
-        method: 'POST',
-        headers: {
-          'Content-Type': 'application/json',
-        },
-        body: JSON.stringify(orderData),
-      });
+      const response = await fetch(
+        "https://asian-import-export-co-backend.vercel.app/api/send-invoice",
+        {
+          method: "POST",
+          headers: {
+            "Content-Type": "application/json",
+          },
+          body: JSON.stringify(orderData),
+        }
+      );
 
       if (!response.ok) {
-        throw new Error('Failed to send invoice');
+        throw new Error("Failed to send invoice");
       }
 
       const result = await response.json();
 
-      toast.success('Order placed successfully! Invoice sent to your email.');
+      toast.success("Order placed successfully! Invoice sent to your email.");
       clearCart();
-      router.push('/order-success');
+      router.push("/order-success");
     } catch (error) {
-      console.error('Order error:', error);
-      toast.error('Failed to place order. Please try again.');
+      console.error("Order error:", error);
+      toast.error("Failed to place order. Please try again.");
     } finally {
       setLoading(false);
     }
@@ -102,9 +115,11 @@ const CheckoutPage = () => {
       <div className="min-h-screen flex items-center justify-center bg-gray-50">
         <div className="text-center">
           <ShoppingCart className="w-16 h-16 mx-auto text-gray-400 mb-4" />
-          <h2 className="text-2xl font-bold text-gray-700 mb-2">Your cart is empty</h2>
+          <h2 className="text-2xl font-bold text-gray-700 mb-2">
+            Your cart is empty
+          </h2>
           <button
-            onClick={() => router.push('/products')}
+            onClick={() => router.push("/products")}
             className="mt-4 bg-teal-600 text-white px-6 py-2 rounded-sm hover:bg-teal-700 transition-colors"
           >
             Continue Shopping
@@ -122,8 +137,13 @@ const CheckoutPage = () => {
         <div className="grid grid-cols-1 lg:grid-cols-3 gap-8">
           {/* Customer Information Form */}
           <div className="lg:col-span-2">
-            <form onSubmit={handlePlaceOrder} className="bg-white rounded-lg shadow-md p-6">
-              <h2 className="text-xl font-semibold mb-6 text-teal-600">Customer Information</h2>
+            <form
+              onSubmit={handlePlaceOrder}
+              className="bg-white rounded-lg shadow-md p-6"
+            >
+              <h2 className="text-xl font-semibold mb-6 text-teal-600">
+                Customer Information
+              </h2>
 
               <div className="space-y-4">
                 {/* Name */}
@@ -255,28 +275,33 @@ const CheckoutPage = () => {
                         type="radio"
                         name="paymentMethod"
                         value="credit-card"
-                        checked={formData.paymentMethod === 'credit-card'}
+                        checked={formData.paymentMethod === "credit-card"}
                         onChange={handleInputChange}
                         className="w-4 h-4 text-blue-600"
                       />
                       <CreditCard className="w-5 h-5 ml-3 mr-2 text-gray-600" />
-                      <span className="font-medium text-gray-900">Pay with Credit Card</span>
+                      <span className="font-medium text-gray-900">
+                        Pay with Credit Card
+                      </span>
                     </label>
                     <label className="flex items-center p-4 border-2 rounded-md cursor-pointer hover:bg-gray-50 transition-colors bg-white">
                       <input
                         type="radio"
                         name="paymentMethod"
                         value="bank"
-                        checked={formData.paymentMethod === 'bank'}
+                        checked={formData.paymentMethod === "bank"}
                         onChange={handleInputChange}
                         className="w-4 h-4 text-blue-600"
                       />
                       <Building2 className="w-5 h-5 ml-3 mr-2 text-gray-600" />
-                      <span className="font-medium text-gray-900">Pay with Bank Transfer</span>
+                      <span className="font-medium text-gray-900">
+                        Pay with Bank Transfer
+                      </span>
                     </label>
                   </div>
                   <p className="mt-2 text-sm text-gray-500">
-                    Note: Payment details will be provided via email after order confirmation.
+                    Note: Payment details will be provided via email after order
+                    confirmation.
                   </p>
                 </div>
               </div>
@@ -286,7 +311,9 @@ const CheckoutPage = () => {
           {/* Order Summary */}
           <div className="lg:col-span-1">
             <div className="bg-white rounded-lg shadow-md p-6 sticky top-4">
-              <h2 className="text-xl font-semibold mb-4 text-teal-600">Order Summary</h2>
+              <h2 className="text-xl font-semibold mb-4 text-teal-600">
+                Order Summary
+              </h2>
 
               {/* Cart Items */}
               <div className="space-y-3 mb-6 max-h-96 overflow-y-auto">
@@ -296,7 +323,7 @@ const CheckoutPage = () => {
                       {item.image ? (
                         <Image
                           src={item.image}
-                          alt={item.name || 'Product'}
+                          alt={item.name || "Product"}
                           fill
                           className="object-cover"
                         />
@@ -307,8 +334,12 @@ const CheckoutPage = () => {
                       )}
                     </div>
                     <div className="flex-1 min-w-0">
-                      <h3 className="text-sm font-medium line-clamp-2 text-gray-900">{item.name}</h3>
-                      <p className="text-sm text-gray-500">Qty: {item.quantity}</p>
+                      <h3 className="text-sm font-medium line-clamp-2 text-gray-900">
+                        {item.name}
+                      </h3>
+                      <p className="text-sm text-gray-500">
+                        Qty: {item.quantity}
+                      </p>
                       <p className="text-sm font-semibold text-blue-600">
                         ${(parseFloat(item.price) * item.quantity).toFixed(2)}
                       </p>
@@ -325,7 +356,9 @@ const CheckoutPage = () => {
                 </div>
                 <div className="flex justify-between font-bold text-lg pt-2 border-t-2">
                   <span className="text-gray-900">Total:</span>
-                  <span className="text-blue-600">${getCartTotal().toFixed(2)} USD</span>
+                  <span className="text-blue-600">
+                    ${getCartTotal().toFixed(2)} USD
+                  </span>
                 </div>
               </div>
 
@@ -341,7 +374,7 @@ const CheckoutPage = () => {
                     Processing...
                   </>
                 ) : (
-                  'Place Order'
+                  "Place Order"
                 )}
               </button>
 

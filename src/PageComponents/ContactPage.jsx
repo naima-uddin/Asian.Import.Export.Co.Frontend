@@ -30,7 +30,7 @@ const ContactPage = () => {
 
     try {
       const response = await fetch(
-        "https://asian-expo-impo-backend.vercel.app/api/send-email",
+        "https://asian-import-export-co-backend.vercel.app/api/send-email",
         {
           method: "POST",
           headers: { "Content-Type": "application/json" },
@@ -241,7 +241,7 @@ const ContactPage = () => {
                       name="company"
                       value={formData.company}
                       onChange={handleChange}
-                      className="w-full border border-gray-300 rounded-lg px-4 py-3 focus:outline-none focus:ring-2 focus:ring-teal-500 focus:border-transparent text-gray-800 bg-gray-50" 
+                      className="w-full border border-gray-300 rounded-lg px-4 py-3 focus:outline-none focus:ring-2 focus:ring-teal-500 focus:border-transparent text-gray-800 bg-gray-50"
                     />
                   </div>
 

@@ -41,24 +41,23 @@ const ContactModal = ({ isOpen, onClose, tyreModel, moq }) => {
     setFormData((prev) => ({ ...prev, [name]: value }));
   };
 
-const handleQuantityChange = (e) => {
-  const value = parseInt(e.target.value, 10);
+  const handleQuantityChange = (e) => {
+    const value = parseInt(e.target.value, 10);
 
-  // Allow empty input while typing
-  if (!value) {
-    setFormData((prev) => ({ ...prev, quantity: "" }));
-    return;
-  }
+    // Allow empty input while typing
+    if (!value) {
+      setFormData((prev) => ({ ...prev, quantity: "" }));
+      return;
+    }
 
-  // If user enters less than MOQ → show toast only
-  if (value < minQuantity) {
-    toast.error(`Minimum order quantity is ${minQuantity} ${unit}`);
-  }
+    // If user enters less than MOQ → show toast only
+    if (value < minQuantity) {
+      toast.error(`Minimum order quantity is ${minQuantity} ${unit}`);
+    }
 
-  // Always update value (do NOT restrict typing)
-  setFormData((prev) => ({ ...prev, quantity: value }));
-};
-
+    // Always update value (do NOT restrict typing)
+    setFormData((prev) => ({ ...prev, quantity: value }));
+  };
 
   const handleSubmit = async (e) => {
     e.preventDefault();
@@ -66,10 +65,10 @@ const handleQuantityChange = (e) => {
 
     try {
       const response = await fetch(
-        "https://asian-expo-impo-backend.vercel.app/api/send-email",
+        "https://asian-import-export-co-backend.vercel.app/api/send-email",
         {
           method: "POST",
-          headers: { "Content-Type": "application/json" }, 
+          headers: { "Content-Type": "application/json" },
           body: JSON.stringify({
             ...formData,
             moq: moq || "50 pieces",
@@ -231,8 +230,6 @@ const handleQuantityChange = (e) => {
                 onChange={handleQuantityChange}
                 className="w-full p-2 text-sm bg-white text-gray-800 rounded border border-gray-300 focus:border-teal-500 focus:outline-none"
               />
-
-
             </div>
             <textarea
               name="message"

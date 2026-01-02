@@ -1,7 +1,7 @@
 /** @type {import('next').NextConfig} */
 const nextConfig = {
   // Enable static export for production deployment
-  // output: "export",
+  output: "export",
 
   // Disable trailing slashes for consistent routing
   trailingSlash: false,

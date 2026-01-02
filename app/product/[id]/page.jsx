@@ -3,8 +3,37 @@ import { Suspense } from "react";
 import fs from "fs";
 import path from "path";
 
-// Force dynamic rendering - no static generation or caching
-export const revalidate = 0;
+// Generate static params for all products at build time
+export async function generateStaticParams() {
+  try {
+    const categoriesPath = path.join(
+      process.cwd(),
+      "public",
+      "categories.json"
+    );
+    const categoriesData = fs.readFileSync(categoriesPath, "utf8");
+    const categories = JSON.parse(categoriesData);
+
+    const productIds = [];
+
+    for (const category of categories) {
+      if (category.subcategories) {
+        for (const subcategory of category.subcategories) {
+          if (subcategory.products) {
+            subcategory.products.forEach((product) => {
+              productIds.push({ id: product.id.toString() });
+            });
+          }
+        }
+      }
+    }
+
+    return productIds;
+  } catch (error) {
+    console.error("Error generating static params:", error);
+    return [];
+  }
+}
 
 // Helper function to get product data
 async function getProductData(id) {
