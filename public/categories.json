@@ -9728,7 +9728,7 @@
           {
             "id": 1180,
             "name": "2-Seater High Speed Golf Cart",
-            "price": "$250.00",
+            "price": "$3600.00",
             "offerPrice": "$3,454.00",
             "customizationOptions": [
               "Customized logo (Min. order: 2 units)",
@@ -9770,7 +9770,7 @@
           {
             "id": 1181,
             "name": "4-Seater High Speed Golf Cart",
-            "price": "$250.00",
+            "price": "$3,800.00",
             "offerPrice": "$3,599.00",
             "samplePrice": "$20,000.00",
             "customizationOptions": [
@@ -9810,7 +9810,7 @@
           {
             "id": 1182,
             "name": "6-Seater High Speed Golf Cart",
-            "price": "$250.00",
+            "price": "$6,500.00",
             "offerPrice": "$5,200.00",
             "customizationOptions": [
               "Customized logo (Min. order: 5 units)",
@@ -9853,7 +9853,7 @@
           {
             "id": 1183,
             "name": "High Performance 8 Seater Sightseeing Golf Cart",
-            "price": "$250.00",
+            "price": "$7,500.00",
             "offerPrice": "$5,985.00",
             "samplePrice": "$8,000.00",
             "customizationOptions": [
@@ -9910,7 +9910,7 @@
           {
             "id": 1184,
             "name": "Alloy Rims",
-            "price": "$250.00",
+            "price": "$100.00",
             "offerPrice": "$66.00",
             "customizationOptions": [
               "Customizing color (Min. order: 1000 pieces)",
@@ -9958,7 +9958,7 @@
                 "Durable aluminum alloy construction",
                 "Supports various PCD and ET specifications"
               ],
-              "MOQ": "250 pieces",
+              "MOQ": "50 units",
               "Packaging": "Cartons and pallet (air/sea freight) or as per buyer’s requirement",
               "Origin": "Zhejiang, China",
               "Brand": "Custom",
@@ -9982,7 +9982,7 @@
           {
             "id": 1185,
             "name": "Steel Rims",
-            "price": "$250.00",
+            "price": "$12.00",
             "offerPrice": "$7.90",
             "customizationOptions": [
               "Customized logo (Min. order: 500 pieces)",
@@ -10023,7 +10023,7 @@
               "Disc Thickness": "4mm",
               "Adapter": "500/600-12",
               "Certification": "ISO9001",
-              "MOQ": "250 pieces"
+              "MOQ": "50 units"
             },
             "packagingAndDelivery": {
               "sellingUnits": "Single item",
@@ -10042,7 +10042,7 @@
           {
             "id": 1186,
             "name": "Mountain E-Bike",
-            "price": "$250.00",
+            "price": "$450.00",
             "offerPrice": "$389.00",
             "customizationOptions": [
               "Logo customization (MOQ negotiable)",
@@ -10103,7 +10103,7 @@
           {
             "id": 1187,
             "name": "City E-Bike",
-            "price": "$250.00",
+            "price": "$320.00",
             "offerPrice": "$274.98",
             "customizationOptions": [
               "Color customization (Gray standard, other options negotiable)",
@@ -10667,7 +10667,7 @@
           {
             "id": 1188,
             "name": "High Purity Copper Wire Scrap (99.99%)",
-            "price": "$4,300.00",
+            "price": "$4,500.00",
             "offerPrice": "$4,300.00",
             "pricingTiers": [
               {
@@ -10709,7 +10709,7 @@
           {
             "id": 1189,
             "name": "Aluminum Copper Scrap Block Power",
-            "price": "$4,300.00",
+            "price": "$4,500.00",
             "offerPrice": "$4,300.00",
             "pricingTiers": [
               {

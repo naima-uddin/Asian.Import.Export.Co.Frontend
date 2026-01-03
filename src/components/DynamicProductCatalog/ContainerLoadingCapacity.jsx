@@ -1,4 +1,4 @@
-import { useState } from 'react';
+import { useState } from "react";
 
 const ContainerLoadingCapacity = () => {
   const [isExpanded, setIsExpanded] = useState(false);
@@ -10,36 +10,35 @@ const ContainerLoadingCapacity = () => {
   // Only one object with all model names combined
   const tableData = [
     {
-      modelName: '11R 22.5',
-      ft40: '280 pieces - $275',
-      ft20: '160 pieces - $155',
-      leadTime: '28-35 days'
+      modelName: "11R 22.5",
+      ft40: "275-280 pieces",
+      ft20: "155-160 pieces",
+      leadTime: "28-35 days",
     },
     {
-      modelName: '295/75R22.5',
-      ft40: '280 pieces - $275',
-      ft20: '160 pieces - $155',
-      leadTime: '28-35 days'
+      modelName: "295/75R22.5",
+      ft40: "275-280 pieces",
+      ft20: "155-160 pieces",
+      leadTime: "28-35 days",
     },
     {
-      modelName: '295/80R22.5',
-      ft40: '280 pieces - $275',
-      ft20: '160 pieces - $155',
-      leadTime: '28-35 days'
+      modelName: "295/80R22.5",
+      ft40: "275-280 pieces",
+      ft20: "155-160 pieces",
+      leadTime: "28-35 days",
     },
     {
-      modelName: '275/70R22.5',
-      ft40: '280 pieces - $275',
-      ft20: '160 pieces - $155',
-      leadTime: '28-35 days'
+      modelName: "275/70R22.5",
+      ft40: "275-280 pieces",
+      ft20: "155-160 pieces",
+      leadTime: "28-35 days",
     },
     {
-      modelName: '315/80R22.5',
-      ft40: '280 pieces - $275',
-      ft20: '160 pieces - $155',
-      leadTime: '28-35 days'
-    }
-    
+      modelName: "315/80R22.5",
+      ft40: "275-280 pieces",
+      ft20: "155-160 pieces",
+      leadTime: "28-35 days",
+    },
   ];
 
   return (
@@ -55,11 +54,11 @@ const ContainerLoadingCapacity = () => {
         </h2>
         <div className="flex items-center">
           <span className="text-sm text-teal-600 mr-2 hidden sm:inline">
-            {isExpanded ? 'Click to collapse' : 'Click to expand'}
+            {isExpanded ? "Click to collapse" : "Click to expand"}
           </span>
           <svg
             className={`w-5 h-5 text-teal-600 transform transition-transform duration-200 ${
-              isExpanded ? 'rotate-180' : ''
+              isExpanded ? "rotate-180" : ""
             }`}
             fill="none"
             stroke="currentColor"
@@ -82,16 +81,28 @@ const ContainerLoadingCapacity = () => {
           <table className="min-w-full divide-y divide-gray-200">
             <thead className="bg-gray-50">
               <tr>
-                <th scope="col" className="px-6 py-2 text-left text-xs font-bold text-gray-700 uppercase tracking-wider">
+                <th
+                  scope="col"
+                  className="px-6 py-2 text-left text-xs font-bold text-gray-700 uppercase tracking-wider"
+                >
                   Model Name
                 </th>
-                <th scope="col" className="px-6 py-2 text-left text-xs font-bold text-gray-700 uppercase tracking-wider">
+                <th
+                  scope="col"
+                  className="px-6 py-2 text-left text-xs font-bold text-gray-700 uppercase tracking-wider"
+                >
                   40FT
                 </th>
-                <th scope="col" className="px-6 py-2 text-left text-xs font-bold text-gray-700 uppercase tracking-wider">
+                <th
+                  scope="col"
+                  className="px-6 py-2 text-left text-xs font-bold text-gray-700 uppercase tracking-wider"
+                >
                   20FT
                 </th>
-                <th scope="col" className="px-6 py-2 text-left text-xs font-bold text-gray-700 uppercase tracking-wider">
+                <th
+                  scope="col"
+                  className="px-6 py-2 text-left text-xs font-bold text-gray-700 uppercase tracking-wider"
+                >
                   Lead Time
                 </th>
               </tr>
