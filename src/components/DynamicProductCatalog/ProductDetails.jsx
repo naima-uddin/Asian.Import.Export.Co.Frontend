@@ -732,12 +732,13 @@ const ProductDetails = () => {
                   let moqValue = 50;
                   let moqUnit = "units";
                   if (product.keyAttributes && product.keyAttributes.MOQ) {
-                    const moqStr = product.keyAttributes.MOQ;
-                    // Match number and unit (e.g., "100 Tons", "50 tires", "5 Tons")
-                    const moqMatch = moqStr.match(/(\d+)\s*([a-zA-Z]+)/);
+                    const moqStr = product.keyAttributes.MOQ.toString().trim();
+                    // Match number and optional unit (e.g., "100 Tons", "50 tires", "10")
+                    const moqMatch = moqStr.match(/(\d+)\s*([a-zA-Z]+)?/);
                     if (moqMatch) {
                       moqValue = parseInt(moqMatch[1]);
-                      moqUnit = moqMatch[2]; // e.g., "Tons", "tires", etc.
+                      // If unit is present, use it; otherwise default to "units"
+                      moqUnit = moqMatch[2] || "units";
                     }
                   }
 
