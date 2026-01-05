@@ -9,7 +9,7 @@ import toast from "react-hot-toast";
 
 const CheckoutPage = () => {
   const router = useRouter();
-  const { cart, getCartTotal, clearCart } = useCart();
+  const { cart, getCartTotal, clearCart, calculateItemPrice } = useCart();
   const [loading, setLoading] = useState(false);
   const [formData, setFormData] = useState({
     name: "",
@@ -260,7 +260,7 @@ const CheckoutPage = () => {
                     onChange={handleInputChange}
                     rows="3"
                     className="w-full px-4 py-2 border border-gray-300 rounded-md focus:ring-2 focus:ring-blue-500 focus:border-transparent bg-white text-gray-900"
-                    placeholder="Any special instructions or requests..."
+                    placeholder="Any special instructions(size, weight, quantity) or any requests..."
                   />
                 </div>
 
@@ -319,7 +319,7 @@ const CheckoutPage = () => {
               <div className="space-y-3 mb-6 max-h-96 overflow-y-auto">
                 {cart.map((item) => (
                   <div key={item.id} className="flex gap-3 pb-3 border-b">
-                    <div className="relative w-16 h-16 flex-shrink-0 bg-gray-100 rounded-md overflow-hidden">
+                    <div className="relative w-14 h-14 flex-shrink-0 bg-gray-100 rounded-md overflow-hidden">
                       {item.image ? (
                         <Image
                           src={item.image}
@@ -340,8 +340,8 @@ const CheckoutPage = () => {
                       <p className="text-sm text-gray-500">
                         Qty: {item.quantity}
                       </p>
-                      <p className="text-sm font-semibold text-blue-600">
-                        ${(parseFloat(item.price) * item.quantity).toFixed(2)}
+                      <p className="text-sm text-gray-500">
+                        Price: ${(calculateItemPrice(item) / item.quantity).toFixed(2)}
                       </p>
                     </div>
                   </div>
