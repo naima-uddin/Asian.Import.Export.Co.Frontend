@@ -216,7 +216,23 @@
             "name": "Double Coin FT105 10R17.5 Drive Tire",
             "price": "$220.00",
             "offerPrice": "$134.00",
-            "pricingTiers": [],
+            "pricingTiers": [
+              {
+                "minQuantity": 0,
+                "maxQuantity": 49,
+                "pricePerTire": "$160.00"
+              },
+              {
+                "minQuantity": 50,
+                "maxQuantity": 199,
+                "pricePerTire": "$150.00"
+              },
+              {
+                "minQuantity": 200,
+                "maxQuantity": null,
+                "pricePerTire": "$134.00"
+              }
+            ],
             "customizationOptions": [],
             "shipping": "Shipping fee and delivery date to be negotiated. Contact supplier for details.",
             "description": "Light-duty drive tire for urban logistics. Ideal for delivery vehicles and light commercial applications.",
@@ -265,7 +281,23 @@
             "name": "Double Coin FT105 10R17.5 Steer Tire",
             "price": "$220.00",
             "offerPrice": "$134.00",
-            "pricingTiers": [],
+            "pricingTiers": [
+              {
+                "minQuantity": 0,
+                "maxQuantity": 49,
+                "pricePerTire": "$160.00"
+              },
+              {
+                "minQuantity": 50,
+                "maxQuantity": 199,
+                "pricePerTire": "$150.00"
+              },
+              {
+                "minQuantity": 200,
+                "maxQuantity": null,
+                "pricePerTire": "$134.00"
+              }
+            ],
             "customizationOptions": [
               "Custom sidewall Branding (Min. order: 50 tires)",
               "Special compound formulation (Min. order: 100 tires)"
@@ -317,7 +349,23 @@
             "name": "Double Coin FT105 10R17.5 Trailer Tire",
             "price": "$220.00",
             "offerPrice": "$134.00",
-            "pricingTiers": [],
+            "pricingTiers": [
+              {
+                "minQuantity": 0,
+                "maxQuantity": 49,
+                "pricePerTire": "$160.00"
+              },
+              {
+                "minQuantity": 50,
+                "maxQuantity": 199,
+                "pricePerTire": "$150.00"
+              },
+              {
+                "minQuantity": 200,
+                "maxQuantity": null,
+                "pricePerTire": "$134.00"
+              }
+            ],
             "customizationOptions": [
               "Custom sidewall Branding (Min. order: 50 tires)",
               "Special compound formulation (Min. order: 100 tires)"
@@ -369,7 +417,23 @@
             "name": "Double Coin FT105 10R22.5 Drive Tire",
             "price": "$250.00",
             "offerPrice": "$130.00",
-            "pricingTiers": [],
+            "pricingTiers": [
+              {
+                "minQuantity": 0,
+                "maxQuantity": 49,
+                "pricePerTire": "$190.00"
+              },
+              {
+                "minQuantity": 50,
+                "maxQuantity": 199,
+                "pricePerTire": "$157.00"
+              },
+              {
+                "minQuantity": 200,
+                "maxQuantity": null,
+                "pricePerTire": "$130.00"
+              }
+            ],
             "customizationOptions": [
               "Custom sidewall Branding (Min. order: 50 tires)"
             ],
@@ -420,7 +484,23 @@
             "name": "Double Coin FT105 10R22.5 Steer Tire",
             "price": "$250.00",
             "offerPrice": "$127.00",
-            "pricingTiers": [],
+            "pricingTiers": [
+              {
+                "minQuantity": 0,
+                "maxQuantity": 49,
+                "pricePerTire": "$190.00"
+              },
+              {
+                "minQuantity": 50,
+                "maxQuantity": 199,
+                "pricePerTire": "$157.00"
+              },
+              {
+                "minQuantity": 200,
+                "maxQuantity": null,
+                "pricePerTire": "$127.00"
+              }
+            ],
             "customizationOptions": [
               "Custom sidewall Branding (Min. order: 50 tires)",
               "Special compound formulation (Min. order: 100 tires)"
@@ -472,7 +552,23 @@
             "name": "Double Coin FT105 10R22.5 Trailer Tire",
             "price": "$250.00",
             "offerPrice": "$127.00",
-            "pricingTiers": [],
+            "pricingTiers": [
+              {
+                "minQuantity": 0,
+                "maxQuantity": 49,
+                "pricePerTire": "$190.00"
+              },
+              {
+                "minQuantity": 50,
+                "maxQuantity": 199,
+                "pricePerTire": "$157.00"
+              },
+              {
+                "minQuantity": 200,
+                "maxQuantity": null,
+                "pricePerTire": "$127.00"
+              }
+            ],
             "customizationOptions": [
               "Custom sidewall Branding (Min. order: 50 tires)",
               "Special compound formulation (Min. order: 100 tires)"
@@ -930,7 +1026,23 @@
             "name": "Double Coin FT105 11R24.5 Steer Tire",
             "price": "$360.00",
             "offerPrice": "$132.00",
-            "pricingTiers": [],
+            "pricingTiers": [
+              {
+                "minQuantity": 0,
+                "maxQuantity": 49,
+                "pricePerTire": "$260.00"
+              },
+              {
+                "minQuantity": 50,
+                "maxQuantity": 199,
+                "pricePerTire": "$220.00"
+              },
+              {
+                "minQuantity": 200,
+                "maxQuantity": null,
+                "pricePerTire": "$132.00"
+              }
+            ],
             "customizationOptions": [
               "Custom sidewall Branding (Min. order: 50 tires)",
               "Special compound formulation (Min. order: 100 tires)"
@@ -982,7 +1094,23 @@
             "name": "Double Coin FT105 11R24.5 Trailer Tire",
             "price": "$360.00",
             "offerPrice": "$132.00",
-            "pricingTiers": [],
+            "pricingTiers": [
+              {
+                "minQuantity": 0,
+                "maxQuantity": 49,
+                "pricePerTire": "$260.00"
+              },
+              {
+                "minQuantity": 50,
+                "maxQuantity": 199,
+                "pricePerTire": "$220.00"
+              },
+              {
+                "minQuantity": 200,
+                "maxQuantity": null,
+                "pricePerTire": "$132.00"
+              }
+            ],
             "customizationOptions": [
               "Custom sidewall Branding (Min. order: 50 tires)",
               "Special compound formulation (Min. order: 100 tires)"
@@ -6232,6 +6360,11 @@
             "offerPrice": "$125.00",
             "pricingTiers": [
               {
+                "minQuantity": 0,
+                "maxQuantity": 49,
+                "pricePerTire": "$200.00"
+              },
+              {
                 "minQuantity": 50,
                 "maxQuantity": 199,
                 "pricePerTire": "$170.00"
@@ -6294,6 +6427,11 @@
             "price": "$250.00",
             "offerPrice": "$125.00",
             "pricingTiers": [
+              {
+                "minQuantity": 0,
+                "maxQuantity": 49,
+                "pricePerTire": "$200.00"
+              },
               {
                 "minQuantity": 50,
                 "maxQuantity": 199,
@@ -6358,6 +6496,11 @@
             "offerPrice": "$125.00",
             "pricingTiers": [
               {
+                "minQuantity": 0,
+                "maxQuantity": 49,
+                "pricePerTire": "$200.00"
+              },
+              {
                 "minQuantity": 50,
                 "maxQuantity": 199,
                 "pricePerTire": "$170.00"
@@ -6420,6 +6563,11 @@
             "price": "$280.00",
             "offerPrice": "$128.00",
             "pricingTiers": [
+              {
+                "minQuantity": 0,
+                "maxQuantity": 49,
+                "pricePerTire": "$220.00"
+              },
               {
                 "minQuantity": 50,
                 "maxQuantity": 199,
@@ -6484,6 +6632,11 @@
             "offerPrice": "$128.00",
             "pricingTiers": [
               {
+                "minQuantity": 0,
+                "maxQuantity": 49,
+                "pricePerTire": "$220.00"
+              },
+              {
                 "minQuantity": 50,
                 "maxQuantity": 199,
                 "pricePerTire": "$180.00"
@@ -6546,6 +6699,11 @@
             "price": "$280.00",
             "offerPrice": "$128.00",
             "pricingTiers": [
+              {
+                "minQuantity": 0,
+                "maxQuantity": 49,
+                "pricePerTire": "$220.00"
+              },
               {
                 "minQuantity": 50,
                 "maxQuantity": 199,
@@ -6922,6 +7080,11 @@
             "offerPrice": "$147.00",
             "pricingTiers": [
               {
+                "minQuantity": 0,
+                "maxQuantity": 49,
+                "pricePerTire": "$200.00"
+              },
+              {
                 "minQuantity": 50,
                 "maxQuantity": 199,
                 "pricePerTire": "$187.00"
@@ -6985,6 +7148,11 @@
             "offerPrice": "$147.00",
             "pricingTiers": [
               {
+                "minQuantity": 0,
+                "maxQuantity": 49,
+                "pricePerTire": "$200.00"
+              },
+              {
                 "minQuantity": 50,
                 "maxQuantity": 199,
                 "pricePerTire": "$187.00"
@@ -7047,6 +7215,11 @@
             "price": "$300.00",
             "offerPrice": "$147.00",
             "pricingTiers": [
+              {
+                "minQuantity": 0,
+                "maxQuantity": 49,
+                "pricePerTire": "$200.00"
+              },
               {
                 "minQuantity": 50,
                 "maxQuantity": 199,
@@ -7571,6 +7744,11 @@
             "offerPrice": "$125.00",
             "pricingTiers": [
               {
+                "minQuantity": 0,
+                "maxQuantity": 49,
+                "pricePerTire": "$190.00"
+              },
+              {
                 "minQuantity": 50,
                 "maxQuantity": 199,
                 "pricePerTire": "$170.00"
@@ -7632,6 +7810,11 @@
             "price": "$250.00",
             "offerPrice": "$125.00",
             "pricingTiers": [
+              {
+                "minQuantity": 0,
+                "maxQuantity": 49,
+                "pricePerTire": "$190.00"
+              },
               {
                 "minQuantity": 50,
                 "maxQuantity": 199,
@@ -7695,6 +7878,11 @@
             "offerPrice": "$125.00",
             "pricingTiers": [
               {
+                "minQuantity": 0,
+                "maxQuantity": 49,
+                "pricePerTire": "$190.00"
+              },
+              {
                 "minQuantity": 50,
                 "maxQuantity": 199,
                 "pricePerTire": "$170.00"
@@ -7756,6 +7944,11 @@
             "price": "$280.00",
             "offerPrice": "$128.00",
             "pricingTiers": [
+              {
+                "minQuantity": 0,
+                "maxQuantity": 49,
+                "pricePerTire": "$200.00"
+              },
               {
                 "minQuantity": 50,
                 "maxQuantity": 199,
@@ -7819,6 +8012,11 @@
             "offerPrice": "$128.00",
             "pricingTiers": [
               {
+                "minQuantity": 0,
+                "maxQuantity": 49,
+                "pricePerTire": "$200.00"
+              },
+              {
                 "minQuantity": 50,
                 "maxQuantity": 199,
                 "pricePerTire": "$180.00"
@@ -7880,6 +8078,11 @@
             "price": "$280.00",
             "offerPrice": "$128.00",
             "pricingTiers": [
+              {
+                "minQuantity": 0,
+                "maxQuantity": 49,
+                "pricePerTire": "$200.00"
+              },
               {
                 "minQuantity": 50,
                 "maxQuantity": 199,
@@ -8237,6 +8440,11 @@
             "offerPrice": "$147.00",
             "pricingTiers": [
               {
+                "minQuantity": 0,
+                "maxQuantity": 49,
+                "pricePerTire": "$210.00"
+              },
+              {
                 "minQuantity": 50,
                 "maxQuantity": 199,
                 "pricePerTire": "$187.00"
@@ -8298,6 +8506,11 @@
             "price": "$300.00",
             "offerPrice": "$147.00",
             "pricingTiers": [
+              {
+                "minQuantity": 0,
+                "maxQuantity": 49,
+                "pricePerTire": "$210.00"
+              },
               {
                 "minQuantity": 50,
                 "maxQuantity": 199,

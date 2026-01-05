@@ -1,5 +1,6 @@
 "use client";
 
+import { useState, useEffect } from "react";
 import { useCart } from "@/context/CartContext";
 import {
   X,
@@ -11,6 +12,49 @@ import {
 } from "lucide-react";
 import Image from "next/image";
 import Link from "next/link";
+
+// Separate component for quantity input to manage local state
+const QuantityInput = ({ itemId, quantity, updateQuantity }) => {
+  const [inputValue, setInputValue] = useState(quantity.toString());
+
+  // Sync with external quantity changes (from +/- buttons)
+  useEffect(() => {
+    setInputValue(quantity.toString());
+  }, [quantity]);
+
+  const handleChange = (e) => {
+    const value = e.target.value;
+    // Allow any input while typing (including empty)
+    setInputValue(value);
+    
+    // Only update cart if valid number
+    const parsed = parseInt(value);
+    if (!isNaN(parsed) && parsed >= 1) {
+      updateQuantity(itemId, parsed);
+    }
+  };
+
+  const handleBlur = () => {
+    const parsed = parseInt(inputValue);
+    if (isNaN(parsed) || parsed < 1) {
+      // Reset to current quantity if invalid
+      setInputValue(quantity.toString());
+    }
+  };
+
+  return (
+    <input
+      type="text"
+      inputMode="numeric"
+      pattern="[0-9]*"
+      value={inputValue}
+      onChange={handleChange}
+      onBlur={handleBlur}
+      className="w-16 text-center border rounded-md px-2 py-1 text-sm"
+      min="1"
+    />
+  );
+};
 
 const CartSidebar = () => {
   const {
@@ -299,15 +343,10 @@ const CartSidebar = () => {
                         >
                           <Minus className="w-4 h-4" />
                         </button>
-                        <input
-                          type="number"
-                          value={item.quantity}
-                          onChange={(e) => {
-                            const value = parseInt(e.target.value) || 1;
-                            updateQuantity(item.id, value);
-                          }}
-                          className="w-16 text-center border rounded-md px-2 py-1 text-sm"
-                          min="1"
+                        <QuantityInput
+                          itemId={item.id}
+                          quantity={item.quantity}
+                          updateQuantity={updateQuantity}
                         />
                         <button
                           onClick={() =>
