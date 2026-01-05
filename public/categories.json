@@ -6229,22 +6229,17 @@
             "id": 1108,
             "name": "Goodyear Endurance RSA 10R22.5 Drive Tire",
             "price": "$250.00",
-            "offerPrice": "$205.00",
+            "offerPrice": "$125.00",
             "pricingTiers": [
-              {
-                "minQuantity": 10,
-                "maxQuantity": 49,
-                "pricePerTire": "$190.00"
-              },
               {
                 "minQuantity": 50,
                 "maxQuantity": 199,
-                "pricePerTire": "$157.00"
+                "pricePerTire": "$170.00"
               },
               {
                 "minQuantity": 200,
                 "maxQuantity": null,
-                "pricePerTire": "$136.00"
+                "pricePerTire": "$125.00"
               }
             ],
             "customizationOptions": [
@@ -6297,22 +6292,17 @@
             "id": 1109,
             "name": "Goodyear G390 LHS 10R22.5 Steer Tire",
             "price": "$250.00",
-            "offerPrice": "$202.00",
+            "offerPrice": "$125.00",
             "pricingTiers": [
-              {
-                "minQuantity": 10,
-                "maxQuantity": 49,
-                "pricePerTire": "$190.00"
-              },
               {
                 "minQuantity": 50,
                 "maxQuantity": 199,
-                "pricePerTire": "$157.00"
+                "pricePerTire": "$170.00"
               },
               {
                 "minQuantity": 200,
                 "maxQuantity": null,
-                "pricePerTire": "$136.00"
+                "pricePerTire": "$125.00"
               }
             ],
             "customizationOptions": [
@@ -6365,22 +6355,17 @@
             "id": 1110,
             "name": "Goodyear G316 LHT 10R22.5 Trailer Tire",
             "price": "$250.00",
-            "offerPrice": "$202.00",
+            "offerPrice": "$125.00",
             "pricingTiers": [
-              {
-                "minQuantity": 10,
-                "maxQuantity": 49,
-                "pricePerTire": "$190.00"
-              },
               {
                 "minQuantity": 50,
                 "maxQuantity": 199,
-                "pricePerTire": "$157.00"
+                "pricePerTire": "$170.00"
               },
               {
                 "minQuantity": 200,
                 "maxQuantity": null,
-                "pricePerTire": "$136.00"
+                "pricePerTire": "$125.00"
               }
             ],
             "customizationOptions": [
@@ -6433,22 +6418,17 @@
             "id": 1111,
             "name": "Goodyear Endurance RSA HD 11R22.5 Drive Tire",
             "price": "$280.00",
-            "offerPrice": "$205.00",
+            "offerPrice": "$128.00",
             "pricingTiers": [
-              {
-                "minQuantity": 10,
-                "maxQuantity": 49,
-                "pricePerTire": "$190.00"
-              },
               {
                 "minQuantity": 50,
                 "maxQuantity": 199,
-                "pricePerTire": "$157.00"
+                "pricePerTire": "$180.00"
               },
               {
                 "minQuantity": 200,
                 "maxQuantity": null,
-                "pricePerTire": "$136.00"
+                "pricePerTire": "$128.00"
               }
             ],
             "customizationOptions": [
@@ -6501,22 +6481,17 @@
             "id": 1112,
             "name": "Goodyear G395 XT LHS 11R22.5 Steer Tire",
             "price": "$280.00",
-            "offerPrice": "$202.00",
+            "offerPrice": "$128.00",
             "pricingTiers": [
-              {
-                "minQuantity": 10,
-                "maxQuantity": 49,
-                "pricePerTire": "$190.00"
-              },
               {
                 "minQuantity": 50,
                 "maxQuantity": 199,
-                "pricePerTire": "$157.00"
+                "pricePerTire": "$180.00"
               },
               {
                 "minQuantity": 200,
                 "maxQuantity": null,
-                "pricePerTire": "$136.00"
+                "pricePerTire": "$128.00"
               }
             ],
             "customizationOptions": [
@@ -6569,22 +6544,17 @@
             "id": 1113,
             "name": "Goodyear G316 LHT 11R22.5 Trailer Tire",
             "price": "$280.00",
-            "offerPrice": "$202.00",
+            "offerPrice": "$128.00",
             "pricingTiers": [
-              {
-                "minQuantity": 10,
-                "maxQuantity": 49,
-                "pricePerTire": "$190.00"
-              },
               {
                 "minQuantity": 50,
                 "maxQuantity": 199,
-                "pricePerTire": "$157.00"
+                "pricePerTire": "$180.00"
               },
               {
                 "minQuantity": 200,
                 "maxQuantity": null,
-                "pricePerTire": "$136.00"
+                "pricePerTire": "$128.00"
               }
             ],
             "customizationOptions": [
@@ -6949,17 +6919,12 @@
             "id": 1120,
             "name": "Goodyear Fuel Max RSA 295/75R22.5 Drive Tire",
             "price": "$300.00",
-            "offerPrice": "$210.00",
+            "offerPrice": "$147.00",
             "pricingTiers": [
-              {
-                "minQuantity": 10,
-                "maxQuantity": 49,
-                "pricePerTire": "$220.00"
-              },
               {
                 "minQuantity": 50,
                 "maxQuantity": 199,
-                "pricePerTire": "$170.00"
+                "pricePerTire": "$187.00"
               },
               {
                 "minQuantity": 200,
@@ -7017,17 +6982,12 @@
             "id": 1121,
             "name": "Goodyear G397 LHS 295/75R22.5 Steer Tire",
             "price": "$300.00",
-            "offerPrice": "$207.00",
+            "offerPrice": "$147.00",
             "pricingTiers": [
-              {
-                "minQuantity": 10,
-                "maxQuantity": 49,
-                "pricePerTire": "$220.00"
-              },
               {
                 "minQuantity": 50,
                 "maxQuantity": 199,
-                "pricePerTire": "$170.00"
+                "pricePerTire": "$187.00"
               },
               {
                 "minQuantity": 200,
@@ -7085,17 +7045,12 @@
             "id": 1122,
             "name": "Goodyear G317 LHT 295/75R22.5 Trailer Tire",
             "price": "$300.00",
-            "offerPrice": "$207.00",
+            "offerPrice": "$147.00",
             "pricingTiers": [
-              {
-                "minQuantity": 10,
-                "maxQuantity": 49,
-                "pricePerTire": "$220.00"
-              },
               {
                 "minQuantity": 50,
                 "maxQuantity": 199,
-                "pricePerTire": "$170.00"
+                "pricePerTire": "$187.00"
               },
               {
                 "minQuantity": 200,
@@ -7614,6 +7569,18 @@
             "name": "Michelin X Line Energy D 10R22.5 Drive Tire",
             "price": "$250.00",
             "offerPrice": "$125.00",
+            "pricingTiers": [
+              {
+                "minQuantity": 50,
+                "maxQuantity": 199,
+                "pricePerTire": "$170.00"
+              },
+              {
+                "minQuantity": 200,
+                "maxQuantity": null,
+                "pricePerTire": "$125.00"
+              }
+            ],
             "customizationOptions": [
               "Custom sidewall Branding (Min. order: 50 tires)"
             ],
@@ -7663,7 +7630,19 @@
             "id": 1133,
             "name": "Michelin X Multi S 10R22.5 Steer Tire",
             "price": "$250.00",
-            "offerPrice": "$122.00",
+            "offerPrice": "$125.00",
+            "pricingTiers": [
+              {
+                "minQuantity": 50,
+                "maxQuantity": 199,
+                "pricePerTire": "$170.00"
+              },
+              {
+                "minQuantity": 200,
+                "maxQuantity": null,
+                "pricePerTire": "$125.00"
+              }
+            ],
             "customizationOptions": [
               "Custom sidewall Branding (Min. order: 50 tires)"
             ],
@@ -7713,7 +7692,19 @@
             "id": 1134,
             "name": "Michelin X Multi T 10R22.5 Trailer Tire",
             "price": "$250.00",
-            "offerPrice": "$122.00",
+            "offerPrice": "$125.00",
+            "pricingTiers": [
+              {
+                "minQuantity": 50,
+                "maxQuantity": 199,
+                "pricePerTire": "$170.00"
+              },
+              {
+                "minQuantity": 200,
+                "maxQuantity": null,
+                "pricePerTire": "$125.00"
+              }
+            ],
             "customizationOptions": [
               "Custom sidewall Branding (Min. order: 50 tires)"
             ],
@@ -7763,7 +7754,19 @@
             "id": 1135,
             "name": "Michelin X Line Energy D 11R22.5 Drive Tire",
             "price": "$280.00",
-            "offerPrice": "$131.00",
+            "offerPrice": "$128.00",
+            "pricingTiers": [
+              {
+                "minQuantity": 50,
+                "maxQuantity": 199,
+                "pricePerTire": "$180.00"
+              },
+              {
+                "minQuantity": 200,
+                "maxQuantity": null,
+                "pricePerTire": "$128.00"
+              }
+            ],
             "customizationOptions": [
               "Custom sidewall Branding (Min. order: 50 tires)"
             ],
@@ -7814,6 +7817,18 @@
             "name": "Michelin X Multi S 11R22.5 Steer Tire",
             "price": "$280.00",
             "offerPrice": "$128.00",
+            "pricingTiers": [
+              {
+                "minQuantity": 50,
+                "maxQuantity": 199,
+                "pricePerTire": "$180.00"
+              },
+              {
+                "minQuantity": 200,
+                "maxQuantity": null,
+                "pricePerTire": "$128.00"
+              }
+            ],
             "customizationOptions": [
               "Custom sidewall Branding (Min. order: 50 tires)"
             ],
@@ -7864,6 +7879,18 @@
             "name": "Michelin X Multi T 11R22.5 Trailer Tire",
             "price": "$280.00",
             "offerPrice": "$128.00",
+            "pricingTiers": [
+              {
+                "minQuantity": 50,
+                "maxQuantity": 199,
+                "pricePerTire": "$180.00"
+              },
+              {
+                "minQuantity": 200,
+                "maxQuantity": null,
+                "pricePerTire": "$128.00"
+              }
+            ],
             "customizationOptions": [
               "Custom sidewall Branding (Min. order: 50 tires)"
             ],
@@ -8207,7 +8234,19 @@
             "id": 1144,
             "name": "Michelin X Multi D 295/75R22.5 Drive Tire",
             "price": "$300.00",
-            "offerPrice": "$148.00",
+            "offerPrice": "$147.00",
+            "pricingTiers": [
+              {
+                "minQuantity": 50,
+                "maxQuantity": 199,
+                "pricePerTire": "$187.00"
+              },
+              {
+                "minQuantity": 200,
+                "maxQuantity": null,
+                "pricePerTire": "$147.00"
+              }
+            ],
             "customizationOptions": [
               "Custom sidewall Branding (Min. order: 50 tires)"
             ],
@@ -8257,7 +8296,19 @@
             "id": 1145,
             "name": "Michelin X Multi S 295/75R22.5 Steer Tire",
             "price": "$300.00",
-            "offerPrice": "$145.00",
+            "offerPrice": "$147.00",
+            "pricingTiers": [
+              {
+                "minQuantity": 50,
+                "maxQuantity": 199,
+                "pricePerTire": "$187.00"
+              },
+              {
+                "minQuantity": 200,
+                "maxQuantity": null,
+                "pricePerTire": "$147.00"
+              }
+            ],
             "customizationOptions": [
               "Custom sidewall Branding (Min. order: 50 tires)"
             ],
@@ -8307,7 +8358,19 @@
             "id": 1146,
             "name": "Michelin X Multi T 295/75R22.5 Trailer Tire",
             "price": "$300.00",
-            "offerPrice": "$145.00",
+            "offerPrice": "$147.00",
+            "pricingTiers": [
+              {
+                "minQuantity": 50,
+                "maxQuantity": 199,
+                "pricePerTire": "$187.00"
+              },
+              {
+                "minQuantity": 200,
+                "maxQuantity": null,
+                "pricePerTire": "$147.00"
+              }
+            ],
             "customizationOptions": [
               "Custom sidewall Branding (Min. order: 50 tires)"
             ],
