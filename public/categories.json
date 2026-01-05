@@ -13,7 +13,23 @@
             "name": "Double Coin RR202 10.00R20 Drive Tire",
             "price": "$250.00",
             "offerPrice": "$134.00",
-            "pricingTiers": [],
+            "pricingTiers": [
+              {
+                "minQuantity": 0,
+                "maxQuantity": 49,
+                "pricePerTire": "$160.00"
+              },
+              {
+                "minQuantity": 50,
+                "maxQuantity": 199,
+                "pricePerTire": "$154.00"
+              },
+              {
+                "minQuantity": 200,
+                "maxQuantity": null,
+                "pricePerTire": "$134.00"
+              }
+            ],
             "customizationOptions": [
               "Custom sidewall Branding (Min. order: 50 tires)"
             ],
@@ -64,7 +80,23 @@
             "name": "Double Coin RR202 10.00R20 Steer Tire",
             "price": "$250.00",
             "offerPrice": "$134.00",
-            "pricingTiers": [],
+            "pricingTiers": [
+              {
+                "minQuantity": 0,
+                "maxQuantity": 49,
+                "pricePerTire": "$160.00"
+              },
+              {
+                "minQuantity": 50,
+                "maxQuantity": 199,
+                "pricePerTire": "$154.00"
+              },
+              {
+                "minQuantity": 200,
+                "maxQuantity": null,
+                "pricePerTire": "$134.00"
+              }
+            ],
             "customizationOptions": [
               "Custom sidewall Branding (Min. order: 50 tires)",
               "Special compound formulation (Min. order: 100 tires)"
@@ -116,7 +148,23 @@
             "name": "Double Coin RR202 10.00R20 Trailer Tire",
             "price": "$250.00",
             "offerPrice": "$134.00",
-            "pricingTiers": [],
+            "pricingTiers": [
+              {
+                "minQuantity": 0,
+                "maxQuantity": 49,
+                "pricePerTire": "$160.00"
+              },
+              {
+                "minQuantity": 50,
+                "maxQuantity": 199,
+                "pricePerTire": "$154.00"
+              },
+              {
+                "minQuantity": 200,
+                "maxQuantity": null,
+                "pricePerTire": "$134.00"
+              }
+            ],
             "customizationOptions": [
               "Custom sidewall Branding (Min. order: 50 tires)",
               "Special compound formulation (Min. order: 100 tires)"
@@ -4549,8 +4597,24 @@
             "id": 1084,
             "name": "Firestone FD694 10R22.5 Drive Tire",
             "price": "$250.00",
-            "offerPrice": "$200.00",
-            "pricingTiers": [],
+            "offerPrice": "$134.00",
+            "pricingTiers": [
+              {
+                "minQuantity": 0,
+                "maxQuantity": 49,
+                "pricePerTire": "$160.00"
+              },
+              {
+                "minQuantity": 50,
+                "maxQuantity": 199,
+                "pricePerTire": "$154.00"
+              },
+              {
+                "minQuantity": 200,
+                "maxQuantity": null,
+                "pricePerTire": "$134.00"
+              }
+            ],
             "customizationOptions": [
               "Custom sidewall Branding (Min. order: 50 tires)",
               "Special compound formulation (Min. order: 100 tires)"
@@ -4601,8 +4665,24 @@
             "id": 1085,
             "name": "Firestone FS560 10R22.5 Steer Tire",
             "price": "$250.00",
-            "offerPrice": "$231.00",
-            "pricingTiers": [],
+            "offerPrice": "$134.00",
+            "pricingTiers": [
+              {
+                "minQuantity": 0,
+                "maxQuantity": 49,
+                "pricePerTire": "$160.00"
+              },
+              {
+                "minQuantity": 50,
+                "maxQuantity": 199,
+                "pricePerTire": "$154.00"
+              },
+              {
+                "minQuantity": 200,
+                "maxQuantity": null,
+                "pricePerTire": "$134.00"
+              }
+            ],
             "customizationOptions": [
               "Custom sidewall Branding (Min. order: 50 tires)",
               "Special compound formulation (Min. order: 100 tires)"
@@ -4653,8 +4733,24 @@
             "id": 1086,
             "name": "Firestone FT413 10R22.5 Trailer Tire",
             "price": "$250.00",
-            "offerPrice": "$193.00",
-            "pricingTiers": [],
+            "offerPrice": "$134.00",
+            "pricingTiers": [
+              {
+                "minQuantity": 0,
+                "maxQuantity": 49,
+                "pricePerTire": "$160.00"
+              },
+              {
+                "minQuantity": 50,
+                "maxQuantity": 199,
+                "pricePerTire": "$154.00"
+              },
+              {
+                "minQuantity": 200,
+                "maxQuantity": null,
+                "pricePerTire": "$134.00"
+              }
+            ],
             "customizationOptions": [
               "Custom sidewall Branding (Min. order: 50 tires)",
               "Special compound formulation (Min. order: 100 tires)"
@@ -4705,7 +4801,7 @@
             "id": 1087,
             "name": "Firestone FD694 11R22.5 Drive Tire",
             "price": "$280.00",
-            "offerPrice": "$210.00",
+            "offerPrice": "$134.00",
             "pricingTiers": [
               {
                 "minQuantity": 10,
@@ -4773,7 +4869,7 @@
             "id": 1088,
             "name": "Firestone FS560 11R22.5 Steer Tire",
             "price": "$280.00",
-            "offerPrice": "$238.00",
+            "offerPrice": "$134.00",
             "pricingTiers": [
               {
                 "minQuantity": 10,
@@ -4841,7 +4937,7 @@
             "id": 1089,
             "name": "Firestone FT413 11R22.5 Trailer Tire",
             "price": "$280.00",
-            "offerPrice": "$200.00",
+            "offerPrice": "$134.00",
             "pricingTiers": [
               {
                 "minQuantity": 10,
@@ -4909,8 +5005,24 @@
             "id": 1090,
             "name": "Firestone FD694 11R24.5 Drive Tire",
             "price": "$360.00",
-            "offerPrice": "$215.00",
-            "pricingTiers": [],
+            "offerPrice": "$134.00",
+            "pricingTiers": [
+              {
+                "minQuantity": 0,
+                "maxQuantity": 49,
+                "pricePerTire": "$160.00"
+              },
+              {
+                "minQuantity": 50,
+                "maxQuantity": 199,
+                "pricePerTire": "$154.00"
+              },
+              {
+                "minQuantity": 200,
+                "maxQuantity": null,
+                "pricePerTire": "$134.00"
+              }
+            ],
             "customizationOptions": [
               "Custom sidewall Branding (Min. order: 50 tires)",
               "Special compound formulation (Min. order: 100 tires)"
@@ -4961,8 +5073,24 @@
             "id": 1091,
             "name": "Firestone FS560 11R24.5 Steer Tire",
             "price": "$360.00",
-            "offerPrice": "$242.00",
-            "pricingTiers": [],
+            "offerPrice": "$134.00",
+            "pricingTiers": [
+              {
+                "minQuantity": 0,
+                "maxQuantity": 49,
+                "pricePerTire": "$160.00"
+              },
+              {
+                "minQuantity": 50,
+                "maxQuantity": 199,
+                "pricePerTire": "$154.00"
+              },
+              {
+                "minQuantity": 200,
+                "maxQuantity": null,
+                "pricePerTire": "$134.00"
+              }
+            ],
             "customizationOptions": [
               "Custom sidewall Branding (Min. order: 50 tires)",
               "Special compound formulation (Min. order: 100 tires)"
@@ -5013,8 +5141,24 @@
             "id": 1092,
             "name": "Firestone FT413 11R24.5 Trailer Tire",
             "price": "$360.00",
-            "offerPrice": "$207.00",
-            "pricingTiers": [],
+            "offerPrice": "$134.00",
+            "pricingTiers": [
+              {
+                "minQuantity": 0,
+                "maxQuantity": 49,
+                "pricePerTire": "$160.00"
+              },
+              {
+                "minQuantity": 50,
+                "maxQuantity": 199,
+                "pricePerTire": "$154.00"
+              },
+              {
+                "minQuantity": 200,
+                "maxQuantity": null,
+                "pricePerTire": "$134.00"
+              }
+            ],
             "customizationOptions": [
               "Custom sidewall Branding (Min. order: 50 tires)",
               "Special compound formulation (Min. order: 100 tires)"
@@ -5065,8 +5209,24 @@
             "id": 1093,
             "name": "Firestone FD694 255/70R22.5 Drive Tire",
             "price": "$250.00",
-            "offerPrice": "$205.00",
-            "pricingTiers": [],
+            "offerPrice": "$134.00",
+            "pricingTiers": [
+              {
+                "minQuantity": 0,
+                "maxQuantity": 49,
+                "pricePerTire": "$160.00"
+              },
+              {
+                "minQuantity": 50,
+                "maxQuantity": 199,
+                "pricePerTire": "$154.00"
+              },
+              {
+                "minQuantity": 200,
+                "maxQuantity": null,
+                "pricePerTire": "$134.00"
+              }
+            ],
             "customizationOptions": [
               "Custom sidewall Branding (Min. order: 50 tires)",
               "Special compound formulation (Min. order: 100 tires)"
@@ -5117,8 +5277,24 @@
             "id": 1094,
             "name": "Firestone FS560 255/70R22.5 Steer Tire",
             "price": "$250.00",
-            "offerPrice": "$235.00",
-            "pricingTiers": [],
+            "offerPrice": "$134.00",
+            "pricingTiers": [
+              {
+                "minQuantity": 0,
+                "maxQuantity": 49,
+                "pricePerTire": "$160.00"
+              },
+              {
+                "minQuantity": 50,
+                "maxQuantity": 199,
+                "pricePerTire": "$154.00"
+              },
+              {
+                "minQuantity": 200,
+                "maxQuantity": null,
+                "pricePerTire": "$134.00"
+              }
+            ],
             "customizationOptions": [
               "Custom sidewall Branding (Min. order: 50 tires)",
               "Special compound formulation (Min. order: 100 tires)"
@@ -5169,8 +5345,24 @@
             "id": 1095,
             "name": "Firestone FT413 255/70R22.5 Trailer Tire",
             "price": "$250.00",
-            "offerPrice": "$196.00",
-            "pricingTiers": [],
+            "offerPrice": "$134.00",
+            "pricingTiers": [
+              {
+                "minQuantity": 0,
+                "maxQuantity": 49,
+                "pricePerTire": "$160.00"
+              },
+              {
+                "minQuantity": 50,
+                "maxQuantity": 199,
+                "pricePerTire": "$154.00"
+              },
+              {
+                "minQuantity": 200,
+                "maxQuantity": null,
+                "pricePerTire": "$134.00"
+              }
+            ],
             "customizationOptions": [
               "Custom sidewall Branding (Min. order: 50 tires)",
               "Special compound formulation (Min. order: 100 tires)"
@@ -5426,7 +5618,23 @@
             "name": "Firestone FD694 295/80R22.5 Drive Tire",
             "price": "$300.00",
             "offerPrice": "$230.00",
-            "pricingTiers": [],
+            "pricingTiers": [
+              {
+                "minQuantity": 0,
+                "maxQuantity": 49,
+                "pricePerTire": "$160.00"
+              },
+              {
+                "minQuantity": 50,
+                "maxQuantity": 199,
+                "pricePerTire": "$154.00"
+              },
+              {
+                "minQuantity": 200,
+                "maxQuantity": null,
+                "pricePerTire": "$134.00"
+              }
+            ],
             "customizationOptions": [
               "Custom sidewall Branding (Min. order: 50 tires)",
               "Special compound formulation (Min. order: 100 tires)"
@@ -5478,7 +5686,23 @@
             "name": "Firestone FS560 295/80R22.5 Steer Tire",
             "price": "$300.00",
             "offerPrice": "$252.00",
-            "pricingTiers": [],
+            "pricingTiers": [
+              {
+                "minQuantity": 0,
+                "maxQuantity": 49,
+                "pricePerTire": "$160.00"
+              },
+              {
+                "minQuantity": 50,
+                "maxQuantity": 199,
+                "pricePerTire": "$154.00"
+              },
+              {
+                "minQuantity": 200,
+                "maxQuantity": null,
+                "pricePerTire": "$134.00"
+              }
+            ],
             "customizationOptions": [
               "Custom sidewall Branding (Min. order: 50 tires)",
               "Special compound formulation (Min. order: 100 tires)"
@@ -5530,7 +5754,23 @@
             "name": "Firestone FT413 295/80R22.5 Trailer Tire",
             "price": "$300.00",
             "offerPrice": "$203.00",
-            "pricingTiers": [],
+            "pricingTiers": [
+              {
+                "minQuantity": 0,
+                "maxQuantity": 49,
+                "pricePerTire": "$160.00"
+              },
+              {
+                "minQuantity": 50,
+                "maxQuantity": 199,
+                "pricePerTire": "$154.00"
+              },
+              {
+                "minQuantity": 200,
+                "maxQuantity": null,
+                "pricePerTire": "$134.00"
+              }
+            ],
             "customizationOptions": [
               "Custom sidewall Branding (Min. order: 50 tires)",
               "Special compound formulation (Min. order: 100 tires)"
@@ -5786,7 +6026,23 @@
             "name": "Firestone FD694 385/65R22.5 Drive Tire",
             "price": "$430.00",
             "offerPrice": "$250.00",
-            "pricingTiers": [],
+            "pricingTiers": [
+              {
+                "minQuantity": 0,
+                "maxQuantity": 49,
+                "pricePerTire": "$160.00"
+              },
+              {
+                "minQuantity": 50,
+                "maxQuantity": 199,
+                "pricePerTire": "$154.00"
+              },
+              {
+                "minQuantity": 200,
+                "maxQuantity": null,
+                "pricePerTire": "$134.00"
+              }
+            ],
             "customizationOptions": [
               "Custom sidewall Branding (Min. order: 20 tires)",
               "Special compound formulation (Min. order: 50 tires)"
@@ -5838,7 +6094,23 @@
             "name": "Firestone FS560 385/65R22.5 Steer Tire",
             "price": "$430.00",
             "offerPrice": "$245.00",
-            "pricingTiers": [],
+            "pricingTiers": [
+              {
+                "minQuantity": 0,
+                "maxQuantity": 49,
+                "pricePerTire": "$160.00"
+              },
+              {
+                "minQuantity": 50,
+                "maxQuantity": 199,
+                "pricePerTire": "$154.00"
+              },
+              {
+                "minQuantity": 200,
+                "maxQuantity": null,
+                "pricePerTire": "$134.00"
+              }
+            ],
             "customizationOptions": [
               "Custom sidewall Branding (Min. order: 20 tires)",
               "Special compound formulation (Min. order: 50 tires)"
@@ -5890,7 +6162,23 @@
             "name": "Firestone FT413 385/65R22.5 Trailer Tire",
             "price": "$430.00",
             "offerPrice": "$228.00",
-            "pricingTiers": [],
+            "pricingTiers": [
+              {
+                "minQuantity": 0,
+                "maxQuantity": 49,
+                "pricePerTire": "$160.00"
+              },
+              {
+                "minQuantity": 50,
+                "maxQuantity": 199,
+                "pricePerTire": "$154.00"
+              },
+              {
+                "minQuantity": 200,
+                "maxQuantity": null,
+                "pricePerTire": "$134.00"
+              }
+            ],
             "customizationOptions": [
               "Custom sidewall Branding (Min. order: 20 tires)",
               "Special compound formulation (Min. order: 50 tires)"
@@ -8526,6 +8814,23 @@
             "name": "Roadlux RD550 10R22.5 Drive Tire",
             "price": "$250.00",
             "offerPrice": "$125.00",
+            "pricingTiers": [
+              {
+                "minQuantity": 0,
+                "maxQuantity": 49,
+                "pricePerTire": "$160.00"
+              },
+              {
+                "minQuantity": 50,
+                "maxQuantity": 199,
+                "pricePerTire": "$154.00"
+              },
+              {
+                "minQuantity": 200,
+                "maxQuantity": null,
+                "pricePerTire": "$134.00"
+              }
+            ],
             "customizationOptions": [
               "Custom sidewall Branding (Min. order: 50 tires)"
             ],
@@ -8576,6 +8881,23 @@
             "name": "Roadlux RS500 10R22.5 Steer Tire",
             "price": "$250.00",
             "offerPrice": "$122.00",
+            "pricingTiers": [
+              {
+                "minQuantity": 0,
+                "maxQuantity": 49,
+                "pricePerTire": "$160.00"
+              },
+              {
+                "minQuantity": 50,
+                "maxQuantity": 199,
+                "pricePerTire": "$154.00"
+              },
+              {
+                "minQuantity": 200,
+                "maxQuantity": null,
+                "pricePerTire": "$134.00"
+              }
+            ],
             "customizationOptions": [
               "Custom sidewall Branding (Min. order: 50 tires)"
             ],
@@ -8626,6 +8948,23 @@
             "name": "Roadlux RT400 10R22.5 Trailer Tire",
             "price": "$250.00",
             "offerPrice": "$122.00",
+            "pricingTiers": [
+              {
+                "minQuantity": 0,
+                "maxQuantity": 49,
+                "pricePerTire": "$160.00"
+              },
+              {
+                "minQuantity": 50,
+                "maxQuantity": 199,
+                "pricePerTire": "$154.00"
+              },
+              {
+                "minQuantity": 200,
+                "maxQuantity": null,
+                "pricePerTire": "$134.00"
+              }
+            ],
             "customizationOptions": [
               "Custom sidewall Branding (Min. order: 50 tires)"
             ],
@@ -8676,6 +9015,23 @@
             "name": "Roadlux RD550 11R22.5 Drive Tire",
             "price": "$280.00",
             "offerPrice": "$128.00",
+            "pricingTiers": [
+              {
+                "minQuantity": 0,
+                "maxQuantity": 49,
+                "pricePerTire": "$160.00"
+              },
+              {
+                "minQuantity": 50,
+                "maxQuantity": 199,
+                "pricePerTire": "$154.00"
+              },
+              {
+                "minQuantity": 200,
+                "maxQuantity": null,
+                "pricePerTire": "$134.00"
+              }
+            ],
             "customizationOptions": [
               "Custom sidewall Branding (Min. order: 50 tires)"
             ],
@@ -8726,6 +9082,23 @@
             "name": "Roadlux RS500 11R22.5 Steer Tire",
             "price": "$280.00",
             "offerPrice": "$123.00",
+            "pricingTiers": [
+              {
+                "minQuantity": 0,
+                "maxQuantity": 49,
+                "pricePerTire": "$160.00"
+              },
+              {
+                "minQuantity": 50,
+                "maxQuantity": 199,
+                "pricePerTire": "$154.00"
+              },
+              {
+                "minQuantity": 200,
+                "maxQuantity": null,
+                "pricePerTire": "$134.00"
+              }
+            ],
             "customizationOptions": [
               "Custom sidewall Branding (Min. order: 50 tires)"
             ],
@@ -8776,6 +9149,23 @@
             "name": "Roadlux RT400 11R22.5 Trailer Tire",
             "price": "$280.00",
             "offerPrice": "$123.00",
+            "pricingTiers": [
+              {
+                "minQuantity": 0,
+                "maxQuantity": 49,
+                "pricePerTire": "$160.00"
+              },
+              {
+                "minQuantity": 50,
+                "maxQuantity": 199,
+                "pricePerTire": "$154.00"
+              },
+              {
+                "minQuantity": 200,
+                "maxQuantity": null,
+                "pricePerTire": "$134.00"
+              }
+            ],
             "customizationOptions": [
               "Custom sidewall Branding (Min. order: 50 tires)"
             ],
@@ -8826,6 +9216,23 @@
             "name": "Roadlux RD550 11R24.5 Drive Tire",
             "price": "$360.00",
             "offerPrice": "$130.00",
+            "pricingTiers": [
+              {
+                "minQuantity": 0,
+                "maxQuantity": 49,
+                "pricePerTire": "$160.00"
+              },
+              {
+                "minQuantity": 50,
+                "maxQuantity": 199,
+                "pricePerTire": "$154.00"
+              },
+              {
+                "minQuantity": 200,
+                "maxQuantity": null,
+                "pricePerTire": "$134.00"
+              }
+            ],
             "customizationOptions": [
               "Custom sidewall Branding (Min. order: 50 tires)"
             ],
@@ -8876,6 +9283,23 @@
             "name": "Roadlux RS500 11R24.5 Steer Tire",
             "price": "$360.00",
             "offerPrice": "$128.00",
+            "pricingTiers": [
+              {
+                "minQuantity": 0,
+                "maxQuantity": 49,
+                "pricePerTire": "$160.00"
+              },
+              {
+                "minQuantity": 50,
+                "maxQuantity": 199,
+                "pricePerTire": "$154.00"
+              },
+              {
+                "minQuantity": 200,
+                "maxQuantity": null,
+                "pricePerTire": "$134.00"
+              }
+            ],
             "customizationOptions": [
               "Custom sidewall Branding (Min. order: 50 tires)"
             ],
@@ -8926,6 +9350,23 @@
             "name": "Roadlux RT400 11R24.5 Trailer Tire",
             "price": "$360.00",
             "offerPrice": "$128.00",
+            "pricingTiers": [
+              {
+                "minQuantity": 0,
+                "maxQuantity": 49,
+                "pricePerTire": "$160.00"
+              },
+              {
+                "minQuantity": 50,
+                "maxQuantity": 199,
+                "pricePerTire": "$154.00"
+              },
+              {
+                "minQuantity": 200,
+                "maxQuantity": null,
+                "pricePerTire": "$134.00"
+              }
+            ],
             "customizationOptions": [
               "Custom sidewall Branding (Min. order: 50 tires)"
             ],
@@ -8976,6 +9417,23 @@
             "name": "Roadlux RD500 255/70R22.5 Drive Tire",
             "price": "$250.00",
             "offerPrice": "$138.00",
+            "pricingTiers": [
+              {
+                "minQuantity": 0,
+                "maxQuantity": 49,
+                "pricePerTire": "$160.00"
+              },
+              {
+                "minQuantity": 50,
+                "maxQuantity": 199,
+                "pricePerTire": "$154.00"
+              },
+              {
+                "minQuantity": 200,
+                "maxQuantity": null,
+                "pricePerTire": "$134.00"
+              }
+            ],
             "customizationOptions": [],
             "shipping": "Shipping fee and delivery date to be negotiated. Contact supplier for details.",
             "description": "Entry-level regional drive tire. A cost-effective solution for local delivery and vocational use.",
@@ -9024,6 +9482,23 @@
             "name": "Roadlux RS450 255/70R22.5 Steer Tire",
             "price": "$250.00",
             "offerPrice": "$135.00",
+            "pricingTiers": [
+              {
+                "minQuantity": 0,
+                "maxQuantity": 49,
+                "pricePerTire": "$160.00"
+              },
+              {
+                "minQuantity": 50,
+                "maxQuantity": 199,
+                "pricePerTire": "$154.00"
+              },
+              {
+                "minQuantity": 200,
+                "maxQuantity": null,
+                "pricePerTire": "$134.00"
+              }
+            ],
             "customizationOptions": [],
             "shipping": "Shipping fee and delivery date to be negotiated. Contact supplier for details.",
             "description": "Economical regional steer tire. A cost-conscious choice for local and regional transportation.",
@@ -9072,6 +9547,23 @@
             "name": "Roadlux RT350 255/70R22.5 Trailer Tire",
             "price": "$250.00",
             "offerPrice": "$135.00",
+            "pricingTiers": [
+              {
+                "minQuantity": 0,
+                "maxQuantity": 49,
+                "pricePerTire": "$160.00"
+              },
+              {
+                "minQuantity": 50,
+                "maxQuantity": 199,
+                "pricePerTire": "$154.00"
+              },
+              {
+                "minQuantity": 200,
+                "maxQuantity": null,
+                "pricePerTire": "$134.00"
+              }
+            ],
             "customizationOptions": [],
             "shipping": "Shipping fee and delivery date to be negotiated. Contact supplier for details.",
             "description": "Entry-level regional trailer tire. An economical choice for light-duty and regional trailers.",
@@ -9120,6 +9612,23 @@
             "name": "Roadlux RD600 295/75R22.5 Drive Tire",
             "price": "$300.00",
             "offerPrice": "$135.00",
+            "pricingTiers": [
+              {
+                "minQuantity": 0,
+                "maxQuantity": 49,
+                "pricePerTire": "$160.00"
+              },
+              {
+                "minQuantity": 50,
+                "maxQuantity": 199,
+                "pricePerTire": "$154.00"
+              },
+              {
+                "minQuantity": 200,
+                "maxQuantity": null,
+                "pricePerTire": "$134.00"
+              }
+            ],
             "customizationOptions": [
               "Custom sidewall Branding (Min. order: 50 tires)"
             ],
@@ -9170,6 +9679,23 @@
             "name": "Roadlux RS500 295/75R22.5 Steer Tire",
             "price": "$300.00",
             "offerPrice": "$132.00",
+            "pricingTiers": [
+              {
+                "minQuantity": 0,
+                "maxQuantity": 49,
+                "pricePerTire": "$160.00"
+              },
+              {
+                "minQuantity": 50,
+                "maxQuantity": 199,
+                "pricePerTire": "$154.00"
+              },
+              {
+                "minQuantity": 200,
+                "maxQuantity": null,
+                "pricePerTire": "$134.00"
+              }
+            ],
             "customizationOptions": [
               "Custom sidewall Branding (Min. order: 50 tires)"
             ],
@@ -9220,6 +9746,23 @@
             "name": "Roadlux RT450 295/75R22.5 Trailer Tire",
             "price": "$300.00",
             "offerPrice": "$132.00",
+            "pricingTiers": [
+              {
+                "minQuantity": 0,
+                "maxQuantity": 49,
+                "pricePerTire": "$160.00"
+              },
+              {
+                "minQuantity": 50,
+                "maxQuantity": 199,
+                "pricePerTire": "$154.00"
+              },
+              {
+                "minQuantity": 200,
+                "maxQuantity": null,
+                "pricePerTire": "$134.00"
+              }
+            ],
             "customizationOptions": [
               "Custom sidewall Branding (Min. order: 50 tires)"
             ],
@@ -9270,6 +9813,23 @@
             "name": "Roadlux RD600 295/80R22.5 Drive Tire",
             "price": "$300.00",
             "offerPrice": "$135.00",
+            "pricingTiers": [
+              {
+                "minQuantity": 0,
+                "maxQuantity": 49,
+                "pricePerTire": "$160.00"
+              },
+              {
+                "minQuantity": 50,
+                "maxQuantity": 199,
+                "pricePerTire": "$154.00"
+              },
+              {
+                "minQuantity": 200,
+                "maxQuantity": null,
+                "pricePerTire": "$134.00"
+              }
+            ],
             "customizationOptions": [
               "Custom sidewall Branding (Min. order: 50 tires)"
             ],
@@ -9320,6 +9880,23 @@
             "name": "Roadlux RS550 295/80R22.5 Steer Tire",
             "price": "$300.00",
             "offerPrice": "$132.00",
+            "pricingTiers": [
+              {
+                "minQuantity": 0,
+                "maxQuantity": 49,
+                "pricePerTire": "$160.00"
+              },
+              {
+                "minQuantity": 50,
+                "maxQuantity": 199,
+                "pricePerTire": "$154.00"
+              },
+              {
+                "minQuantity": 200,
+                "maxQuantity": null,
+                "pricePerTire": "$134.00"
+              }
+            ],
             "customizationOptions": [
               "Custom sidewall Branding (Min. order: 50 tires)"
             ],
@@ -9370,6 +9947,23 @@
             "name": "Roadlux RT450 295/80R22.5 Trailer Tire",
             "price": "$300.00",
             "offerPrice": "$132.00",
+            "pricingTiers": [
+              {
+                "minQuantity": 0,
+                "maxQuantity": 49,
+                "pricePerTire": "$160.00"
+              },
+              {
+                "minQuantity": 50,
+                "maxQuantity": 199,
+                "pricePerTire": "$154.00"
+              },
+              {
+                "minQuantity": 200,
+                "maxQuantity": null,
+                "pricePerTire": "$134.00"
+              }
+            ],
             "customizationOptions": [
               "Custom sidewall Branding (Min. order: 50 tires)"
             ],
@@ -9420,6 +10014,23 @@
             "name": "Roadlux RD600 315/80R22.5 Drive Tire",
             "price": "$350.00",
             "offerPrice": "$135.00",
+            "pricingTiers": [
+              {
+                "minQuantity": 0,
+                "maxQuantity": 49,
+                "pricePerTire": "$160.00"
+              },
+              {
+                "minQuantity": 50,
+                "maxQuantity": 199,
+                "pricePerTire": "$154.00"
+              },
+              {
+                "minQuantity": 200,
+                "maxQuantity": null,
+                "pricePerTire": "$134.00"
+              }
+            ],
             "customizationOptions": [
               "Custom sidewall Branding (Min. order: 50 tires)",
               "Special compound formulation (Min. order: 100 tires)"
@@ -9471,6 +10082,23 @@
             "name": "Roadlux RS550 315/80R22.5 Steer Tire",
             "price": "$350.00",
             "offerPrice": "$132.00",
+            "pricingTiers": [
+              {
+                "minQuantity": 0,
+                "maxQuantity": 49,
+                "pricePerTire": "$160.00"
+              },
+              {
+                "minQuantity": 50,
+                "maxQuantity": 199,
+                "pricePerTire": "$154.00"
+              },
+              {
+                "minQuantity": 200,
+                "maxQuantity": null,
+                "pricePerTire": "$134.00"
+              }
+            ],
             "customizationOptions": [
               "Custom sidewall Branding (Min. order: 50 tires)"
             ],
@@ -9521,6 +10149,23 @@
             "name": "Roadlux RT450 315/80R22.5 Trailer Tire",
             "price": "$350.00",
             "offerPrice": "$132.00",
+            "pricingTiers": [
+              {
+                "minQuantity": 0,
+                "maxQuantity": 49,
+                "pricePerTire": "$160.00"
+              },
+              {
+                "minQuantity": 50,
+                "maxQuantity": 199,
+                "pricePerTire": "$154.00"
+              },
+              {
+                "minQuantity": 200,
+                "maxQuantity": null,
+                "pricePerTire": "$134.00"
+              }
+            ],
             "customizationOptions": [
               "Custom sidewall Branding (Min. order: 50 tires)"
             ],
@@ -9571,6 +10216,23 @@
             "name": "Roadlux RD650 385/65R22.5 Drive Tire",
             "price": "$430.00",
             "offerPrice": "$180.00",
+            "pricingTiers": [
+              {
+                "minQuantity": 0,
+                "maxQuantity": 49,
+                "pricePerTire": "$160.00"
+              },
+              {
+                "minQuantity": 50,
+                "maxQuantity": 199,
+                "pricePerTire": "$154.00"
+              },
+              {
+                "minQuantity": 200,
+                "maxQuantity": null,
+                "pricePerTire": "$134.00"
+              }
+            ],
             "customizationOptions": [
               "Custom sidewall Branding (Min. order: 20 tires)",
               "Special compound formulation (Min. order: 50 tires)"
@@ -9622,6 +10284,23 @@
             "name": "Roadlux RS600 385/65R22.5 Steer Tire",
             "price": "$430.00",
             "offerPrice": "$177.00",
+            "pricingTiers": [
+              {
+                "minQuantity": 0,
+                "maxQuantity": 49,
+                "pricePerTire": "$160.00"
+              },
+              {
+                "minQuantity": 50,
+                "maxQuantity": 199,
+                "pricePerTire": "$154.00"
+              },
+              {
+                "minQuantity": 200,
+                "maxQuantity": null,
+                "pricePerTire": "$134.00"
+              }
+            ],
             "customizationOptions": [
               "Custom sidewall Branding (Min. order: 20 tires)",
               "Special compound formulation (Min. order: 50 tires)"
@@ -9673,6 +10352,23 @@
             "name": "Roadlux RT500 385/65R22.5 Trailer Tire",
             "price": "$430.00",
             "offerPrice": "$177.00",
+            "pricingTiers": [
+              {
+                "minQuantity": 0,
+                "maxQuantity": 49,
+                "pricePerTire": "$160.00"
+              },
+              {
+                "minQuantity": 50,
+                "maxQuantity": 199,
+                "pricePerTire": "$154.00"
+              },
+              {
+                "minQuantity": 200,
+                "maxQuantity": null,
+                "pricePerTire": "$134.00"
+              }
+            ],
             "customizationOptions": [
               "Custom sidewall Branding (Min. order: 20 tires)",
               "Special compound formulation (Min. order: 50 tires)"
